@@ -759,7 +759,7 @@
             <h1 id="Sql-labs-less1-2"><a href="#Sql-labs-less1-2" class="headerlink" title="Sql labs less1,2"></a>Sql labs less1,2</h1><h5 id="less1-GET-基于错误-单引号-字符型"><a href="#less1-GET-基于错误-单引号-字符型" class="headerlink" title="less1 GET-基于错误-单引号-字符型"></a>less1 GET-基于错误-单引号-字符型</h5><h5 id="less2-GET-基于错误-单引号-数字型"><a href="#less2-GET-基于错误-单引号-数字型" class="headerlink" title="less2 GET-基于错误-单引号-数字型"></a>less2 GET-基于错误-单引号-数字型</h5><p>程序报错时，最外层的单引号是用来标识错误的，判断时应隔离出来。<br>在输入域内添加攻击代码，常用有两种：</p>
 <ul>
 <li>引号闭合</li>
-<li>注释：–+或者%23  </li>
+<li>注释：<code>-- +</code>或者<code>%23</code>或者<code>#</code>或者<code>/*x*/</code></li>
 </ul>
 <h1 id="Sql-labs-less3"><a href="#Sql-labs-less3" class="headerlink" title="Sql labs less3"></a>Sql labs less3</h1><h5 id="less3-基于错误-单引号变形-字符型"><a href="#less3-基于错误-单引号变形-字符型" class="headerlink" title="less3 基于错误-单引号变形-字符型"></a>less3 基于错误-单引号变形-字符型</h5><p>推测语句为  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select username,password from table where id = (&apos;input&apos;)</span><br></pre></td></tr></table></figure>
