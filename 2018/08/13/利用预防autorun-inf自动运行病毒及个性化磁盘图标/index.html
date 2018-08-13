@@ -79,13 +79,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T04:50:25.031Z">
+<meta property="og:updated_time" content="2018-01-26T04:50:14.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="分类">
 
 
 
@@ -113,7 +113,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/categories/"/>
 
 
 
@@ -344,8 +344,38 @@ label=My install CD
 <li>所有设备都会依照 Autorun.inf 启动。<h2 id="Windows-7"><a href="#Windows-7" class="headerlink" title="Windows 7"></a>Windows 7</h2></li>
 <li>只有光盘会先运行 autorun.inf</li>
 </ul>
-<h1 id="利用autorun-inf给硬盘改图标及简易防病毒"><a href="#利用autorun-inf给硬盘改图标及简易防病毒" class="headerlink" title="利用autorun.inf给硬盘改图标及简易防病毒"></a>利用autorun.inf给硬盘改图标及简易防病毒</h1><p>在对应磁盘的根目录放置<img src="https://fdrag0n.github.io/image/1.png" alt=""></p>
+<h1 id="利用autorun-inf给硬盘改图标及简易防病毒"><a href="#利用autorun-inf给硬盘改图标及简易防病毒" class="headerlink" title="利用autorun.inf给硬盘改图标及简易防病毒"></a>利用autorun.inf给硬盘改图标及简易防病毒</h1><h2 id="个性化磁盘—改图标"><a href="#个性化磁盘—改图标" class="headerlink" title="个性化磁盘—改图标"></a>个性化磁盘—改图标</h2><p>在对应磁盘的根目录新建一个记事本，然后修改里面内容</p>
+<pre><code>[AUTORUN]
+ICON=drag0n.ico
+</code></pre><p>然后将其保存为autorun.inf（注意ico的文件名字符不要超过6位）</p>
+<p>再将你想用的图标转换成ico文件，推荐分辨率不要超过48x48，然后一同放进同目录下，然后改名为fdragn.ico。</p>
+<p><img src="https://fdrag0n.github.io/image/1.png" alt=""></p>
+<h2 id="简易防病毒"><a href="#简易防病毒" class="headerlink" title="简易防病毒"></a>简易防病毒</h2><p>此时文件是显示在当前目录下的，可以使用Windows下的attrib命令给文件增加属性</p>
+<pre><code>attrib指令的格式和常用参数为
+ATTRIB [+R | -R] [+A | -A ] [+S | -S] [+H | -H] [[drive:] [path] filename] [/S [/D]]
++ 设置属性。
+- 清除属性。
+R 只读文件属性。
+A 存档文件属性。
+S 系统文件属性。
+H 隐藏文件属性。
+I 无内容索引文件属性。
+[drive:][path][filename]
+指定要处理的文件属性。
+/S 处理当前文件夹及其子文件夹中的匹配文件。
+/D 处理文件夹。
+/L 处理符号链接和符号链接目标的属性。
+</code></pre><p>所以使用</p>
+<pre><code>attrib +s +h +r autorun.inf
+</code></pre><p>给autorun.inf添加系统、隐藏和只读属性，防止病毒修改autorun.inf文件</p>
+<pre><code>attrib +s +h drag0n.ico
+</code></pre><p>给drag0n.ico文件添加系统和隐藏属性，美观。</p>
+<p><img src="https://fdrag0n.github.io/image/2.png" alt=""></p>
+<p>如果还要修改的话，使用以下命令将其显示出来</p>
+<pre><code>attrib -s -h -r autorun.inf
 
+attrib -s -h fdrag0n.ico
+</code></pre>
       
     </div>
     
@@ -506,7 +536,7 @@ label=My install CD
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoRun简介"><span class="nav-number">1.</span> <span class="nav-text">AutoRun简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoRun-inf文件"><span class="nav-number">2.</span> <span class="nav-text">AutoRun.inf文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoRun-inf的示例"><span class="nav-number">3.</span> <span class="nav-text">AutoRun.inf的示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoRun-inf的默认激活"><span class="nav-number">4.</span> <span class="nav-text">AutoRun.inf的默认激活</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows-XP-以前"><span class="nav-number">4.1.</span> <span class="nav-text">windows XP 以前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-7"><span class="nav-number">4.2.</span> <span class="nav-text">Windows 7</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用autorun-inf给硬盘改图标及简易防病毒"><span class="nav-number">5.</span> <span class="nav-text">利用autorun.inf给硬盘改图标及简易防病毒</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoRun简介"><span class="nav-number">1.</span> <span class="nav-text">AutoRun简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoRun-inf文件"><span class="nav-number">2.</span> <span class="nav-text">AutoRun.inf文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoRun-inf的示例"><span class="nav-number">3.</span> <span class="nav-text">AutoRun.inf的示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoRun-inf的默认激活"><span class="nav-number">4.</span> <span class="nav-text">AutoRun.inf的默认激活</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows-XP-以前"><span class="nav-number">4.1.</span> <span class="nav-text">windows XP 以前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-7"><span class="nav-number">4.2.</span> <span class="nav-text">Windows 7</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用autorun-inf给硬盘改图标及简易防病毒"><span class="nav-number">5.</span> <span class="nav-text">利用autorun.inf给硬盘改图标及简易防病毒</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#个性化磁盘—改图标"><span class="nav-number">5.1.</span> <span class="nav-text">个性化磁盘—改图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简易防病毒"><span class="nav-number">5.2.</span> <span class="nav-text">简易防病毒</span></a></li></ol></li></ol></div>
             
 
           </div>
