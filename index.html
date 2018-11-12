@@ -1052,7 +1052,8 @@ attrib -s -h fdrag0n.ico
 <li><p>RAR Archive (rar)，文件头：52617221</p>
 <h2 id="复合文件："><a href="#复合文件：" class="headerlink" title="复合文件："></a>复合文件：</h2><p>在kali里面使用binwalk工具即可查看<br>如：</p>
 <p> root@kali:~# binwalk ‘/root/桌面/misc1.jpg’ </p>
-<h2 id="DECIMAL-HEXADECIMAL-DESCRIPTION"><a href="#DECIMAL-HEXADECIMAL-DESCRIPTION" class="headerlink" title=" DECIMAL   HEXADECIMAL DESCRIPTION"></a> DECIMAL   HEXADECIMAL DESCRIPTION</h2><p> 0 0x0 JPEG image data, EXIF standard<br> 120xC TIFF image data, little-endian offset of first image directory: 8<br> 4413190x6BBE7 Zip archive data, encrypted at least v2.0 to extract, compressed size: 90598, uncompressed size: 91905, name: hidden.jpg<br> 5319570x81DF5 Zip archive data, encrypted at least v2.0 to extract, compressed size: 38092, uncompressed size: 38829, name: logo.png<br> 5702690x8B39D End of Zip archive</p>
+<p> DECIMAL   HEXADECIMAL DESCRIPTION</p>
+<p> -——————————————————————————-<br> 0 0x0 JPEG image data, EXIF standard<br> 120xC TIFF image data, little-endian offset of first image directory: 8<br> 4413190x6BBE7 Zip archive data, encrypted at least v2.0 to extract, compressed size: 90598, uncompressed size: 91905, name: hidden.jpg<br> 5319570x81DF5 Zip archive data, encrypted at least v2.0 to extract, compressed size: 38092, uncompressed size: 38829, name: logo.png<br> 5702690x8B39D End of Zip archive</p>
 </li>
 </ol>
 <p>可以看到有zip之类的文件在里面，所以直接利用binwalk提取，</p>
