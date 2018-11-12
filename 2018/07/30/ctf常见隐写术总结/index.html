@@ -285,6 +285,154 @@
   <div id="posts" class="posts-expand">
     
 
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/ctf常见隐写术总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FDrag0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/30/ctf常见隐写术总结/" itemprop="url">ctf常见隐写术总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-30T11:57:03+08:00">2018-07-30</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+		  
+		  
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>准备工具：winhex付费版（免费版功能有缺失），Stegsolve，MP3Steno等</strong></p>
+<h1 id="ctf常见隐写术总结"><a href="#ctf常见隐写术总结" class="headerlink" title="ctf常见隐写术总结"></a>ctf常见隐写术总结</h1><h2 id="简单隐写："><a href="#简单隐写：" class="headerlink" title="简单隐写："></a>简单隐写：</h2><ol>
+<li>右键查看图片属性，检查图片简介。</li>
+<li><p>winhex打开，Ctrl+F查找有无flag明文。</p>
+<h2 id="文件类型："><a href="#文件类型：" class="headerlink" title="文件类型："></a>文件类型：</h2><p>给出的文件不一定是它后缀名显示的文件，所以应该先用winhex打开它确认文件种类</p>
+</li>
+<li><p>JPEG (jpg)，文件头：FFD8FF</p>
+</li>
+<li>PNG (png)，文件头：89504E47</li>
+<li>GIF (gif)，文件头：47494638</li>
+<li>Windows Bitmap (bmp)，文件头：424D</li>
+<li>ZIP Archive (zip)，文件头：504B0304</li>
+<li><p>RAR Archive (rar)，文件头：52617221</p>
+<h2 id="复合文件："><a href="#复合文件：" class="headerlink" title="复合文件："></a>复合文件：</h2><p>在kali里面使用binwalk工具即可查看<br>如：</p>
+<p> root@kali:~# binwalk ‘/root/桌面/misc1.jpg’ </p>
+<p> DECIMAL   HEXADECIMAL DESCRIPTION</p>
+<p> -——————————————————————————-<br> 0 0x0 JPEG image data, EXIF standard<br> 120xC TIFF image data, little-endian offset of first image directory: 8<br> 4413190x6BBE7 Zip archive data, encrypted at least v2.0 to extract, compressed size: 90598, uncompressed size: 91905, name: hidden.jpg<br> 5319570x81DF5 Zip archive data, encrypted at least v2.0 to extract, compressed size: 38092, uncompressed size: 38829, name: logo.png<br> 5702690x8B39D End of Zip archive</p>
+</li>
+</ol>
+<p>可以看到有zip之类的文件在里面，所以直接利用binwalk提取，</p>
+<p><code>binwalk -e</code></p>
+<h2 id="图片高度"><a href="#图片高度" class="headerlink" title="图片高度"></a>图片高度</h2><p>一般这类的图片都会有明显的提示，包括但不限于箭头指向图片外，图片看上去不完整等。<br>根据对应文件种类找到其高度位进行修改。</p>
+<ol>
+<li>png文件，</li>
+</ol>
+<h2 id="多图层隐写"><a href="#多图层隐写" class="headerlink" title="多图层隐写"></a>多图层隐写</h2><p>最牛神器 <strong>zsteg</strong>毁天灭地</p>
+<p>隐写术一大神器：<strong>stegsolve</strong></p>
+<h3 id="LSB隐写"><a href="#LSB隐写" class="headerlink" title="LSB隐写"></a>LSB隐写</h3><ol>
+<li>如果上文测试找不到flag的话，可以使用stegsolve打开文件，然后点击左右翻动的按钮，可能会出现flag。</li>
+<li>提取低位信息，一般都藏在0,1,2这些低位里面，在软件功能选项中查看Analyse→Data Extract，逐个调试。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
 
 
     <div class="post-spread">
@@ -462,7 +610,7 @@
 
 
 <div>
-<script async src="js/src/js.js"></script>
+<script async src="/js/src/js.js"></script>
 <span id="busuanzi_container_site_pv" style="display:none">
     本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
     <span class="post-meta-divider">|</span>
