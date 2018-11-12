@@ -20,9 +20,6 @@
 
 
 
-
-
-
 <meta http-equiv="Cache-Control" content="no-transform">
 <meta http-equiv="Cache-Control" content="no-siteapp">
 
@@ -76,17 +73,17 @@
 
 
 
-<meta name="description" content="菜鸡安全狗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="#记一次破解电信盒子 ##型号 ZTEB860AV1.1因为以前搞过家里的tcl电视，所以流程已经清楚  开启网络adb调试 为所欲为  ###开始  百度得知进入设置的密码为：6321进入设置后连接WiFi，然后到设置里找到开启adb调试，结果发现开启adb居然也需要密码，不得不说这群人为了控制用户也是下了血本，还好百度找到有写好的软件，上链接   工具相关软件  利用网络adb给电视盒子安装电">
+<meta property="og:type" content="article">
+<meta property="og:title" content="破解中兴电视盒子">
+<meta property="og:url" content="http://yoursite.com/2018/07/19/破解中兴电视盒子/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
-<meta property="og:description" content="菜鸡安全狗">
+<meta property="og:description" content="#记一次破解电信盒子 ##型号 ZTEB860AV1.1因为以前搞过家里的tcl电视，所以流程已经清楚  开启网络adb调试 为所欲为  ###开始  百度得知进入设置的密码为：6321进入设置后连接WiFi，然后到设置里找到开启adb调试，结果发现开启adb居然也需要密码，不得不说这群人为了控制用户也是下了血本，还好百度找到有写好的软件，上链接   工具相关软件  利用网络adb给电视盒子安装电">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T04:50:14.525Z">
+<meta property="og:updated_time" content="2018-07-20T09:03:46.838Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="菜鸡安全狗">
+<meta name="twitter:title" content="破解中兴电视盒子">
+<meta name="twitter:description" content="#记一次破解电信盒子 ##型号 ZTEB860AV1.1因为以前搞过家里的tcl电视，所以流程已经清楚  开启网络adb调试 为所欲为  ###开始  百度得知进入设置的密码为：6321进入设置后连接WiFi，然后到设置里找到开启adb调试，结果发现开启adb居然也需要密码，不得不说这群人为了控制用户也是下了血本，还好百度找到有写好的软件，上链接   工具相关软件  利用网络adb给电视盒子安装电">
 
 
 
@@ -98,10 +95,12 @@
     version: '6.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: false,
-    fastclick: false,
-    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -114,7 +113,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2018/07/19/破解中兴电视盒子/">
 
 
 
@@ -130,33 +129,6 @@
 
 
 
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +142,7 @@
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"> <div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
@@ -204,31 +176,41 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>首页</a>
+            
+            首页
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+            
+            标签
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+            
+            分类
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>归档</a>
+            
+            归档
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+            
+            关于
+          </a>
         </li>
       
 
@@ -238,7 +220,8 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+            搜索
+          </a>
         </li>
       
     </ul>
@@ -273,9 +256,6 @@
  </div>
     </header>
 
-    
-
-
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
@@ -289,8 +269,6 @@
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -315,9 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/19/破解中兴电视盒子/" itemprop="url">破解中兴电视盒子</a></h1>
+          <h1 class="post-title" itemprop="name headline">破解中兴电视盒子</h1>
         
 
         <div class="post-meta">
@@ -329,7 +305,9 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T00:59:29+08:00">2018-07-19</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T00:59:29+08:00">
+                2018-07-19
+              </time>
             
 
             
@@ -347,9 +325,12 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
-		  
-		  
           
 
           
@@ -367,9 +348,7 @@
       
 
       
-        
-          
-            <p>#记一次破解电信盒子</p>
+        <p>#记一次破解电信盒子</p>
 <p>##型号 ZTEB860AV1.1<br>因为以前搞过家里的tcl电视，所以流程已经清楚</p>
 <ol>
 <li>开启网络adb调试</li>
@@ -387,8 +366,6 @@
 </li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -405,12 +382,32 @@
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/15/SSH后门复现/" rel="next" title="SSH后门复现">
+                <i class="fa fa-chevron-left"></i> SSH后门复现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/30/ctf常见隐写术总结/" rel="prev" title="ctf常见隐写术总结">
+                ctf常见隐写术总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -428,6 +425,9 @@
 
 
           </div>
+          
+
+
           
 
   
@@ -464,42 +464,42 @@
               <p class="site-description motion-element" itemprop="description">菜鸡安全狗</p>
           </div>
 
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives">
-                
-                    <span class="site-state-item-count">16</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
+          <nav class="site-state motion-element">
 
+            
+              <div class="site-state-item site-state-posts">
               
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    <span class="site-state-item-count">2</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
+                <a href="/archives">
               
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
 
+            
               
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
               
-            </nav>
-          
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
 
           
 
@@ -554,8 +554,6 @@
   <span class="author" itemprop="copyrightHolder">FDrag0n</span>
 
   
-
-  
 </div>
 
 
@@ -567,22 +565,32 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.1</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v6.0.1</div>
 
 
-<div>
-<script async src="/js/src/js.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
-    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    <span class="post-meta-divider">|</span>
-</span>
-<span id="busuanzi_container_site_uv" style="display:none">
-    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
-</span>
-</div>
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -627,15 +635,19 @@
 
 
 
-
-
-
-
-
-
   
   
     <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
@@ -684,6 +696,10 @@
   
 
 
+  
+
+
+
 
 	
 
@@ -698,6 +714,8 @@
 
 
   
+
+
 
 
 

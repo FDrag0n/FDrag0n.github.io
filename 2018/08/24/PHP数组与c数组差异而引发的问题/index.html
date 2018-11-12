@@ -20,9 +20,6 @@
 
 
 
-
-
-
 <meta http-equiv="Cache-Control" content="no-transform">
 <meta http-equiv="Cache-Control" content="no-siteapp">
 
@@ -76,17 +73,20 @@
 
 
 
-<meta name="description" content="菜鸡安全狗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="C语言数组C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。设有一个数组 1int array[2]; 无论是先给array[0]赋值,还是先给array[1]赋值，其在内存中的排序都是array[0]在前面array[1]在后面，所以无论是用指针指向array的最后一个单元还是直接引用array[1]的值,其所指的都是同一个值。 PHP的数组而PHP数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP数组与c数组差异而引发的安全问题">
+<meta property="og:url" content="http://yoursite.com/2018/08/24/PHP数组与c数组差异而引发的问题/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
-<meta property="og:description" content="菜鸡安全狗">
+<meta property="og:description" content="C语言数组C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。设有一个数组 1int array[2]; 无论是先给array[0]赋值,还是先给array[1]赋值，其在内存中的排序都是array[0]在前面array[1]在后面，所以无论是用指针指向array的最后一个单元还是直接引用array[1]的值,其所指的都是同一个值。 PHP的数组而PHP数组">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T04:50:14.525Z">
+<meta property="og:image" content="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg">
+<meta property="og:image" content="https://fdrag0n.github.io/image/2018-8-24 235941/2018-8-24 231639.PNG">
+<meta property="og:updated_time" content="2018-09-02T02:32:34.436Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="菜鸡安全狗">
+<meta name="twitter:title" content="PHP数组与c数组差异而引发的安全问题">
+<meta name="twitter:description" content="C语言数组C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。设有一个数组 1int array[2]; 无论是先给array[0]赋值,还是先给array[1]赋值，其在内存中的排序都是array[0]在前面array[1]在后面，所以无论是用指针指向array的最后一个单元还是直接引用array[1]的值,其所指的都是同一个值。 PHP的数组而PHP数组">
+<meta name="twitter:image" content="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg">
 
 
 
@@ -98,10 +98,12 @@
     version: '6.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: false,
-    fastclick: false,
-    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -114,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2018/08/24/PHP数组与c数组差异而引发的问题/">
 
 
 
@@ -130,33 +132,6 @@
 
 
 
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +145,7 @@
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"> <div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
@@ -204,31 +179,41 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>首页</a>
+            
+            首页
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+            
+            标签
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+            
+            分类
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>归档</a>
+            
+            归档
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+            
+            关于
+          </a>
         </li>
       
 
@@ -238,7 +223,8 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+            搜索
+          </a>
         </li>
       
     </ul>
@@ -273,9 +259,6 @@
  </div>
     </header>
 
-    
-
-
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
@@ -289,8 +272,6 @@
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -315,9 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/24/PHP数组与c数组差异而引发的问题/" itemprop="url">PHP数组与c数组差异而引发的安全问题</a></h1>
+          <h1 class="post-title" itemprop="name headline">PHP数组与c数组差异而引发的安全问题</h1>
         
 
         <div class="post-meta">
@@ -329,7 +308,9 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T22:19:24+08:00">2018-08-24</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T22:19:24+08:00">
+                2018-08-24
+              </time>
             
 
             
@@ -347,9 +328,12 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
-		  
-		  
           
 
           
@@ -367,9 +351,7 @@
       
 
       
-        
-          
-            <h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong><br><img src="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg" alt="Alt text"><br>设有一个数组</p>
+        <h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong><br><img src="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg" alt="Alt text"><br>设有一个数组</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int array[2];</span><br></pre></td></tr></table></figure>
 <p>无论是先给<code>array[0]</code>赋值,还是先给<code>array[1]</code>赋值，其在内存中的排序都是<code>array[0]</code>在前面<code>array[1]</code>在后面，所以无论是用指针指向array的最后一个单元还是直接引用<code>array[1]</code>的值,其所指的都是同一个值。</p>
 <h1 id="PHP的数组"><a href="#PHP的数组" class="headerlink" title="PHP的数组"></a>PHP的数组</h1><p><strong>而PHP数组与C语言数组不一样，PHP 中的数组实际上是一个有序映射。映射是一种把 values 关联到 keys 的类型。此类型在很多方面做了优化，因此可以把它当成真正的数组，或列表（向量），散列表（是映射的一种实现），字典，集合，栈，队列以及更多可能性。由于数组元素的值也可以是另一个数组，树形结构和多维数组也是允许的。</strong><br>贴上一个简易的上传过滤源码</p>
@@ -471,8 +453,6 @@ Content-Disposition: form-data; name=&quot;submit&quot;
 Submit
 -----------------------------9930139772123--
 </code></pre>
-          
-        
       
     </div>
     
@@ -489,12 +469,32 @@ Submit
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/13/利用autorun-inf预防自动运行病毒及个性化磁盘图标/" rel="next" title="利用autorun.inf预防自动运行病毒及个性化磁盘图标">
+                <i class="fa fa-chevron-left"></i> 利用autorun.inf预防自动运行病毒及个性化磁盘图标
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/07/2018-11-7-Linux后门总结/" rel="prev" title="Linux后门总结">
+                Linux后门总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -512,6 +512,9 @@ Submit
 
 
           </div>
+          
+
+
           
 
   
@@ -557,42 +560,42 @@ Submit
               <p class="site-description motion-element" itemprop="description">菜鸡安全狗</p>
           </div>
 
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives">
-                
-                    <span class="site-state-item-count">16</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
+          <nav class="site-state motion-element">
 
+            
+              <div class="site-state-item site-state-posts">
               
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    <span class="site-state-item-count">2</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
+                <a href="/archives">
               
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
 
+            
               
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
               
-            </nav>
-          
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
 
           
 
@@ -663,8 +666,6 @@ Submit
   <span class="author" itemprop="copyrightHolder">FDrag0n</span>
 
   
-
-  
 </div>
 
 
@@ -676,22 +677,32 @@ Submit
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.1</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v6.0.1</div>
 
 
-<div>
-<script async src="/js/src/js.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
-    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    <span class="post-meta-divider">|</span>
-</span>
-<span id="busuanzi_container_site_uv" style="display:none">
-    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
-</span>
-</div>
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -736,15 +747,19 @@ Submit
 
 
 
-
-
-
-
-
-
   
   
     <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
@@ -793,6 +808,10 @@ Submit
   
 
 
+  
+
+
+
 
 	
 
@@ -807,6 +826,8 @@ Submit
 
 
   
+
+
 
 
 

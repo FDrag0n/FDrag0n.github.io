@@ -20,9 +20,6 @@
 
 
 
-
-
-
 <meta http-equiv="Cache-Control" content="no-transform">
 <meta http-equiv="Cache-Control" content="no-siteapp">
 
@@ -65,7 +62,7 @@
 
 
 
-  <meta name="keywords" content="嘤嘤嘤">
+  <meta name="keywords" content="病毒,">
 
 
 
@@ -76,17 +73,18 @@
 
 
 
-<meta name="description" content="菜鸡安全狗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="怒草流氓软件在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。天天开机弹广告，还不是启动项，通过进程删掉流氓软件后每次开机出现explorer.exe警告，在网上搜索后找到解决方案。  在注册表HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows里能找到和流氓软件对应地址的一个注册表项，删除此项，">
+<meta name="keywords" content="病毒">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次解决某网站高速下载病毒">
+<meta property="og:url" content="http://yoursite.com/2018/02/11/记一次解决某网站高速下载病毒/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
-<meta property="og:description" content="菜鸡安全狗">
+<meta property="og:description" content="怒草流氓软件在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。天天开机弹广告，还不是启动项，通过进程删掉流氓软件后每次开机出现explorer.exe警告，在网上搜索后找到解决方案。  在注册表HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows里能找到和流氓软件对应地址的一个注册表项，删除此项，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T04:50:14.525Z">
+<meta property="og:updated_time" content="2018-02-11T03:23:33.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="菜鸡安全狗">
+<meta name="twitter:title" content="记一次解决某网站高速下载病毒">
+<meta name="twitter:description" content="怒草流氓软件在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。天天开机弹广告，还不是启动项，通过进程删掉流氓软件后每次开机出现explorer.exe警告，在网上搜索后找到解决方案。  在注册表HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows里能找到和流氓软件对应地址的一个注册表项，删除此项，">
 
 
 
@@ -98,10 +96,12 @@
     version: '6.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: false,
-    fastclick: false,
-    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2018/02/11/记一次解决某网站高速下载病毒/">
 
 
 
@@ -130,33 +130,6 @@
 
 
 
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +143,7 @@
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"> <div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
@@ -204,31 +177,41 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>首页</a>
+            
+            首页
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+            
+            标签
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+            
+            分类
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>归档</a>
+            
+            归档
+          </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+            
+            关于
+          </a>
         </li>
       
 
@@ -238,7 +221,8 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+            搜索
+          </a>
         </li>
       
     </ul>
@@ -273,9 +257,6 @@
  </div>
     </header>
 
-    
-
-
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
@@ -289,8 +270,6 @@
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -315,9 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/11/记一次解决某网站高速下载病毒/" itemprop="url">记一次解决某网站高速下载病毒</a></h1>
+          <h1 class="post-title" itemprop="name headline">记一次解决某网站高速下载病毒</h1>
         
 
         <div class="post-meta">
@@ -329,7 +306,9 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T11:19:04+08:00">2018-02-11</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T11:19:04+08:00">
+                2018-02-11
+              </time>
             
 
             
@@ -347,9 +326,12 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
-		  
-		  
           
 
           
@@ -367,13 +349,9 @@
       
 
       
-        
-          
-            <h1 id="怒草流氓软件"><a href="#怒草流氓软件" class="headerlink" title="怒草流氓软件"></a>怒草流氓软件</h1><p>在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。<br>天天开机弹广告，还不是启动项，通过进程删掉流氓软件后每次开机出现explorer.exe警告，在网上搜索后找到解决方案。 </p>
+        <h1 id="怒草流氓软件"><a href="#怒草流氓软件" class="headerlink" title="怒草流氓软件"></a>怒草流氓软件</h1><p>在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。<br>天天开机弹广告，还不是启动项，通过进程删掉流氓软件后每次开机出现explorer.exe警告，在网上搜索后找到解决方案。 </p>
 <p>在注册表<strong>HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows</strong>里能找到和流氓软件对应地址的一个注册表项，删除此项，重启，问题解决。</p>
 
-          
-        
       
     </div>
     
@@ -388,14 +366,40 @@
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/病毒/" rel="tag"># 病毒</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/06/kali更新源问题解决方案/" rel="next" title="kali更新源问题解决方案">
+                <i class="fa fa-chevron-left"></i> kali更新源问题解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/10/打造手机渗透神器kali-linux-nethunter安装/" rel="prev" title="打造手机渗透神器kali-linux-nethunter安装">
+                打造手机渗透神器kali-linux-nethunter安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -413,6 +417,9 @@
 
 
           </div>
+          
+
+
           
 
   
@@ -458,42 +465,42 @@
               <p class="site-description motion-element" itemprop="description">菜鸡安全狗</p>
           </div>
 
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives">
-                
-                    <span class="site-state-item-count">16</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
+          <nav class="site-state motion-element">
 
+            
+              <div class="site-state-item site-state-posts">
               
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    <span class="site-state-item-count">2</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
+                <a href="/archives">
               
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
 
+            
               
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
               
-            </nav>
-          
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
 
           
 
@@ -564,8 +571,6 @@
   <span class="author" itemprop="copyrightHolder">FDrag0n</span>
 
   
-
-  
 </div>
 
 
@@ -577,22 +582,32 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.1</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v6.0.1</div>
 
 
-<div>
-<script async src="/js/src/js.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
-    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    <span class="post-meta-divider">|</span>
-</span>
-<span id="busuanzi_container_site_uv" style="display:none">
-    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
-</span>
-</div>
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -637,15 +652,19 @@
 
 
 
-
-
-
-
-
-
   
   
     <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
@@ -694,6 +713,10 @@
   
 
 
+  
+
+
+
 
 	
 
@@ -708,6 +731,8 @@
 
 
   
+
+
 
 
 
