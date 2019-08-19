@@ -278,6 +278,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/testimg/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FDrag0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/19/testimg/" itemprop="url">testimg</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T10:47:49+08:00">
+                2019-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="这是在测试图片"><a href="#这是在测试图片" class="headerlink" title="这是在测试图片"></a>这是在测试图片</h1><p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105005.jpg" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/自用Linux命令手册/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -599,7 +719,9 @@
       
         
           
-            <h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong><br><img src="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg" alt="Alt text"><br>设有一个数组</p>
+            <h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong></p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105154.jpg" alt=""></p>
+<p>设有一个数组</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int array[2];</span><br></pre></td></tr></table></figure>
 <p>无论是先给<code>array[0]</code>赋值,还是先给<code>array[1]</code>赋值，其在内存中的排序都是<code>array[0]</code>在前面<code>array[1]</code>在后面，所以无论是用指针指向array的最后一个单元还是直接引用<code>array[1]</code>的值,其所指的都是同一个值。</p>
 <h1 id="PHP的数组"><a href="#PHP的数组" class="headerlink" title="PHP的数组"></a>PHP的数组</h1><p><strong>而PHP数组与C语言数组不一样，PHP 中的数组实际上是一个有序映射。映射是一种把 values 关联到 keys 的类型。此类型在很多方面做了优化，因此可以把它当成真正的数组，或列表（向量），散列表（是映射的一种实现），字典，集合，栈，队列以及更多可能性。由于数组元素的值也可以是另一个数组，树形结构和多维数组也是允许的。</strong><br>贴上一个简易的上传过滤源码</p>
@@ -627,7 +749,7 @@
 </code></pre><p>但是如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，则可以成功绕过过滤规则上传。</p>
 <pre><code>file[1]=php&amp;file[0]=png
 </code></pre><p>演示截图：</p>
-<p><img src="https://fdrag0n.github.io/image/2018-8-24 235941/2018-8-24 231639.PNG" alt="Alt text"></p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105132.PNG" alt=""></p>
 <p>代码第六行和第十二行将其显示出来，由图右侧可见，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，数组是<code>Array ( [0] =&gt; png [1] =&gt; php )</code>，会被拦截。</p>
 <p>而如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，数组就是<code>Array ( [1] =&gt; php [0] =&gt; png )</code> ,它所占内存区域中最后一个单元是<code>file[0]=&gt;png</code>，而<strong>不像</strong>C语言一样是file[1]，所以如果过滤代码一方面用<code>end()</code>来取出数组最后一个单元，而另外一处却用<code>$file[count($file) - 1]</code>来取出最后一个单元，就会存在有绕过的漏洞。</p>
 <h1 id="拿python来比较一下更好说明"><a href="#拿python来比较一下更好说明" class="headerlink" title="拿python来比较一下更好说明"></a>拿python来比较一下更好说明</h1><ul>
@@ -841,7 +963,7 @@ label=My install CD
 ICON=drag0n.ico
 </code></pre><p>然后将其保存为autorun.inf（注意ico的文件名字符不要超过6位）</p>
 <p>再将你想用的图标转换成ico文件，推荐分辨率不要超过48x48，然后一同放进同目录下，然后改名为fdragn.ico。</p>
-<p><img src="https://fdrag0n.github.io/image/1.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105231.png" alt=""></p>
 <h2 id="简易防病毒"><a href="#简易防病毒" class="headerlink" title="简易防病毒"></a>简易防病毒</h2><p>此时文件是显示在当前目录下的，可以使用Windows下的attrib命令给文件增加属性</p>
 <pre><code>attrib指令的格式和常用参数为
 ATTRIB [+R | -R] [+A | -A ] [+S | -S] [+H | -H] [[drive:] [path] filename] [/S [/D]]
@@ -862,162 +984,12 @@ I 无内容索引文件属性。
 </code></pre><p>给autorun.inf添加系统、隐藏和只读属性，防止病毒修改autorun.inf文件</p>
 <pre><code>attrib +s +h drag0n.ico
 </code></pre><p>给drag0n.ico文件添加系统和隐藏属性，美观。</p>
-<p><img src="https://fdrag0n.github.io/image/2.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105237.png" alt=""></p>
 <p>如果还要修改的话，使用以下命令将其显示出来</p>
 <pre><code>attrib -s -h -r autorun.inf
 
 attrib -s -h fdrag0n.ico
 </code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/ctf常见隐写术总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FDrag0n">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="从零开始的学习生涯">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/30/ctf常见隐写术总结/" itemprop="url">ctf常见隐写术总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-30T11:57:03+08:00">
-                2018-07-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>准备工具：winhex付费版（免费版功能有缺失），Stegsolve，MP3Steno等</strong></p>
-<h1 id="ctf常见隐写术总结"><a href="#ctf常见隐写术总结" class="headerlink" title="ctf常见隐写术总结"></a>ctf常见隐写术总结</h1><h2 id="简单隐写："><a href="#简单隐写：" class="headerlink" title="简单隐写："></a>简单隐写：</h2><ol>
-<li>右键查看图片属性，检查图片简介。</li>
-<li><p>winhex打开，Ctrl+F查找有无flag明文。</p>
-<h2 id="文件类型："><a href="#文件类型：" class="headerlink" title="文件类型："></a>文件类型：</h2><p>给出的文件不一定是它后缀名显示的文件，所以应该先用winhex打开它确认文件种类</p>
-</li>
-<li><p>JPEG (jpg)，文件头：FFD8FF</p>
-</li>
-<li>PNG (png)，文件头：89504E47</li>
-<li>GIF (gif)，文件头：47494638</li>
-<li>Windows Bitmap (bmp)，文件头：424D</li>
-<li>ZIP Archive (zip)，文件头：504B0304</li>
-<li><p>RAR Archive (rar)，文件头：52617221</p>
-<h2 id="复合文件："><a href="#复合文件：" class="headerlink" title="复合文件："></a>复合文件：</h2><p>在kali里面使用binwalk工具即可查看<br>如：</p>
-<p> root@kali:~# binwalk ‘/root/桌面/misc1.jpg’ </p>
-<p> DECIMAL   HEXADECIMAL DESCRIPTION</p>
-<p> -——————————————————————————-<br> 0 0x0 JPEG image data, EXIF standard<br> 120xC TIFF image data, little-endian offset of first image directory: 8<br> 4413190x6BBE7 Zip archive data, encrypted at least v2.0 to extract, compressed size: 90598, uncompressed size: 91905, name: hidden.jpg<br> 5319570x81DF5 Zip archive data, encrypted at least v2.0 to extract, compressed size: 38092, uncompressed size: 38829, name: logo.png<br> 5702690x8B39D End of Zip archive</p>
-</li>
-</ol>
-<p>可以看到有zip之类的文件在里面，所以直接利用binwalk提取，</p>
-<p><code>binwalk -e</code></p>
-<h2 id="图片高度"><a href="#图片高度" class="headerlink" title="图片高度"></a>图片高度</h2><p>一般这类的图片都会有明显的提示，包括但不限于箭头指向图片外，图片看上去不完整等。<br>根据对应文件种类找到其高度位进行修改。</p>
-<ol>
-<li>png文件，</li>
-</ol>
-<h2 id="多图层隐写"><a href="#多图层隐写" class="headerlink" title="多图层隐写"></a>多图层隐写</h2><p>最牛神器 <strong>zsteg</strong>毁天灭地</p>
-<p>隐写术一大神器：<strong>stegsolve</strong></p>
-<h3 id="LSB隐写"><a href="#LSB隐写" class="headerlink" title="LSB隐写"></a>LSB隐写</h3><ol>
-<li>如果上文测试找不到flag的话，可以使用stegsolve打开文件，然后点击左右翻动的按钮，可能会出现flag。</li>
-<li>提取低位信息，一般都藏在0,1,2这些低位里面，在软件功能选项中查看Analyse→Data Extract，逐个调试。</li>
-</ol>
-
           
         
       
@@ -1104,7 +1076,7 @@ attrib -s -h fdrag0n.ico
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1187,7 +1159,7 @@ attrib -s -h fdrag0n.ico
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

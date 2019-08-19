@@ -75,20 +75,20 @@
 
 
 
-<meta name="description" content="C语言数组C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。设有一个数组 1int array[2]; 无论是先给array[0]赋值,还是先给array[1]赋值，其在内存中的排序都是array[0]在前面array[1]在后面，所以无论是用指针指向array的最后一个单元还是直接引用array[1]的值,其所指的都是同一个值。 PHP的数组而PHP数组">
+<meta name="description" content="C语言数组C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。  设有一个数组 1int array[2]; 无论是先给array[0]赋值,还是先给array[1]赋值，其在内存中的排序都是array[0]在前面array[1]在后面，所以无论是用指针指向array的最后一个单元还是直接引用array[1]的值,其所指的都是同一个值。 PHP的数组而PHP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP数组与c数组差异而引发的安全问题">
 <meta property="og:url" content="http://yoursite.com/2018/08/24/PHP数组与c数组差异而引发的问题/index.html">
 <meta property="og:site_name" content="从零开始的学习生涯">
-<meta property="og:description" content="C语言数组C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。设有一个数组 1int array[2]; 无论是先给array[0]赋值,还是先给array[1]赋值，其在内存中的排序都是array[0]在前面array[1]在后面，所以无论是用指针指向array的最后一个单元还是直接引用array[1]的值,其所指的都是同一个值。 PHP的数组而PHP数组">
+<meta property="og:description" content="C语言数组C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。  设有一个数组 1int array[2]; 无论是先给array[0]赋值,还是先给array[1]赋值，其在内存中的排序都是array[0]在前面array[1]在后面，所以无论是用指针指向array的最后一个单元还是直接引用array[1]的值,其所指的都是同一个值。 PHP的数组而PHP">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg">
-<meta property="og:image" content="https://fdrag0n.github.io/image/2018-8-24 235941/2018-8-24 231639.PNG">
-<meta property="og:updated_time" content="2018-09-02T02:32:34.436Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105154.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105132.PNG">
+<meta property="og:updated_time" content="2019-08-19T02:52:16.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP数组与c数组差异而引发的安全问题">
-<meta name="twitter:description" content="C语言数组C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。设有一个数组 1int array[2]; 无论是先给array[0]赋值,还是先给array[1]赋值，其在内存中的排序都是array[0]在前面array[1]在后面，所以无论是用指针指向array的最后一个单元还是直接引用array[1]的值,其所指的都是同一个值。 PHP的数组而PHP数组">
-<meta name="twitter:image" content="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg">
+<meta name="twitter:description" content="C语言数组C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。  设有一个数组 1int array[2]; 无论是先给array[0]赋值,还是先给array[1]赋值，其在内存中的排序都是array[0]在前面array[1]在后面，所以无论是用指针指向array的最后一个单元还是直接引用array[1]的值,其所指的都是同一个值。 PHP的数组而PHP">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105154.jpg">
 
 
 
@@ -353,7 +353,9 @@
       
 
       
-        <h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong><br><img src="https://fdrag0n.github.io/image/2018-8-24 235941/arrays.jpg" alt="Alt text"><br>设有一个数组</p>
+        <h1 id="C语言数组"><a href="#C语言数组" class="headerlink" title="C语言数组"></a>C语言数组</h1><p><strong>C语言的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</strong></p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105154.jpg" alt=""></p>
+<p>设有一个数组</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int array[2];</span><br></pre></td></tr></table></figure>
 <p>无论是先给<code>array[0]</code>赋值,还是先给<code>array[1]</code>赋值，其在内存中的排序都是<code>array[0]</code>在前面<code>array[1]</code>在后面，所以无论是用指针指向array的最后一个单元还是直接引用<code>array[1]</code>的值,其所指的都是同一个值。</p>
 <h1 id="PHP的数组"><a href="#PHP的数组" class="headerlink" title="PHP的数组"></a>PHP的数组</h1><p><strong>而PHP数组与C语言数组不一样，PHP 中的数组实际上是一个有序映射。映射是一种把 values 关联到 keys 的类型。此类型在很多方面做了优化，因此可以把它当成真正的数组，或列表（向量），散列表（是映射的一种实现），字典，集合，栈，队列以及更多可能性。由于数组元素的值也可以是另一个数组，树形结构和多维数组也是允许的。</strong><br>贴上一个简易的上传过滤源码</p>
@@ -381,7 +383,7 @@
 </code></pre><p>但是如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，则可以成功绕过过滤规则上传。</p>
 <pre><code>file[1]=php&amp;file[0]=png
 </code></pre><p>演示截图：</p>
-<p><img src="https://fdrag0n.github.io/image/2018-8-24 235941/2018-8-24 231639.PNG" alt="Alt text"></p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190819105132.PNG" alt=""></p>
 <p>代码第六行和第十二行将其显示出来，由图右侧可见，如果先给<code>file[0]</code>赋值png，再给<code>file[1]</code>赋值php的话，数组是<code>Array ( [0] =&gt; png [1] =&gt; php )</code>，会被拦截。</p>
 <p>而如果先给<code>file[1]</code>赋值php，再给<code>file[0]</code>赋值png的话，数组就是<code>Array ( [1] =&gt; php [0] =&gt; png )</code> ,它所占内存区域中最后一个单元是<code>file[0]=&gt;png</code>，而<strong>不像</strong>C语言一样是file[1]，所以如果过滤代码一方面用<code>end()</code>来取出数组最后一个单元，而另外一处却用<code>$file[count($file) - 1]</code>来取出最后一个单元，就会存在有绕过的漏洞。</p>
 <h1 id="拿python来比较一下更好说明"><a href="#拿python来比较一下更好说明" class="headerlink" title="拿python来比较一下更好说明"></a>拿python来比较一下更好说明</h1><ul>
@@ -569,7 +571,7 @@ Submit
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -668,7 +670,7 @@ Submit
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
