@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-19T03:00:04.590Z</updated>
+  <updated>2019-08-27T07:56:54.374Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>获取你耳机的蓝牙版本</title>
+    <link href="http://yoursite.com/2019/08/27/%E8%8E%B7%E5%8F%96%E4%BD%A0%E8%80%B3%E6%9C%BA%E7%9A%84%E8%93%9D%E7%89%99%E7%89%88%E6%9C%AC/"/>
+    <id>http://yoursite.com/2019/08/27/获取你耳机的蓝牙版本/</id>
+    <published>2019-08-27T07:34:55.000Z</published>
+    <updated>2019-08-27T07:56:54.374Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="蓝牙耳机"><a href="#蓝牙耳机" class="headerlink" title="蓝牙耳机"></a>蓝牙耳机</h1><p>在各大手机厂干掉了耳机口之后，他们就可以更好地卖蓝牙耳机了。</p><p>各大，卖点也出来了，什么TWS，蓝牙5.0，aptx，aac，ldac等等</p><p>TWS：为True  Wireless  Stereo的缩写，是<strong>真正无线立体声</strong></p><p>蓝牙5.0：于美国时间2016年6月16日在伦敦正式发布,为现阶段最高级的蓝牙协议标准。</p><p>但是怎么知道一款耳机到底是不是蓝牙5.0呢？而它具体的芯片是哪一款呢？这些很多厂家都不会告诉你。</p><h1 id="获取你耳机的蓝牙版本"><a href="#获取你耳机的蓝牙版本" class="headerlink" title="获取你耳机的蓝牙版本"></a>获取你耳机的蓝牙版本</h1><ol><li><p>以小米手机为例，开启开发者模式的蓝牙抓包日志</p><p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190827154743.jpg" alt=""><br>如图上白点处，各手机操作差不多</p></li><li><p>将系统存储目录下的./MUIU/debug_log/common/btsnoop_hci.log（不同的手机这个文件的位置不同，可以自行搜索确认。还有的手机可能需要root权限，在/data/misc/bluetooth/logs下面）文件发送至电脑</p></li><li><p>使用wireshark打开日志文件，搜索Read Remote Version Information Complete</p><p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190827155432.png" alt=""></p><p>在红线的位置即可查看目标设备的蓝牙版本号和芯片厂家</p></li></ol><p>协议的文档读的头疼，剩下的可能懒得看了0.0</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;蓝牙耳机&quot;&gt;&lt;a href=&quot;#蓝牙耳机&quot; class=&quot;headerlink&quot; title=&quot;蓝牙耳机&quot;&gt;&lt;/a&gt;蓝牙耳机&lt;/h1&gt;&lt;p&gt;在各大手机厂干掉了耳机口之后，他们就可以更好地卖蓝牙耳机了。&lt;/p&gt;
+&lt;p&gt;各大，卖点也出来了，什么TWS，蓝牙5.0，ap
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>testimg</title>

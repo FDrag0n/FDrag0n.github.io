@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[获取你耳机的蓝牙版本]]></title>
+    <url>%2F2019%2F08%2F27%2F%E8%8E%B7%E5%8F%96%E4%BD%A0%E8%80%B3%E6%9C%BA%E7%9A%84%E8%93%9D%E7%89%99%E7%89%88%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[蓝牙耳机在各大手机厂干掉了耳机口之后，他们就可以更好地卖蓝牙耳机了。 各大，卖点也出来了，什么TWS，蓝牙5.0，aptx，aac，ldac等等 TWS：为True Wireless Stereo的缩写，是真正无线立体声 蓝牙5.0：于美国时间2016年6月16日在伦敦正式发布,为现阶段最高级的蓝牙协议标准。 但是怎么知道一款耳机到底是不是蓝牙5.0呢？而它具体的芯片是哪一款呢？这些很多厂家都不会告诉你。 获取你耳机的蓝牙版本 以小米手机为例，开启开发者模式的蓝牙抓包日志 如图上白点处，各手机操作差不多 将系统存储目录下的./MUIU/debug_log/common/btsnoop_hci.log（不同的手机这个文件的位置不同，可以自行搜索确认。还有的手机可能需要root权限，在/data/misc/bluetooth/logs下面）文件发送至电脑 使用wireshark打开日志文件，搜索Read Remote Version Information Complete 在红线的位置即可查看目标设备的蓝牙版本号和芯片厂家 协议的文档读的头疼，剩下的可能懒得看了0.0]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[testimg]]></title>
     <url>%2F2019%2F08%2F19%2Ftestimg%2F</url>
     <content type="text"><![CDATA[这是在测试图片]]></content>
