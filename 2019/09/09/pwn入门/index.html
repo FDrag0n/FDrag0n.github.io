@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.1">
+
+
+
+
+
+
+  <meta name="keywords" content="pwn,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="从零开始的学习生涯" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="常见寄存器说明ESP：用来存储函数调用栈的栈顶地址，在压栈和退栈时发生变化。 EBP：用来存储当前函数状态的基地址，在函数运行时不变，可以用来索引确定函数参数或局部变量的位置。 EIP： 用来存储即将执行的程序指令的地址，CPU依照 EIP 的存储内容读取指令并执行，EIP随之指向相邻的下一条指令，如此反复，程序就得以连续执行指令。 函数调用时栈区变化 参数逆序入栈   将调用函数（caller）">
+<meta name="keywords" content="pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pwn入门">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/pwn入门/index.html">
+<meta property="og:site_name" content="从零开始的学习生涯">
+<meta property="og:description" content="常见寄存器说明ESP：用来存储函数调用栈的栈顶地址，在压栈和退栈时发生变化。 EBP：用来存储当前函数状态的基地址，在函数运行时不变，可以用来索引确定函数参数或局部变量的位置。 EIP： 用来存储即将执行的程序指令的地址，CPU依照 EIP 的存储内容读取指令并执行，EIP随之指向相邻的下一条指令，如此反复，程序就得以连续执行指令。 函数调用时栈区变化 参数逆序入栈   将调用函数（caller）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225008.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225033.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225054.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225252.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225649.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225903.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909230218.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909230851.png">
+<meta property="og:image" content="c:/Users/Admin/AppData/Roaming/Typora/typora-user-images/1568042353901.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909232547.png">
+<meta property="og:updated_time" content="2019-09-09T15:30:41.883Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pwn入门">
+<meta name="twitter:description" content="常见寄存器说明ESP：用来存储函数调用栈的栈顶地址，在压栈和退栈时发生变化。 EBP：用来存储当前函数状态的基地址，在函数运行时不变，可以用来索引确定函数参数或局部变量的位置。 EIP： 用来存储即将执行的程序指令的地址，CPU依照 EIP 的存储内容读取指令并执行，EIP随之指向相邻的下一条指令，如此反复，程序就得以连续执行指令。 函数调用时栈区变化 参数逆序入栈   将调用函数（caller）">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225008.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":5},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/09/pwn入门/">
+
+
+
+
+
+  <title>pwn入门 | 从零开始的学习生涯</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">从零开始的学习生涯</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">FDrag0n的学习生涯</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/09/pwn入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FDrag0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的学习生涯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">pwn入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-09T21:44:55+08:00">
+                2019-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="常见寄存器说明"><a href="#常见寄存器说明" class="headerlink" title="常见寄存器说明"></a>常见寄存器说明</h1><p>ESP：用来存储函数调用栈的栈顶地址，在压栈和退栈时发生变化。</p>
+<p>EBP：用来存储当前函数状态的基地址，在函数运行时不变，可以用来索引确定函数参数或局部变量的位置。</p>
+<p>EIP： 用来存储即将执行的程序指令的地址，CPU依照 EIP 的存储内容读取指令并执行，EIP随之指向相邻的下一条指令，如此反复，程序就得以连续执行指令。</p>
+<h1 id="函数调用时栈区变化"><a href="#函数调用时栈区变化" class="headerlink" title="函数调用时栈区变化"></a>函数调用时栈区变化</h1><ol>
+<li><p>参数<strong>逆序</strong>入栈</p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225008.png" alt=""></p>
+</li>
+<li><p>将调用函数（caller）进行调用之后的下一条指令地址作为返回地址压入栈内。这样调用函数（caller）的 EIP（指令）信息得以保存。</p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225033.png" alt=""></p>
+</li>
+<li><p>再将当前的EBP 寄存器的值（也就是调用函数的基地址）压入栈内，并将 EBP 寄存器的值更新为当前栈顶的地址。这样调用函数（caller）的 EBP （基地址）信息得以保存。同时，EBP 被更新为被调用函数（callee）的基地址。</p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225054.png" alt=""></p>
+</li>
+<li><p>将被调用函数的局部变量压入栈内，其中调用参数以外的数据共同构成了被调用函数（callee）的状态。在发生调用时，程序还会将被调用函数（callee）的指令地址存到 eip 寄存器内，这样程序就可以依次执行被调用函数的指令了。</p>
+<p>看过了函数调用发生时的情况，就不难理解函数调用结束时的变化。变化的核心任务是丢弃被调用函数（callee）的状态，并将栈顶恢复为调用函数（caller）的状态。</p>
+<p>首先被调用函数的局部变量会从栈内直接弹出，栈顶会指向被调用函数（callee）的基地址。<img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225252.png" alt=""></p>
+</li>
+</ol>
+<ol>
+<li><p>然后将基地址内存储的调用函数（caller）的基地址从栈内弹出，并存到 EBP寄存器内。这样调用函数（caller）的 EBP（基地址）信息得以恢复。此时栈顶会指向返回地址。</p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225649.png" alt=""></p>
+</li>
+<li><p>再将返回地址从栈内弹出，并存到 EIP 寄存器内。这样调用函数（caller）的 EIP（指令）信息得以恢复。</p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909225903.png" alt=""></p>
+</li>
+</ol>
+<h1 id="栈溢出"><a href="#栈溢出" class="headerlink" title="栈溢出"></a>栈溢出</h1><p>当函数正在执行内部指令的过程中我们无法拿到程序的控制权，只有在发生函数调用或者结束函数调用时，程序的控制权会在函数状态之间发生跳转，这时才可以通过修改函数状态来实现攻击。</p>
+<p><strong>我们的目标就是让 EIP 载入攻击指令的地址</strong></p>
+<ol>
+<li><p>在退栈过程中，返回地址会被传给 EIP，所以我们只需要让溢出数据用攻击指令的地址来覆盖返回地址就可以了。</p>
+<p>我们也可以在溢出数据内包含一段攻击指令，也可以在内存其他位置寻找可用的攻击指令。</p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909230218.png" alt=""></p>
+</li>
+</ol>
+<ol>
+<li>我们要做的就是将原本EIP指定的函数在调用时替换为其他函数。</li>
+</ol>
+<h1 id="栈溢出技术种类"><a href="#栈溢出技术种类" class="headerlink" title="栈溢出技术种类"></a>栈溢出技术种类</h1><ul>
+<li><p>修改返回地址，让其指向溢出数据中的一段指令（<strong>shellcode</strong>）</p>
+</li>
+<li><p>修改返回地址，让其指向内存中已有的某个函数（<strong>return2libc</strong>）</p>
+</li>
+<li><p>修改返回地址，让其指向内存中已有的一段指令（<strong>ROP</strong>）</p>
+</li>
+<li><p>修改某个被调用函数的地址，让其指向另一个函数（<strong>hijack GOT</strong>）</p>
+</li>
+</ul>
+<h2 id="shellcode"><a href="#shellcode" class="headerlink" title="shellcode"></a>shellcode</h2><p><strong>payload :</strong> padding1 + address of shellcode + padding2 + shellcode</p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909230851.png" alt=""></p>
+<p>padding1 处的数据可以随意填充（注意如果利用字符串程序输入溢出数据不要包含 “\x00” ，否则向程序传入溢出数据时会造成截断），长度应该刚好覆盖函数的基地址。address of shellcode 是后面 shellcode 起始处的地址，用来覆盖返回地址。padding2 处的数据也可以随意填充，长度可以任意。shellcode 应该为十六进制的机器码格式。</p>
+<p>根据上面的构造，我们要解决两个问题。</p>
+<ol>
+<li><p>返回地址之前的填充数据（padding1）应该多长？</p>
+<p>我们可以用调试工具（例如 gdb）查看汇编代码来确定这个距离，也可以在运行程序时用不断增加输入长度的方法来试探（如果返回地址被无效地址例如“AAAA”覆盖，程序会终止并报错）。</p>
+</li>
+<li><p>shellcode起始地址应该是多少？</p>
+<p>我们可以在调试工具里查看返回地址的位置（可以查看 EBP 的内容然后再加4（32位机），参见前面关于函数状态的解释），可是在调试工具里的这个地址和正常运行时并不一致，这是运行时环境变量等因素有所不同造成的。所以这种情况下我们只能得到大致但不确切的 shellcode 起始地址，解决办法是在 padding2 里填充若干长度的 “\x90”。这个机器码对应的指令是 NOP (No Operation)，也就是告诉 CPU 什么也不做，然后跳到下一条指令。有了这一段 NOP 的填充，只要返回地址能够命中这一段中的任意位置，都可以无副作用地跳转到 shellcode 的起始处，所以这种方法被称为 NOP Sled（中文含义是“滑雪橇”）。这样我们就可以通过增加 NOP 填充来配合试验 shellcode 起始地址。</p>
+<p>操作系统可以将函数调用栈的起始地址设为随机化（这种技术被称为内存布局随机化，即Address Space Layout Randomization (ASLR) ），这样程序每次运行时函数返回地址会随机变化。反之如果操作系统关闭了上述的随机化（这是技术可以生效的前提），那么程序每次运行时函数返回地址会是相同的，这样我们可以通过输入无效的溢出数据来生成core文件，再通过调试工具在core文件中找到返回地址的位置，从而确定 shellcode 的起始地址。</p>
+<p>解决完上述问题，我们就可以拼接出最终的溢出数据，输入至程序来执行 shellcode 了。</p>
+</li>
+</ol>
+<p><img src="C:\Users\Admin\AppData\Roaming\Typora\typora-user-images\1568042353901.png" alt="1568042353901"></p>
+<p>这种方法生效的一个前提是在函数调用栈上的数据（shellcode）要有可执行的权限（另一个前提是上面提到的关闭内存布局随机化）。很多时候操作系统会关闭函数调用栈的可执行权限，这样 shellcode 的方法就失效了，不过我们还可以尝试使用内存里已有的指令或函数，毕竟这些部分本来就是可执行的，所以不会受上述执行权限的限制。这就包括 return2libc 和 ROP 两种方法。</p>
+<h2 id="Return2libc"><a href="#Return2libc" class="headerlink" title="Return2libc"></a>Return2libc</h2><p>在内存中确定某个函数的地址，并用其覆盖掉返回地址。由于 libc 动态链接库中的函数被广泛使用，所以有很大概率可以在内存中找到该动态库。同时由于该库包含了一些系统级的函数（例如 system() 等），所以通常使用这些系统级函数来获得当前进程的控制权。鉴于要执行的函数可能需要参数，比如调用 system() 函数打开 shell 的完整形式为 system(“/bin/sh”) ，所以溢出数据也要包括必要的参数。下面就以执行 system(“/bin/sh”) 为例，先写出溢出数据的组成，再确定对应的各部分填充进去。</p>
+<p><strong>payload:</strong> padding1 + address of system() + padding2 + address of “/bin/sh”</p>
+<p><img src="https://raw.githubusercontent.com/FDrag0n/image/master/img/20190909232547.png" alt=""></p>
+<p>padding1 处的数据可以随意填充（注意不要包含 “\x00” ，否则向程序传入溢出数据时会造成截断），长度应该刚好覆盖函数的基地址。address of system() 是 system() 在内存中的地址，用来覆盖返回地址。padding2 处的数据长度为4（32位机），对应调用 system() 时的返回地址。因为我们在这里只需要打开 shell 就可以，并不关心从 shell 退出之后的行为，所以 padding2 的内容可以随意填充。address of “/bin/sh” 是字符串 “/bin/sh” 在内存中的地址，作为传给 system() 的参数。</p>
+<p>根据上面的构造，我们要解决个问题。</p>
+<ol>
+<li><p>返回地址之前的填充数据（padding1）应该多长？</p>
+<p>解决方法和 shellcode 中提到的答案一样。</p>
+</li>
+<li><p>system() 函数地址应该是多少？</p>
+<p>要回答这个问题，就要看看程序是如何调用动态链接库中的函数的。当函数被动态链接至程序中，程序在运行时首先确定动态链接库在内存的起始地址，再加上函数在动态库中的相对偏移量，最终得到函数在内存的绝对地址。说到确定动态库的内存地址，就要回顾一下 shellcode 中提到的内存布局随机化（ASLR），这项技术也会将动态库加载的起始地址做随机化处理。所以，如果操作系统打开了 ASLR，程序每次运行时动态库的起始地址都会变化，也就无从确定库内函数的绝对地址。在 ASLR 被关闭的前提下，我们可以通过调试工具在运行程序过程中直接查看 system() 的地址，也可以查看动态库在内存的起始地址，再在动态库内查看函数的相对偏移位置，通过计算得到函数的绝对地址。</p>
+</li>
+</ol>
+<p>最后，“/bin/sh” 的地址在哪里？</p>
+<p>可以在动态库里搜索这个字符串，如果存在，就可以按照动态库起始地址＋相对偏移来确定其绝对地址。如果在动态库里找不到，可以将这个字符串加到环境变量里，再通过 getenv() 等函数来确定地址。</p>
+<p>解决完上述问题，我们就可以拼接出溢出数据，输入至程序来通过 system() 打开 shell 了。</p>
+<h2 id="以上两种方案都需要操作系统关闭布局随机化（ASLR）"><a href="#以上两种方案都需要操作系统关闭布局随机化（ASLR）" class="headerlink" title="以上两种方案都需要操作系统关闭布局随机化（ASLR）"></a>以上两种方案都需要操作系统关闭布局随机化（ASLR）</h2><p>两种方法都是通过覆盖返回地址来执行输入的指令片段（shellcode）或者动态库中的函数（return2libc）。需要指出的是，这两种方法都需要操作系统关闭内存布局随机化（ASLR），而且 shellcode 还需要程序调用栈有可执行权限。</p>
+<p>下面的另外两种执行方法，其中有可以绕过内存布局随机化（ASLR）的方法，敬请关注。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pwn/" rel="tag"># pwn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/27/获取你耳机的蓝牙版本/" rel="next" title="获取你耳机的蓝牙版本">
+                <i class="fa fa-chevron-left"></i> 获取你耳机的蓝牙版本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="FDrag0n">
+            
+              <p class="site-author-name" itemprop="name">FDrag0n</p>
+              <p class="site-description motion-element" itemprop="description">菜鸡安全狗</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fdrag0n" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常见寄存器说明"><span class="nav-text">常见寄存器说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数调用时栈区变化"><span class="nav-text">函数调用时栈区变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栈溢出"><span class="nav-text">栈溢出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栈溢出技术种类"><span class="nav-text">栈溢出技术种类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shellcode"><span class="nav-text">shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Return2libc"><span class="nav-text">Return2libc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以上两种方案都需要操作系统关闭布局随机化（ASLR）"><span class="nav-text">以上两种方案都需要操作系统关闭布局随机化（ASLR）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FDrag0n</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v6.0.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/33.model.json"},"display":{"position":"right","width":180,"height":450},"mobile":{"show":true},"log":false});</script></body>
+</html>
