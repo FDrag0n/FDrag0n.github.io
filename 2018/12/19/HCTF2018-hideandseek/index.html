@@ -82,7 +82,7 @@
 <meta property="og:site_name" content="从零开始的学习生涯">
 <meta property="og:description" content="hide and seek经过注册登陆后发现有上传点，发现只能上传zip文件，然后发现zip中压缩的文件内容会被解压后输出在页面上，上传php马失败 尝试读取linux下的环境变量：/proc/self/environ 1UWSGI_ORIGINAL_PROC_NAME=/usr/local/bin/uwsgiSUPERVISOR_GROUP_NAME=uwsgiHOSTNAME=c52b2c48">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-05T13:15:55.236Z">
+<meta property="og:updated_time" content="2019-12-05T13:19:58.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HCTF2018-hideandseek">
 <meta name="twitter:description" content="hide and seek经过注册登陆后发现有上传点，发现只能上传zip文件，然后发现zip中压缩的文件内容会被解压后输出在页面上，上传php马失败 尝试读取linux下的环境变量：/proc/self/environ 1UWSGI_ORIGINAL_PROC_NAME=/usr/local/bin/uwsgiSUPERVISOR_GROUP_NAME=uwsgiHOSTNAME=c52b2c48">
@@ -354,7 +354,7 @@
 <p>尝试读取linux下的环境变量：/proc/self/environ</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UWSGI_ORIGINAL_PROC_NAME=/usr/local/bin/uwsgiSUPERVISOR_GROUP_NAME=uwsgiHOSTNAME=c52b2c48ec0bSHLVL=0PYTHON_PIP_VERSION=18.1HOME=/rootGPG_KEY=0D96DF4D4110E5C43FBFB17F2D347EA6AA65421DUWSGI_INI=/app/it_is_hard_t0_guess_the_path_but_y0u_find_it_5f9s5b5s9.iniNGINX_MAX_UPLOAD=0UWSGI_PROCESSES=16STATIC_URL=/staticUWSGI_CHEAPER=2NGINX_VERSION=1.15.8-1~stretchPATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/binNJS_VERSION=1.15.8.0.2.7-1~stretchLANG=C.UTF-8SUPERVISOR_ENABLED=1PYTHON_VERSION=3.6.8NGINX_WORKER_PROCESSES=autoSUPERVISOR_SERVER_URL=unix:///var/run/supervisor.sockSUPERVISOR_PROCESS_NAME=uwsgiLISTEN_PORT=80STATIC_INDEX=0PWD=/app/hard_t0_guess_n9f5a95b5ku9fgSTATIC_PATH=/app/staticPYTHONPATH=/appUWSGI_RELOADS=0</span><br></pre></td></tr></table></figure>
 <p>找到 /app/it_is_hard_t0_guess_the_path_but_y0u_find_it_5f9s5b5s9.ini文件</p>
-<p>读取这个文件</p>
+<p>读取这个文件<br><a id="more"></a></p>
 <p>得到：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[uwsgi] module = hard_t0_guess_n9f5a95b5ku9fg.hard_t0_guess_also_df45v48ytj9_main callable=app</span><br></pre></td></tr></table></figure>
 <p>再读/app/hard_t0_guess_n9f5a95b5ku9fg/hard_t0_guess_also_df45v48ytj9_main.py</p>
